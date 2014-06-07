@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
-using PCLStorage;
+using System.Reflection;
+using System.IO;
 
 namespace Orchard
 {
@@ -21,8 +22,7 @@ namespace Orchard
 
         public static Page GetIntroPage()
         {   
-            var f = FileSystem.Current.GetFileFromPathAsync("Data/Intro.txt").Result;
-            var str = f.ReadAllTextAsync().Result;
+            var str = ReadTextData("Intro.txt");
            
             return new ContentPage
             { 
@@ -33,6 +33,22 @@ namespace Orchard
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
                 },
             };
+        }
+
+        public static string ReadTextData(string filename)
+        {
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            var resName = string.Format("Orchard.Data.{0}", filename);
+
+            using (var stream = assembly.GetManifestResourceStream(resName))
+            {
+                using (var sr = new StreamReader(stream))
+                {
+                    var str = sr.ReadToEnd();
+                    return str;
+                }
+            }
+
         }
     }
 }
