@@ -35,6 +35,12 @@ namespace Orchard
             };
         }
 
+        public static Page GetStep1Page()
+        {
+            var ret = new Step1Page();
+            return ret;
+        }
+
         public static string ReadTextData(string filename)
         {
             var assembly = typeof(App).GetTypeInfo().Assembly;
@@ -48,7 +54,6 @@ namespace Orchard
                     return str;
                 }
             }
-
         }
     }
 }

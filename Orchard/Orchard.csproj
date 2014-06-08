@@ -32,6 +32,11 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Step1VM.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Page\Step1Page.xaml.cs">
+      <DependentUpon>Step1Page.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="../packages/Xamarin.Forms.1.0.6197/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.Forms.targets" />
@@ -48,10 +53,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Page\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Intro.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\Step1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
