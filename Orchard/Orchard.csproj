@@ -37,6 +37,11 @@
     <Compile Include="Page\Step1Page.xaml.cs">
       <DependentUpon>Step1Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Step2Page.xaml.cs">
+      <DependentUpon>Step2Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Step2VM.cs" />
+    <Compile Include="Page\MenuPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="../packages/Xamarin.Forms.1.0.6197/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.Forms.targets" />
@@ -61,6 +66,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Page\Step1Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\Step2Page.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

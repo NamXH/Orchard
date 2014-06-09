@@ -9,15 +9,12 @@ namespace Orchard
     {
         public static Page GetMainPage()
         {	
-            return new ContentPage
-            { 
-                Content = new Label
-                {
-                    Text = "Crop-Adapted Spray Calculator",
-                    VerticalOptions = LayoutOptions.CenterAndExpand,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                },
-            };
+
+            var mdp = new MasterDetailPage();
+            mdp.Master = new MenuPage();
+
+            mdp.Detail = new Step1Page();
+            return mdp;
         }
 
         public static Page GetIntroPage()
