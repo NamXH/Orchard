@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Orchard
 {
@@ -24,6 +25,18 @@ namespace Orchard
             set
             {
                 _text = value;
+                OnPropertyChanged();
+            }
+        }
+
+        bool _stoogle;
+        public bool SToggle
+        {
+            get {
+                return _stoogle;
+            }
+            set {
+                _stoogle = value;
                 OnPropertyChanged();
             }
         }

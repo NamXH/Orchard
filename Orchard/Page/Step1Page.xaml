@@ -7,6 +7,8 @@
     <StackLayout>
     	<Label Text="{Binding Text}" VerticalOptions="LayoutOptions.Center"/>
         <Button Text="Next" Command="{Binding NextClicked}"/>
+        <Picker x:Name="_picker"/>
+        <Switch IsToggled="{Binding SToggle}" />
     </StackLayout>
     </ContentPage.Content>
 </ContentPage>
