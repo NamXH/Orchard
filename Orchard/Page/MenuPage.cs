@@ -14,6 +14,8 @@ namespace Orchard
         {
             Title = "Menu";
             OptionItems.Add("Home");
+            OptionItems.Add("Step 1");
+            OptionItems.Add("Step 2");
             OptionItems.Add("About");
             OptionItems.Add("Setting");
             OptionItems.Add("Help");
