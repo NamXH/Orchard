@@ -1,6 +1,6 @@
-﻿1
-2
-3
-4
-5
-6
+﻿1 - Complete all six steps in order (see tabs at bottom of the page). You can go back and change entries at any time. Yellow Pop-Up Tip Boxes can be dragged out of the way.
+2 - Input information in the light blue boxes and select pictures where required.
+3 - Results are presented in grey boxes and a Spray Record is produced that can be printed or saved to your harddrive as a permanent record.
+4 - In the case of a tank-mix, input each chemical one at a time in Step Six and staple or save the resulting Spray Records together as a single spray job.
+5 - Use the calculator twice each season: once at the very beginning and once again when tree has filled in enough to warrant a higher volume (generally around pink tip). This will result in a higher sprayer output and slightly different spray distribution (nozzle set) to match changes as the trees grow and the canopy fills.
+6 - It is recomended that water-and-oil sensitive paper be placed in the hardest-to-reach portions of the canopy to confirm that ideal coverage is being achieved.									
