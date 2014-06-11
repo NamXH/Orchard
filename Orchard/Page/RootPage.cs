@@ -10,35 +10,42 @@ namespace Orchard
     {
         public RootPage()
         {
-            _calcPages = new Dictionary<string, Page>()
+            _nextPageCmd = new Command(currTitle =>
             {
-                { "Intro", new IntroPage() },
-                { "Step 1", new Step1Page() },
-                { "Step 2", new Step2Page() },
-                { "Step 3", null },
-                { "Step 4", null },
-                { "Step 5", null },
-                { "Step 6", null },
-                { "Step 7", null },
+                var nextPage = _calcPages.Keys.SkipWhile(x => x!= (string)currTitle).Skip(1).First();
+                Debug.WriteLine("Next page: {0}", nextPage);
+                Detail = _calcPages[nextPage];
+            });
+
+            _calcPages = new SortedDictionary<string, Page>()
+            {
+                { "Introduction", new NavigationPage(new IntroPage(){ NextPageCmd = _nextPageCmd }) },
+                { "Step 1", new NavigationPage(new Step1Page()) },
+                { "Step 2", new NavigationPage(new Step2Page()) },
+                { "Step 3", new NavigationPage(new ContentPage()) },
+                { "Step 4", new NavigationPage(new ContentPage()) },
+                { "Step 5", new NavigationPage(new ContentPage()) },
+                { "Step 6", new NavigationPage(new ContentPage()) },
+                { "Step 7", new NavigationPage(new ContentPage()) },
             };
 
             _appPages = new Dictionary<string, Page>()
             {
-                { "About", null },
-                { "Settings", null },
-                { "Help", null },
+                { "About", new NavigationPage(new ContentPage()) },
+                { "Settings", new NavigationPage(new ContentPage()) },
+                { "Help", new NavigationPage(new ContentPage()) },
             };
 
             var menuPage = new MenuPage(_calcPages.Keys.ToList(), _appPages.Keys.ToList());
 
             menuPage.MenuItemChanged += OnMenuItemChanged;
 
-            Master = menuPage;
+            Master = new NavigationPage(menuPage) { Title = "Menu" };
 
             Detail = new Step1Page();
         }
 
-        Dictionary<string, Page> _calcPages;
+        SortedDictionary<string, Page> _calcPages;
 
         Dictionary<string, Page> _appPages;
 
@@ -52,6 +59,8 @@ namespace Orchard
 
             IsPresented = false;
         }
+
+        Command _nextPageCmd;
     }
 }
 
