@@ -12,7 +12,7 @@ namespace Orchard
         {
             _calcPages = new Dictionary<string, Page>()
             {
-                { "Intro", null },
+                { "Intro", new IntroPage() },
                 { "Step 1", new Step1Page() },
                 { "Step 2", new Step2Page() },
                 { "Step 3", null },
