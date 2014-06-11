@@ -12,11 +12,11 @@ namespace Orchard
 
             BindingContext = new Step1VM();
 
-            _picker.Items.Add("a");
-            _picker.Items.Add("b");
-            _picker.Items.Add("c");
-            _picker.Items.Add("d");
-            _picker.Items.Add("e");
+//            _picker.Items.Add("a");
+//            _picker.Items.Add("b");
+//            _picker.Items.Add("c");
+//            _picker.Items.Add("d");
+//            _picker.Items.Add("e");
 		}
 	}
 }

@@ -4,28 +4,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Orchard.Step1Page">
     <ContentPage.Content>
-    <StackLayout>
-    	<Label Text="1 - Do you prefer Metric Units (e.g. hectares and litres)?" />
-    	<Switch IsToggled="False"/>
-		
-		<Label Text="2 - Do you want to optimize product rate or use label rate?" />
-		<Label Text="3 - Application Date" />
-		<Label Text="4 - Application Time" />
-		<Label Text="5 - Applicator's Name or Certification Number" />
-		<Label Text="6 - Orchard Name or Block Number" />
-		<Label Text="7 - Crop (Variety or Varieties)" />
-		<Label Text="8 - Stage of Growth (Phenology)" />
-		<Label Text="9 - Average Row Spacing" />
-		<Label Text="10 - Highest Tree Height" />
-		<Label Text="11 - Average Canopy Width" />
-		<Label Text="12 - Average Row Length" />
-		<Label Text="13 - Total Block Area?" />
-		
-    	<Label Text="{Binding Text}" VerticalOptions="LayoutOptions.Center"/>
-        <Button Text="Next" Command="{Binding NextClicked}"/>
-        <Picker x:Name="_picker"/>
-        <Switch IsToggled="{Binding SToggle}" />
-    </StackLayout>
+    <ScrollView>
+	    <StackLayout>
+	    	<Label Text="1 - Do you prefer Metric Units (e.g. hectares and litres)?" />
+	    	<Switch IsToggled="False"/>
+			
+			<Label Text="2 - Do you want to optimize product rate or use label rate?" />
+			<Label Text="3 - Application Date" />
+			<DatePicker/>
+			<Label Text="4 - Application Time" />
+			<TimePicker/>
+			<Label Text="5 - Applicator's Name or Certification Number" />
+			<Label Text="6 - Orchard Name or Block Number" />
+			<Label Text="7 - Crop (Variety or Varieties)" />
+			<Label Text="8 - Stage of Growth (Phenology)" />
+			<Label Text="9 - Average Row Spacing" />
+			<Label Text="10 - Highest Tree Height" />
+			<Label Text="11 - Average Canopy Width" />
+			<Label Text="12 - Average Row Length" />
+			<Label Text="13 - Total Block Area?" />
+	    </StackLayout>
+    </ScrollView>
     </ContentPage.Content>
 </ContentPage>
 
