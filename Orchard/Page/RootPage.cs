@@ -42,7 +42,7 @@ namespace Orchard
 
             Master = new NavigationPage(menuPage) { Title = "Menu" };
 
-            Detail = new Step1Page();
+            Detail = _calcPages["Introduction"];
         }
 
         SortedDictionary<string, Page> _calcPages;

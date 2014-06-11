@@ -5,6 +5,8 @@
     x:Class="Orchard.Step1Page">
     <ContentPage.Content>
     <StackLayout>
+    	<Label Text="Do you prefer metric unit?" />
+    	<Switch IsToggled="False"/>
     	<Label Text="{Binding Text}" VerticalOptions="LayoutOptions.Center"/>
         <Button Text="Next" Command="{Binding NextClicked}"/>
         <Picker x:Name="_picker"/>
