@@ -10,32 +10,9 @@ namespace Orchard
     {
         public static Page GetMainPage()
         {	
-            var mdp = new MasterDetailPage();
-            var menuPage = new MenuPage();
+            var rootPage = new RootPage();
 
-//            menuPage.Menu.ItemSelected += (object sender, SelectedItemChangedEventArgs e) => {
-//                Debug.WriteLine(e.SelectedItem.ToString());
-//                var str = e.SelectedItem.ToString();
-//                switch(str) {
-//                    case "Home":
-//                        mdp.Detail = GetIntroPage();
-//                        break;
-//                    case "Step 1":
-//                        mdp.Detail = GetStep1Page();
-//                        break;
-//                    case "Step 2":
-//                        mdp.Detail = new Step2Page();
-//                        break;
-//                    default:
-//                        throw new InvalidOperationException("Invalid menu option");
-//                };
-//                mdp.IsPresented = false;
-//            };
-
-            mdp.Master = menuPage;
-
-            mdp.Detail = new Step1Page();
-            return mdp;
+            return rootPage;
         }
 
         public static Page GetIntroPage()

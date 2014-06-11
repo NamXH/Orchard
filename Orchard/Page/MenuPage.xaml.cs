@@ -7,35 +7,53 @@ namespace Orchard
 {
     public partial class MenuPage : ContentPage
     {
-        public MenuPage()
+        public MenuPage(IList<string> caclPageNames, IList<string> appPageNames)
         {
             InitializeComponent();
 
             _chosenItemCmd = new Command(obj =>
             {
-                var tc = (TextCell)obj;
-                Debug.WriteLine("menu item tapped {0}", tc.Text);
+                var mic = MenuItemChanged;
+                if (mic != null)
+                {
+                    mic.Invoke(this, new MenuItemChangedEventArg()
+                    {
+                        PageName = obj as string,
+                    });
+                }
             });
 
-            for (var i = 0; i < 7; ++i)
+            foreach (var name in caclPageNames)
             {
                 var cell = new TextCell()
                 {
-                    Text = string.Format("Step {0}", i + 1),
+                    Text = name,
                     Command = _chosenItemCmd,
+                    CommandParameter = name,
                 };
-                cell.CommandParameter = cell;
-
                 _calcSec.Add(cell);
-
             }
 
-            _appSec.Add(new TextCell(){ Text = "About" });
-            _appSec.Add(new TextCell(){ Text = "Setting" });
-            _appSec.Add(new TextCell(){ Text = "Help" });
+            foreach (var name in appPageNames)
+            {
+                var cell = new TextCell()
+                {
+                    Text = name,
+                    Command = _chosenItemCmd,
+                    CommandParameter = name,
+                };
+                _appSec.Add(cell);
+            }
         }
 
+        public event EventHandler<MenuItemChangedEventArg> MenuItemChanged;
+
         Command _chosenItemCmd;
+    }
+
+    public class MenuItemChangedEventArg : EventArgs
+    {
+        public string PageName{ get; set; }
     }
 }
 
