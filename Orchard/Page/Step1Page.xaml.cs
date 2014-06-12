@@ -30,7 +30,7 @@ namespace Orchard
                 _showingHelp = !_showingHelp;
             });
 
-            _helpLb.GestureRecognizers.Add(tgr);
+            _helpSv.GestureRecognizers.Add(tgr);
         }
 
         bool _showingHelp;
