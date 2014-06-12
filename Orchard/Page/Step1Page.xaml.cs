@@ -19,13 +19,13 @@ namespace Orchard
                 {
                     // Need to hide
                     var newBound = new Rectangle(0, _rLayout.Height - 50, _rLayout.Width, 50);
-                    _helpSv.LayoutTo(newBound, 250, Easing.SinIn);
+                    _helpSv.LayoutTo(newBound, 250, Easing.CubicInOut);
                 }
                 else
                 {
                     // Need to show
                     var newBound = new Rectangle(0, _rLayout.Height - 200, _rLayout.Width, 200);
-                    _helpSv.LayoutTo(newBound, 250, Easing.SinOut);
+                    _helpSv.LayoutTo(newBound, 250, Easing.CubicInOut);
                 }
                 _showingHelp = !_showingHelp;
             });
