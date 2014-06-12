@@ -17,6 +17,7 @@ namespace Orchard
 //            _picker.Items.Add("c");
 //            _picker.Items.Add("d");
 //            _picker.Items.Add("e");
+
 		}
 	}
 }

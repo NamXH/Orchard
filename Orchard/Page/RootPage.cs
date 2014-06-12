@@ -14,6 +14,7 @@ namespace Orchard
             {
                 var nextPage = _calcPages.Keys.SkipWhile(x => x!= (string)currTitle).Skip(1).First();
                 Debug.WriteLine("Next page: {0}", nextPage);
+                // BUG: no scrolling when navigate this way.
                 Detail = _calcPages[nextPage];
             });
 
@@ -42,7 +43,7 @@ namespace Orchard
 
             Master = new NavigationPage(menuPage) { Title = "Menu" };
 
-            Detail = _calcPages["Introduction"];
+            Detail = _calcPages["Step 1"];
         }
 
         SortedDictionary<string, Page> _calcPages;
