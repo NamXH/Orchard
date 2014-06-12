@@ -15,47 +15,22 @@ namespace Orchard
 
             var tgr = new TapGestureRecognizer((view, obj) =>
             {
-
-                _rLayout.Children.Remove(_helpSv);
                 if (_showingHelp)
                 {
                     // Need to hide
-                    _rLayout.Children.Add(_helpSv,
-                        Constraint.Constant(0),
-                        Constraint.RelativeToParent((parent) =>
-                        {
-                            return parent.Height - 50;
-                        }),
-                        Constraint.RelativeToParent((parent) =>
-                        {
-                            return parent.Width;
-                        }),
-                        Constraint.Constant(50));
+                    var newBound = new Rectangle(0, _rLayout.Height - 50, _rLayout.Width, 50);
+                    _helpSv.LayoutTo(newBound, 250, Easing.SinIn);
                 }
                 else
                 {
                     // Need to show
-                    _rLayout.Children.Add(_helpSv,
-                        Constraint.Constant(0),
-                        Constraint.RelativeToParent((parent) =>
-                        {
-                            return parent.Height - 200;
-                        }),
-                        Constraint.RelativeToParent((parent) =>
-                        {
-                            return parent.Width;
-                        }),
-                        Constraint.Constant(200));
+                    var newBound = new Rectangle(0, _rLayout.Height - 200, _rLayout.Width, 200);
+                    _helpSv.LayoutTo(newBound, 250, Easing.SinOut);
                 }
                 _showingHelp = !_showingHelp;
-                Debug.WriteLine("tapped");
             });
 
-
-
             _helpLb.GestureRecognizers.Add(tgr);
-
-
         }
 
         bool _showingHelp;

@@ -26,7 +26,7 @@
 				<Label Text="13 - Total Block Area?" />
 		    </StackLayout>
 	    </ScrollView>
-		<ScrollView x:Name="_helpSv" BackgroundColor="Gray"
+		<ScrollView x:Name="_helpSv" BackgroundColor="#FFB2B2B2"
 			RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
 			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=50}"
 			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}" >
