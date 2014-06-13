@@ -23,7 +23,7 @@
 		    	</local:QuestionLayout>
 
 				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
-	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
+	    			<Picker>
 	    				<Picker.Items>
 		    				<system:String>Pre Petal Fall (0.8x)</system:String>
 		    				<system:String>Post Petal Fall (1.0x)</system:String>
@@ -32,7 +32,7 @@
 		    	</local:QuestionLayout>
 
 				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
-	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
+	    			<Picker>
 	    				<Picker.Items>
 		    				<system:String>Extremely Dense (1.0x)</system:String>
 		    				<system:String>Dense (0.85x)</system:String>
