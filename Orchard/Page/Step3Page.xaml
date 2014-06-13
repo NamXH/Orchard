@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:Orchard;assembly=Orchard"
+    x:Class="Orchard.Step3Page">
+    <ContentPage.Content>
+    <RelativeLayout x:Name="_rLayout">
+    	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
+		    <StackLayout x:Name="_questionContainer" Spacing="20">
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[3]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[4]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[5]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[6]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[7]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[8]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[9]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[10]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+				
+		    	<Button Text="Next" Clicked="NextClicked"/>
+		    </StackLayout>
+	    </ScrollView>
+		<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2"
+			RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}"
+			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}" >
+			<Label TextColor="Black" Text="{Binding Common.HelpText}" />
+    	</ScrollView>
+    </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
+

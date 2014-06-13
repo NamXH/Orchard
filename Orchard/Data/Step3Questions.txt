@@ -1,11 +1,11 @@
-Sprayer Make / Model
-Sprayer Category
-Tractor Gear
-Tractor PTO rpm
-Operating Pressure
-Every-Row (or) Alternate-Row Middle Spraying
-Tank Volume
-Travel Speed
-How many active nozzles on sprayer, in total?
-Time to refill (minutes)
-Turn-time at end of row (seconds)
+17 - Sprayer Make / Model
+18 - Sprayer Category
+19 - Tractor Gear
+20 - Tractor PTO rpm
+21 - Operating Pressure
+22 - Every-Row (or) Alternate-Row Middle Spraying
+23 - Tank Volume
+24 - Travel Speed
+25 - How many active nozzles on sprayer, in total?
+26 - Time to refill (minutes)
+27 - Turn-time at end of row (seconds)

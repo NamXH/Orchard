@@ -12,7 +12,7 @@ namespace Orchard
     {
         public Step1VM()
         {
-            Common = new StepVMCommon("Step1Questions.txt", "Step1HelpTexts.txt", null);
+            Common = new StepVMCommon("Step1Questions.txt", "Step1HelpTexts.txt", "Basic Information");
 
             Q2SelectedIdx = -1;
             Q3AppTime = DateTime.Now;

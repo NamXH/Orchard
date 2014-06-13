@@ -36,7 +36,7 @@ namespace Orchard
                 { pageNames[0], new NavigationPage(new IntroPage() { Title = pageNames[0] }) },
                 { pageNames[1], new NavigationPage(new Step1Page() { Title = pageNames[1] }) },
                 { pageNames[2], new NavigationPage(new Step2Page() { Title = pageNames[2] }) },
-                { pageNames[3], new NavigationPage(new ContentPage(){ Title = pageNames[3] }) },
+                { pageNames[3], new NavigationPage(new Step3Page(){ Title = pageNames[3] }) },
                 { pageNames[4], new NavigationPage(new ContentPage(){ Title = pageNames[4] }) },
                 { pageNames[5], new NavigationPage(new ContentPage(){ Title = pageNames[5] }) },
                 { pageNames[6], new NavigationPage(new ContentPage(){ Title = pageNames[6] }) },
