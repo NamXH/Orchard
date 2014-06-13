@@ -6,7 +6,7 @@ namespace Orchard
     {
         public Step2VM()
         {
-            Common = new StepVMCommon("Step2Questions.txt", null, "abc");
+            Common = new StepVMCommon("Step2Questions.txt", "Step2HelpTexts.txt", null);
         }
 
         public StepVMCommon Common{ get; set; }

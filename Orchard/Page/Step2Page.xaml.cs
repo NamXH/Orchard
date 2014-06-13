@@ -10,7 +10,11 @@ namespace Orchard
 		{
 			InitializeComponent ();
 
-            BindingContext = new Step2VM();
+            var vm = new Step2VM();
+
+            BindingContext = vm;
+
+            ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, vm.Common.QuestionTapped);
 		}
 
         public void NextClicked(object sender, EventArgs e)
