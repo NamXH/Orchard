@@ -28,7 +28,7 @@
 		    	</local:QuestionLayout>
 
 		    	<local:QuestionLayout QuestionLabel="4 - Application Time">
-	    			<TimePicker/>
+	    			<TimePicker Time="{Binding Q4Time}"/>
 		    	</local:QuestionLayout>
 
 				<Label Text="5 - Applicator's Name or Certification Number" />

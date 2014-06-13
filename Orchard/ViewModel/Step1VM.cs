@@ -27,8 +27,7 @@ namespace Orchard
             }
             set
             {
-                _helpText = value;
-                OnPropertyChanged();
+                SetProperty(ref _helpText, value);
             }
         }
 
@@ -42,8 +41,7 @@ namespace Orchard
             }
             set
             {
-                _q2SelectedIdx = value;
-                OnPropertyChanged();
+                SetProperty(ref _q2SelectedIdx, value);
             }
         }
 
@@ -57,8 +55,7 @@ namespace Orchard
             }
             set
             {
-                _stoogle = value;
-                OnPropertyChanged();
+                SetProperty(ref _stoogle, value);
             }
         }
 
@@ -72,8 +69,21 @@ namespace Orchard
             }
             set
             {
-                _q3AppTime = value;
-                OnPropertyChanged();
+                SetProperty(ref _q3AppTime, value);
+            }
+        }
+
+        TimeSpan _q4Time;
+
+        public TimeSpan Q4Time
+        {
+            get
+            {
+                return _q4Time;
+            }
+            set
+            {
+                SetProperty(ref _q4Time, value);
             }
         }
 

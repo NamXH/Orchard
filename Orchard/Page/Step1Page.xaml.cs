@@ -33,7 +33,6 @@ namespace Orchard
                 })
             };
 
-            var dp = new DatePicker();
 
             _helpSv.GestureRecognizers.Add(tgr);
         }
