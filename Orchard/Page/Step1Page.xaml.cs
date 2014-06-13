@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Orchard
 {
@@ -32,8 +33,20 @@ namespace Orchard
                     _showingHelp = !_showingHelp;
                 })
             };
-
             _helpSv.GestureRecognizers.Add(tgr);
+
+            var qControls = _questionContainer.Children.Where(x => x is QuestionLayout).Cast<QuestionLayout>();
+            var currIdx = 0;
+            foreach (var qControl in qControls)
+            {
+                var questionTgr = new TapGestureRecognizer()
+                {
+                    Command=((Step1VM)BindingContext).QuestionTapped,
+                    CommandParameter = currIdx,
+                };
+                qControl.GestureRecognizers.Add(questionTgr);
+                currIdx++;
+            }
         }
 
         bool _showingHelp;

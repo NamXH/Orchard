@@ -1,0 +1,13 @@
+﻿1 - Do you prefer Metric Units (e.g. hectares and litres)?
+2 - Do you want to optimize product rate or use label rate?
+3 - Application Date
+4 - Application Time
+5 - Applicator's Name or Certification Number
+6 - Orchard Name or Block Number
+7 - Crop (Variety or Varieties)
+8 - Stage of Growth (Phenology)
+9 - Average Row Spacing
+10 - Highest Tree Height
+11 - Average Canopy Width
+12 - Average Row Length
+13 - Total Block Area?

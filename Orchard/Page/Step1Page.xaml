@@ -8,7 +8,7 @@
     <ContentPage.Content>
     <RelativeLayout x:Name="_rLayout">
     	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
-		    <StackLayout Spacing="20">
+		    <StackLayout x:Name="_questionContainer" Spacing="20">
 		    	<local:QuestionLayout Ori="Horizontal" QuestionLabel="{Binding QuestionList[0]}">
 	    			<Switch IsToggled="False"/>
 		    	</local:QuestionLayout>

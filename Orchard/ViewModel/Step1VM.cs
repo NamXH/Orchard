@@ -18,6 +18,9 @@ namespace Orchard
 
             QuestionList = new List<string>(qData);
 
+            var htData = Helper.ReadTextDataToLine("Step1HelpTexts.txt");
+            _helpTextList = new List<string>(htData);
+
             Q2SelectedIdx = -1;
             Q3AppTime = DateTime.Now;
         }
@@ -35,6 +38,8 @@ namespace Orchard
                 SetProperty(ref _questionList, value);
             }
         }
+
+        List<string> _helpTextList;
 
         string _helpText;
 
@@ -106,13 +111,18 @@ namespace Orchard
             }
         }
 
-        Command _nextClicked;
+        Command _questionTapped;
 
-        public Command NextClicked
+        public Command QuestionTapped
         {
             get
             {
-                return _nextClicked ?? (_nextClicked = new Command(() => Debug.WriteLine("next clicked")));
+                return _questionTapped ?? (_questionTapped = new Command((para) =>
+                {
+                    var idx = (int)para;
+                    HelpText = _helpTextList[idx];
+                    Debug.WriteLine("Question number {0}", idx);
+                }));
             }
         }
     }
