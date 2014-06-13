@@ -8,11 +8,17 @@ namespace Orchard
     {
         public StepVMCommon(string questionListFileName, string helpTextFileName, string defaultHelpText)
         {
-            var qData = Helper.ReadTextDataToLine(questionListFileName);
-            QuestionList = new List<string>(qData);
+            if (questionListFileName != null)
+            {
+                var qData = Helper.ReadTextDataToLine(questionListFileName);
+                QuestionList = new List<string>(qData);
+            }
 
-            var htData = Helper.ReadTextDataToLine(helpTextFileName);
-            _helpTextList = new List<string>(htData);
+            if (helpTextFileName != null)
+            {
+                var htData = Helper.ReadTextDataToLine(helpTextFileName);
+                _helpTextList = new List<string>(htData);
+            }
 
             _defaultHelpText = defaultHelpText;
             HelpText = _defaultHelpText;
