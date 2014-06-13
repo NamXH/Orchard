@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Intro.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Page\Step1Page.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -73,6 +73,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Page\IntroPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Step1Questions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
