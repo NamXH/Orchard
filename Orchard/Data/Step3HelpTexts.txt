@@ -1,0 +1,11 @@
+Make / Model - Enter a name, make or serial number that identifies this specific sprayer.
+Sprayer Category - Choose the option that best fits your sprayer.
+Gear - Enter the tractor gear in which you intend to spray.
+RPM's - For PTO-driven sprayers, enter the rpm's you intend to run when spraying.
+Pressure - Enter the operating pressure for the sprayer.
+ER or ARM - Alternate row middle spraying is not generally recommended. It always compromises spray coverage. Product rates will not be optimized ARM is selected.
+Volume - Enter the sprayer tank volume.
+Travel Speed - Enter the travel speed you plan to spray at. It is not generally advisable to spray at at a travel speed greater than 5.0 kph (3.1 mph).
+Nozzle Count - Enter the total number of active nozzles you plan to use. This is the entire sprayer, not just on one boom.
+Refill Time - Enter the time it takes to completely refill the sprayer.
+Turn Time - Enter the time it takes to turn at the end of the row.

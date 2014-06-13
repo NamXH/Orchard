@@ -12,8 +12,12 @@
 		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
 	    			<Picker>
 	    				<Picker.Items>
-		    				<system:String>Yes</system:String>
-		    				<system:String>No</system:String>
+		    				<system:String>Cube (1.0x)</system:String>
+		    				<system:String>Column (0.75x)</system:String>
+							<system:String>Dome (0.75x)</system:String>
+							<system:String>Cup (0.75x)</system:String>
+							<system:String>Cone (0.6x)</system:String>
+							<system:String>Spherical (0.5x)</system:String>
 	    				</Picker.Items>
 	    			</Picker>
 		    	</local:QuestionLayout>
@@ -21,15 +25,24 @@
 				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
 	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
 	    				<Picker.Items>
-		    				<system:String>Optimized Rate</system:String>
-		    				<system:String>Label Rate</system:String>
+		    				<system:String>Pre Petal Fall (0.8x)</system:String>
+		    				<system:String>Post Petal Fall (1.0x)</system:String>
 	    				</Picker.Items>
 	    			</Picker>
 		    	</local:QuestionLayout>
 
 				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
-	    			<DatePicker Date="{Binding Q3AppTime}"/>
+	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
+	    				<Picker.Items>
+		    				<system:String>Dense (0.85x)</system:String>
+		    				<system:String>Extremely Dense (1.0x)</system:String>
+							<system:String>Extremely Open (0.4x)</system:String>
+							<system:String>Moderately Open (0.7x)</system:String>
+							<system:String>Open (0.55x)</system:String>
+	    				</Picker.Items>
+	    			</Picker>
 		    	</local:QuestionLayout>
+				
 		    	<Button Text="Next" Clicked="NextClicked"/>
 		    </StackLayout>
 	    </ScrollView>
