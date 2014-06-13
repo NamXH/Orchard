@@ -16,18 +16,9 @@ namespace Orchard
             _lb1.Text = str;
         }
 
-        public ICommand NextPageCmd{ get; set; }
-
-        protected override void OnAppearing()
+        public void NextClicked(object sender, EventArgs e)
         {
-            if (_nextBtn.Command == null)
-            {
-                _nextBtn.Command = NextPageCmd;
-                _nextBtn.CommandParameter = Title;
-            }
-
-
-            base.OnAppearing();
+            MessagingCenter.Send((Page)this, "next");
         }
     }
 }

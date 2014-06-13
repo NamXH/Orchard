@@ -10,24 +10,36 @@ namespace Orchard
     {
         public RootPage()
         {
-            _nextPageCmd = new Command(currTitle =>
+            MessagingCenter.Subscribe<Page>(this, "next", sender =>
             {
-                var nextPage = _calcPages.Keys.SkipWhile(x => x!= (string)currTitle).Skip(1).First();
+                var nextPage = _calcPages.Keys.SkipWhile(x => x != sender.Title).Skip(1).First();
                 Debug.WriteLine("Next page: {0}", nextPage);
                 // BUG: no scrolling when navigate this way.
                 Detail = _calcPages[nextPage];
             });
 
+            var pageNames = new string[]
+            {
+                "Introduction",
+                "Step 1",
+                "Step 2",
+                "Step 3",
+                "Step 4",
+                "Step 5",
+                "Step 6",
+                "Step 7",
+            };
+
             _calcPages = new SortedDictionary<string, Page>()
             {
-                { "Introduction", new NavigationPage(new IntroPage(){ NextPageCmd = _nextPageCmd }) },
-                { "Step 1", new NavigationPage(new Step1Page()) },
-                { "Step 2", new NavigationPage(new Step2Page()) },
-                { "Step 3", new NavigationPage(new ContentPage()) },
-                { "Step 4", new NavigationPage(new ContentPage()) },
-                { "Step 5", new NavigationPage(new ContentPage()) },
-                { "Step 6", new NavigationPage(new ContentPage()) },
-                { "Step 7", new NavigationPage(new ContentPage()) },
+                { pageNames[0], new NavigationPage(new IntroPage() { Title = pageNames[0] }) },
+                { pageNames[1], new NavigationPage(new Step1Page() { Title = pageNames[1] }) },
+                { pageNames[2], new NavigationPage(new Step2Page() { Title = pageNames[2] }) },
+                { pageNames[3], new NavigationPage(new ContentPage(){ Title = pageNames[3] }) },
+                { pageNames[4], new NavigationPage(new ContentPage(){ Title = pageNames[4] }) },
+                { pageNames[5], new NavigationPage(new ContentPage(){ Title = pageNames[5] }) },
+                { pageNames[6], new NavigationPage(new ContentPage(){ Title = pageNames[6] }) },
+                { pageNames[7], new NavigationPage(new ContentPage(){ Title = pageNames[7] }) },
             };
 
             _appPages = new Dictionary<string, Page>()
@@ -60,8 +72,6 @@ namespace Orchard
 
             IsPresented = false;
         }
-
-        Command _nextPageCmd;
     }
 }
 

@@ -6,6 +6,7 @@
     <ContentPage.Content>
         <StackLayout>
         	<Label Text="step 2"/>
+        	<Button Text="Next" Clicked="NextClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

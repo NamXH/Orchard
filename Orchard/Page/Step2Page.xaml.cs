@@ -12,6 +12,11 @@ namespace Orchard
 
             BindingContext = new Step2VM();
 		}
+
+        public void NextClicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send((Page)this, "next");
+        }
 	}
 }
 

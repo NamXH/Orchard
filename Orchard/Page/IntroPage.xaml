@@ -2,14 +2,13 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Orchard.IntroPage"
-    Title="Introduction">
+    x:Class="Orchard.IntroPage">
     <ContentPage.Content>
     	<ScrollView>
-    	<StackLayout>
-    		<Label x:Name="_lb1"/>
-    		<Button x:Name="_nextBtn" Text="Next" />
-    	</StackLayout>
+	    	<StackLayout>
+	    		<Label x:Name="_lb1"/>
+	    		<Button Text="Next" Clicked="NextClicked"/>
+	    	</StackLayout>
     	</ScrollView>
     </ContentPage.Content>
 </ContentPage>

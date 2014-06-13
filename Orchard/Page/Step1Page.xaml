@@ -9,8 +9,13 @@
     <RelativeLayout x:Name="_rLayout">
     	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
 		    <StackLayout x:Name="_questionContainer" Spacing="20">
-		    	<local:QuestionLayout Ori="Horizontal" QuestionLabel="{Binding QuestionList[0]}">
-	    			<Switch IsToggled="False"/>
+		    	<local:QuestionLayout QuestionLabel="{Binding QuestionList[0]}">
+	    			<Picker>
+	    				<Picker.Items>
+		    				<system:String>Yes</system:String>
+		    				<system:String>No</system:String>
+	    				</Picker.Items>
+	    			</Picker>
 		    	</local:QuestionLayout>
 
 				<local:QuestionLayout QuestionLabel="{Binding QuestionList[1]}">
@@ -54,12 +59,14 @@
 		    	<local:QuestionLayout QuestionLabel="{Binding QuestionList[12]}">
 	    			<Entry/>
 		    	</local:QuestionLayout>
+
+		    	<Button Text="Next" Clicked="NextClicked"/>
 		    </StackLayout>
 	    </ScrollView>
 		<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2"
 			RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=50}"
-			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}" >
+			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}"
+			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}" >
 			<Label TextColor="Black" Text="{Binding HelpText}" />
     	</ScrollView>
     </RelativeLayout>
