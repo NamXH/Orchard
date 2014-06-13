@@ -1,13 +1,13 @@
-﻿1 - Do you prefer Metric Units (e.g. hectares and litres)?
-2 - Do you want to optimize product rate or use label rate?
-3 - Application Date
-4 - Application Time
-5 - Applicator's Name or Certification Number
-6 - Orchard Name or Block Number
-7 - Crop (Variety or Varieties)
-8 - Stage of Growth (Phenology)
-9 - Average Row Spacing
-10 - Highest Tree Height
-11 - Average Canopy Width
-12 - Average Row Length
-13 - Total Block Area?
+﻿Units - Choose the units you are most comfortable with.
+Crop-Adapted Spraying - Do not optimize rate for products offering less than 'control', plant growth modifiers, miticides, high pest-pressure situations or if alternate row spraying. See the warning under the "Instructions" tab.
+Date - Enter the date you intend to spray.
+Time - Enter the time of day you intend to start spraying.
+Spray Operator - Identify the spray operator.
+Location - Identify where spray will be applied.
+Variety - What variety or varieties will you be spraying?
+Stage of Growth - Enter the orchard's stage of growth at the time of application.
+Row Spacing - Enter the average row spacing, from trunk to trunk. See illustration below for example.
+Tree Height - Enter the height of the highest tree in the block, ignoring suckers that might exagerate the measurement. See illustration below for example.
+Canopy Width - Enter the average canopy width from dripline to dripline. See illustration below for example.
+Row Length - Enter the average row length for the block.
+Block Area - Enter the area of the block to be sprayed.

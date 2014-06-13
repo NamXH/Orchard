@@ -21,9 +21,8 @@
 				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
 	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
 	    				<Picker.Items>
-		    				<system:String>Test</system:String>
-		    				<system:String>Test 1</system:String>
-		    				<system:String>Test 2</system:String>
+		    				<system:String>Optimized Rate/system:String>
+		    				<system:String>Label Rate</system:String>
 	    				</Picker.Items>
 	    			</Picker>
 		    	</local:QuestionLayout>
@@ -36,10 +35,22 @@
 	    			<TimePicker Time="{Binding Q4Time}"/>
 		    	</local:QuestionLayout>
 
-				<Label Text="5 - Applicator's Name or Certification Number" />
-				<Label Text="6 - Orchard Name or Block Number" />
-				<Label Text="7 - Crop (Variety or Varieties)" />
-				<Label Text="8 - Stage of Growth (Phenology)" />
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[4]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+				
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[5]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+				
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[6]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+				
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[7]}">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+				
 				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[8]}">
 	    			<Entry/>
 		    	</local:QuestionLayout>
