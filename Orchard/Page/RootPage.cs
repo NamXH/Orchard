@@ -13,8 +13,6 @@ namespace Orchard
             MessagingCenter.Subscribe<Page>(this, "next", sender =>
             {
                 var nextPage = _calcPages.Keys.SkipWhile(x => x != sender.Title).Skip(1).First();
-                Debug.WriteLine("Next page: {0}", nextPage);
-                // BUG: no scrolling when navigate this way.
                 Detail = _calcPages[nextPage];
             });
 
@@ -58,7 +56,7 @@ namespace Orchard
 
             Master = new NavigationPage(menuPage) { Title = "Menu" };
 
-            Detail = _calcPages["Step 1"];
+            Detail = _calcPages[pageNames[1]];
         }
 
         SortedDictionary<string, Page> _calcPages;

@@ -14,6 +14,7 @@ namespace Orchard
 
             BindingContext = new Step1VM();
 
+            // BUG: android doesn't recognize the tap.
             var tgr = new TapGestureRecognizer()
             {
                 Command = new Command(() =>
@@ -41,7 +42,7 @@ namespace Orchard
             {
                 var questionTgr = new TapGestureRecognizer()
                 {
-                    Command = ((Step1VM)BindingContext).QuestionTapped,
+                    Command = ((Step1VM)BindingContext).Common.QuestionTapped,
                     CommandParameter = currIdx,
                 };
                 qControl.GestureRecognizers.Add(questionTgr);

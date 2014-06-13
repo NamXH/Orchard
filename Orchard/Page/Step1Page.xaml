@@ -9,7 +9,7 @@
     <RelativeLayout x:Name="_rLayout">
     	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
 		    <StackLayout x:Name="_questionContainer" Spacing="20">
-		    	<local:QuestionLayout QuestionLabel="{Binding QuestionList[0]}">
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
 	    			<Picker>
 	    				<Picker.Items>
 		    				<system:String>Yes</system:String>
@@ -18,7 +18,7 @@
 	    			</Picker>
 		    	</local:QuestionLayout>
 
-				<local:QuestionLayout QuestionLabel="{Binding QuestionList[1]}">
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
 	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
 	    				<Picker.Items>
 		    				<system:String>Test</system:String>
@@ -28,11 +28,11 @@
 	    			</Picker>
 		    	</local:QuestionLayout>
 
-				<local:QuestionLayout QuestionLabel="{Binding QuestionList[2]}">
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
 	    			<DatePicker Date="{Binding Q3AppTime}"/>
 		    	</local:QuestionLayout>
 
-		    	<local:QuestionLayout QuestionLabel="{Binding QuestionList[3]}">
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[3]}">
 	    			<TimePicker Time="{Binding Q4Time}"/>
 		    	</local:QuestionLayout>
 
@@ -40,23 +40,23 @@
 				<Label Text="6 - Orchard Name or Block Number" />
 				<Label Text="7 - Crop (Variety or Varieties)" />
 				<Label Text="8 - Stage of Growth (Phenology)" />
-				<local:QuestionLayout QuestionLabel="{Binding QuestionList[8]}">
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[8]}">
 	    			<Entry/>
 		    	</local:QuestionLayout>
 
-				<local:QuestionLayout QuestionLabel="{Binding QuestionList[9]}">
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[9]}">
 	    			<Entry/>
 		    	</local:QuestionLayout>
 
-		    	<local:QuestionLayout QuestionLabel="{Binding QuestionList[10]}">
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[10]}">
 	    			<Entry/>
 		    	</local:QuestionLayout>
 
-		    	<local:QuestionLayout QuestionLabel="{Binding QuestionList[11]}">
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[11]}">
 	    			<Entry/>
 		    	</local:QuestionLayout>
 
-		    	<local:QuestionLayout QuestionLabel="{Binding QuestionList[12]}">
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[12]}">
 	    			<Entry/>
 		    	</local:QuestionLayout>
 
@@ -67,7 +67,7 @@
 			RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
 			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}"
 			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}" >
-			<Label TextColor="Black" Text="{Binding HelpText}" />
+			<Label TextColor="Black" Text="{Binding Common.HelpText}" />
     	</ScrollView>
     </RelativeLayout>
 
