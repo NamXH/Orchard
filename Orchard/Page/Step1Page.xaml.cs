@@ -33,7 +33,6 @@ namespace Orchard
                 })
             };
 
-
             _helpSv.GestureRecognizers.Add(tgr);
         }
 

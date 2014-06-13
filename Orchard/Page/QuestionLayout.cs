@@ -11,17 +11,26 @@ namespace Orchard
             this.Children.Add(_questionLb);
         }
 
+        public static readonly BindableProperty QuestionLabelProperty =
+            BindableProperty.Create<QuestionLayout, string>(currLayout => currLayout.QuestionLabel, null, BindingMode.OneWay, null,
+                (bobj, oldVal, newVal) =>
+                {
+                    var ql = (QuestionLayout)bobj;
+                    ql._questionLb.Text = newVal;
+                });
+
         Label _questionLb;
 
         public string QuestionLabel
         { 
             get
             {
-                return _questionLb.Text;
+
+                return (string)base.GetValue(QuestionLayout.QuestionLabelProperty);
             }
             set
             {
-                _questionLb.Text = value;
+                base.SetValue(QuestionLayout.QuestionLabelProperty, value);
             }
         }
 

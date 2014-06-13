@@ -9,7 +9,7 @@ namespace Orchard
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
@@ -26,7 +26,7 @@ namespace Orchard
             }
 
             field = value;
-            OnPropertyChanged(propertyName);
+            RaisePropertyChanged(propertyName);
             return true;
         }
     }
