@@ -14,7 +14,14 @@
 		    	</local:QuestionLayout>
 
 		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
-	    			<Entry/>
+	    			<Picker>
+	    				<Picker.Items>
+		    				<system:String>Airblast (One Side)</system:String>
+		    				<system:String>Airblast (Two Sides)</system:String>
+							<system:String>Tower (Two Sides)</system:String>
+		    				<system:String>Vertical Boom (Two Booms)</system:String>
+	    				</Picker.Items>
+	    			</Picker>
 		    	</local:QuestionLayout>
 
 		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
@@ -30,7 +37,12 @@
 		    	</local:QuestionLayout>
 
 		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[5]}">
-	    			<Entry/>
+	    			<Picker>
+	    				<Picker.Items>
+		    				<system:String>Every Row</system:String>
+		    				<system:String>Alternate Row</system:String>
+	    				</Picker.Items>
+	    			</Picker>
 		    	</local:QuestionLayout>
 
 		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[6]}">
