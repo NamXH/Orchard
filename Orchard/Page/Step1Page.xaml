@@ -8,24 +8,49 @@
     <RelativeLayout x:Name="_rLayout">
     	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
 		    <StackLayout Spacing="20">
-		    	<local:QuestionLayout QuestionLabel="1 - Do you prefer Metric Units (e.g. hectares and litres)?">
+		    	<local:QuestionLayout Ori="Horizontal" QuestionLabel="1 - Do you prefer Metric Units (e.g. hectares and litres)?">
 	    			<Switch IsToggled="False"/>
 		    	</local:QuestionLayout>
 
-				<Label Text="2 - Do you want to optimize product rate or use label rate?" />
-				<Label Text="3 - Application Date" />
-				<DatePicker/>
-				<Label Text="4 - Application Time" />
-				<TimePicker/>
+				<local:QuestionLayout QuestionLabel="2 - Do you want to optimize product rate or use label rate?">
+	    			<Picker>
+	    				<Label Text="a"/>
+	    				<Label Text="b"/>
+	    				<Label Text="c"/>
+	    			</Picker>
+		    	</local:QuestionLayout>
+
+				<local:QuestionLayout QuestionLabel="3 - Application Date">
+	    			<DatePicker/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="4 - Application Time">
+	    			<TimePicker/>
+		    	</local:QuestionLayout>
+
 				<Label Text="5 - Applicator's Name or Certification Number" />
 				<Label Text="6 - Orchard Name or Block Number" />
 				<Label Text="7 - Crop (Variety or Varieties)" />
 				<Label Text="8 - Stage of Growth (Phenology)" />
-				<Label Text="9 - Average Row Spacing" />
-				<Label Text="10 - Highest Tree Height" />
-				<Label Text="11 - Average Canopy Width" />
-				<Label Text="12 - Average Row Length" />
-				<Label Text="13 - Total Block Area?" />
+				<local:QuestionLayout QuestionLabel="9 - Average Row Spacing">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+				<local:QuestionLayout QuestionLabel="10 - Highest Tree Height">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="11 - Average Canopy Width">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="12 - Average Row Length">
+	    			<Entry/>
+		    	</local:QuestionLayout>
+
+		    	<local:QuestionLayout QuestionLabel="13 - Total Block Area?">
+	    			<Entry/>
+		    	</local:QuestionLayout>
 		    </StackLayout>
 	    </ScrollView>
 		<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2"

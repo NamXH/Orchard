@@ -9,6 +9,8 @@ namespace Orchard
         {
             _questionLb = new Label();
             this.Children.Add(_questionLb);
+
+
         }
 
         Label _questionLb;
@@ -22,6 +24,18 @@ namespace Orchard
             set
             {
                 _questionLb.Text = value;
+            }
+        }
+
+        public StackOrientation Ori
+        {
+            get
+            {
+                return base.Orientation;
+            }
+            set
+            {
+                base.Orientation = value;
             }
         }
     }
