@@ -13,22 +13,27 @@ namespace Orchard
 
             BindingContext = new Step1VM();
 
-            var tgr = new TapGestureRecognizer((view, obj) =>
+            var tgr = new TapGestureRecognizer()
             {
-                if (_showingHelp)
+                Command = new Command(() =>
                 {
-                    // Need to hide
-                    var newBound = new Rectangle(0, _rLayout.Height - 50, _rLayout.Width, 50);
-                    _helpSv.LayoutTo(newBound, 250, Easing.CubicInOut);
-                }
-                else
-                {
-                    // Need to show
-                    var newBound = new Rectangle(0, _rLayout.Height - 200, _rLayout.Width, 200);
-                    _helpSv.LayoutTo(newBound, 250, Easing.CubicInOut);
-                }
-                _showingHelp = !_showingHelp;
-            });
+                    if (_showingHelp)
+                    {
+                        // Need to hide
+                        var newBound = new Rectangle(0, _rLayout.Height - 50, _rLayout.Width, 50);
+                        _helpSv.LayoutTo(newBound, 250, Easing.CubicInOut);
+                    }
+                    else
+                    {
+                        // Need to show
+                        var newBound = new Rectangle(0, _rLayout.Height - 200, _rLayout.Width, 200);
+                        _helpSv.LayoutTo(newBound, 250, Easing.CubicInOut);
+                    }
+                    _showingHelp = !_showingHelp;
+                })
+            };
+
+            //var a = MessagingCenter;
 
             _helpSv.GestureRecognizers.Add(tgr);
         }

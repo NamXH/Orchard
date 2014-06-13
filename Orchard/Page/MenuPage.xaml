@@ -6,7 +6,7 @@
     Title="Menu">
     <ContentPage.Content>
         <StackLayout>
-        	<TableView x:Name="_tv" Intent="Menu">
+        	<TableView Intent="Menu">
         		<TableView.Root>
 	        		<TableRoot>
 	        			<TableSection x:Name="_calcSec" Title="Calculation"/>

@@ -9,8 +9,6 @@ namespace Orchard
         {
             _questionLb = new Label();
             this.Children.Add(_questionLb);
-
-
         }
 
         Label _questionLb;
