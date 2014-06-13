@@ -21,7 +21,7 @@
 				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
 	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
 	    				<Picker.Items>
-		    				<system:String>Optimized Rate/system:String>
+		    				<system:String>Optimized Rate</system:String>
 		    				<system:String>Label Rate</system:String>
 	    				</Picker.Items>
 	    			</Picker>

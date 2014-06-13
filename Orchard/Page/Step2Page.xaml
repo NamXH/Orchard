@@ -4,10 +4,40 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Orchard.Step2Page">
     <ContentPage.Content>
-        <StackLayout>
-        	<Label Text="step 2"/>
-        	<Button Text="Next" Clicked="NextClicked"/>
-        </StackLayout>
+    <RelativeLayout x:Name="_rLayout">
+    	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
+		    <StackLayout x:Name="_questionContainer" Spacing="20">
+		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
+	    			<Picker>
+	    				<Picker.Items>
+		    				<system:String>Yes</system:String>
+		    				<system:String>No</system:String>
+	    				</Picker.Items>
+	    			</Picker>
+		    	</local:QuestionLayout>
+
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
+	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
+	    				<Picker.Items>
+		    				<system:String>Optimized Rate</system:String>
+		    				<system:String>Label Rate</system:String>
+	    				</Picker.Items>
+	    			</Picker>
+		    	</local:QuestionLayout>
+
+				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
+	    			<DatePicker Date="{Binding Q3AppTime}"/>
+		    	</local:QuestionLayout>
+		    	<Button Text="Next" Clicked="NextClicked"/>
+		    </StackLayout>
+	    </ScrollView>
+		<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2"
+			RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}"
+			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}" >
+			<Label TextColor="Black" Text="{Binding Common.HelpText}" />
+    	</ScrollView>
+    </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
 
