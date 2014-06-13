@@ -2,6 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:Orchard;assembly=Orchard"
     x:Class="Orchard.Step1Page">
     <ContentPage.Content>
@@ -13,15 +14,17 @@
 		    	</local:QuestionLayout>
 
 				<local:QuestionLayout QuestionLabel="2 - Do you want to optimize product rate or use label rate?">
-	    			<Picker>
-	    				<Label Text="a"/>
-	    				<Label Text="b"/>
-	    				<Label Text="c"/>
+	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
+	    				<Picker.Items>
+		    				<system:String>Test</system:String>
+		    				<system:String>Test 1</system:String>
+		    				<system:String>Test 2</system:String>
+	    				</Picker.Items>
 	    			</Picker>
 		    	</local:QuestionLayout>
 
 				<local:QuestionLayout QuestionLabel="3 - Application Date">
-	    			<DatePicker/>
+	    			<DatePicker Date="{Binding Q3AppTime}"/>
 		    	</local:QuestionLayout>
 
 		    	<local:QuestionLayout QuestionLabel="4 - Application Time">

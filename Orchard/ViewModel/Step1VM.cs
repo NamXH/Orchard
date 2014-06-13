@@ -12,6 +12,9 @@ namespace Orchard
         public Step1VM()
         {
             HelpText = "help text here, long long textThis text is a very boring text and I bet you will not manage to read the whole text since the only period in the text is the one that ends the whole text that is by the way so long and pointless that writing it is just as fun as the text becomes boring since it is so long and pointless and also quite boring since it does not happen a single thing the whole time it is going on which is very long so you will probably not even manage reading to this point which is somewhere halfway and yet you do incredibly as it is since you are reading these words in this long and boring text where nothing happens at all but you will probably stop reading soon as it is just too boring and long and pointless and I notice you are still reading my boring text and wonder how you can withstand it since it is so long and boring plus there is more fun things to do that I would prefer to do rather than reading this soulless text that is really damn boring and now even I am starting to get tired of it so now I am cutting it out.";
+
+            Q2SelectedIdx = -1;
+            Q3AppTime = DateTime.Now;
         }
 
         string _helpText;
@@ -29,14 +32,47 @@ namespace Orchard
             }
         }
 
+        int _q2SelectedIdx;
+
+        public int Q2SelectedIdx
+        {
+            get
+            {
+                return _q2SelectedIdx;
+            }
+            set
+            {
+                _q2SelectedIdx = value;
+                OnPropertyChanged();
+            }
+        }
+
         bool _stoogle;
+
         public bool SToggle
         {
-            get {
+            get
+            {
                 return _stoogle;
             }
-            set {
+            set
+            {
                 _stoogle = value;
+                OnPropertyChanged();
+            }
+        }
+
+        DateTime _q3AppTime;
+
+        public DateTime Q3AppTime
+        {
+            get
+            {
+                return _q3AppTime;
+            }
+            set
+            {
+                _q3AppTime = value;
                 OnPropertyChanged();
             }
         }

@@ -33,7 +33,7 @@ namespace Orchard
                 })
             };
 
-            //var a = MessagingCenter;
+            var dp = new DatePicker();
 
             _helpSv.GestureRecognizers.Add(tgr);
         }
