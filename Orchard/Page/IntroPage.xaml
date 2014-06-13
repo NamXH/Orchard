@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Orchard.IntroPage">
     <ContentPage.Content>
-    	<ScrollView>
+    	<ScrollView Padding="8">
 	    	<StackLayout>
 	    		<Label x:Name="_lb1"/>
 	    		<Button Text="Next" Clicked="NextClicked"/>

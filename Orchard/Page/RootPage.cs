@@ -28,6 +28,9 @@ namespace Orchard
                 "Step 5",
                 "Step 6",
                 "Step 7",
+                "About",
+                "Settings",
+                "Help"
             };
 
             _calcPages = new SortedDictionary<string, Page>()
@@ -44,9 +47,9 @@ namespace Orchard
 
             _appPages = new Dictionary<string, Page>()
             {
-                { "About", new NavigationPage(new ContentPage()) },
-                { "Settings", new NavigationPage(new ContentPage()) },
-                { "Help", new NavigationPage(new ContentPage()) },
+                { pageNames[8], new NavigationPage(new ContentPage(){ Title = pageNames[8] }) },
+                { pageNames[9], new NavigationPage(new ContentPage(){ Title = pageNames[9] }) },
+                { pageNames[10], new NavigationPage(new ContentPage(){ Title = pageNames[10] }) },
             };
 
             var menuPage = new MenuPage(_calcPages.Keys.ToList(), _appPages.Keys.ToList());
@@ -64,10 +67,13 @@ namespace Orchard
 
         public void OnMenuItemChanged(object sender, MenuItemChangedEventArg e)
         {
-            Debug.WriteLine(e.PageName);
             if (_calcPages.ContainsKey(e.PageName))
             {
-                Detail = _calcPages[e.PageName] ?? Detail;
+                Detail = _calcPages[e.PageName];
+            }
+            if (_appPages.ContainsKey(e.PageName))
+            {
+                Detail = _appPages[e.PageName];
             }
 
             IsPresented = false;
