@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Orchard
 {
     public partial class MenuPage : ContentPage
     {
-        public MenuPage(IList<string> caclPageNames, IList<string> appPageNames)
+        public MenuPage(IList<string> calcPageNames, IList<string> appPageNames)
         {
             InitializeComponent();
 
@@ -23,18 +24,29 @@ namespace Orchard
                 }
             });
 
-            foreach (var name in caclPageNames)
-            {
-                var cell = new TextCell()
-                {
-                    Text = name,
-                    Command = _chosenItemCmd,
-                    CommandParameter = name,
-                };
-                _calcSec.Add(cell);
-            }
+            var calcTr = GetSubMenu("Calc", calcPageNames.ToArray());
+            AddChangeSubmenuAction(_calc, calcTr);
 
-            foreach (var name in appPageNames)
+            var spayerTr = GetSubMenu("Sprayer", "List of sprayers", "Add a new sprayer");
+            AddChangeSubmenuAction(_sprayer, spayerTr);
+
+            var operatorTr = GetSubMenu("Operator", "List of operators", "Add a new operator");
+            AddChangeSubmenuAction(_operator, operatorTr);
+
+            var blockTr = GetSubMenu("Orchard blocks", "List of blocks", "Add a new block");
+            AddChangeSubmenuAction(_blocks, blockTr);
+
+            var appTr = GetSubMenu("App", appPageNames.ToArray());
+            AddChangeSubmenuAction(_app, appTr);
+
+            _subMenu.Root = calcTr;
+        }
+
+        public TableRoot GetSubMenu(string sectionName, params string[] items)
+        {
+            var tRoot = new TableRoot();
+            var tSec = new TableSection(sectionName);
+            foreach (var name in items)
             {
                 var cell = new TextCell()
                 {
@@ -42,8 +54,22 @@ namespace Orchard
                     Command = _chosenItemCmd,
                     CommandParameter = name,
                 };
-                _appSec.Add(cell);
+                tSec.Add(cell);
             }
+            tRoot.Add(tSec);
+
+            return tRoot;
+        }
+
+        public void AddChangeSubmenuAction(View view, TableRoot subMenu)
+        {
+            view.GestureRecognizers.Add(new TapGestureRecognizer()
+            {
+                Command = new Command(() =>
+                {
+                    _subMenu.Root = subMenu;
+                })
+            });
         }
 
         public event EventHandler<MenuItemChangedEventArg> MenuItemChanged;

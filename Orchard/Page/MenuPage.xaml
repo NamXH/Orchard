@@ -5,16 +5,29 @@
     x:Class="Orchard.MenuPage"
     Title="Menu">
     <ContentPage.Content>
-        <StackLayout>
-        	<TableView Intent="Menu">
-        		<TableView.Root>
-	        		<TableRoot>
-	        			<TableSection x:Name="_calcSec" Title="Calculation"/>
-						<TableSection x:Name="_appSec" Title="Application"/>
-	        		</TableRoot>
-				</TableView.Root>	
-        	</TableView>
-        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <BoxView x:Name="_calc" Grid.ColumnSpan="2" Color="Red"/>
+            <BoxView x:Name="_sprayer" Grid.Row="1" Grid.Column="0" Color="Green"/>
+            <BoxView x:Name="_operator" Grid.Row="1" Grid.Column="1" Color="Yellow"/>
+            <BoxView x:Name="_blocks" Grid.Row="2" Grid.Column="0" Color="Blue"/>
+            <BoxView x:Name="_app" Grid.Row="2" Grid.Column="1" Color="Purple"/>
+
+            <ContentView Grid.Row="3" Grid.ColumnSpan="2" >
+	            <TableView x:Name="_subMenu" Intent="Menu">
+	        	</TableView>
+        	</ContentView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
 

@@ -69,9 +69,13 @@ namespace Orchard
             {
                 Detail = _calcPages[e.PageName];
             }
-            if (_appPages.ContainsKey(e.PageName))
+            else if (_appPages.ContainsKey(e.PageName))
             {
                 Detail = _appPages[e.PageName];
+            }
+            else
+            {
+                Debug.WriteLine("Page requested not found, name = {0}", e.PageName);
             }
 
             IsPresented = false;
