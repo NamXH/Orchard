@@ -10,7 +10,15 @@ namespace Orchard
         {
             InitializeComponent();
 
-            BindingContext = current;
+            if (current == null)
+            {
+                // Adding a new one. TODO
+            }
+            else
+            {
+                // Editing mode.
+                BindingContext = current;
+            }
         }
     }
 }

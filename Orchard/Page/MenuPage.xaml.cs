@@ -56,7 +56,7 @@ namespace Orchard
             var operatorMenuItems = new List<MenuItem>()
             {
                 new MenuItem("List of operator", () => new ListingPage(operatorLVM)),
-                new MenuItem("Add a new operator", () => new ContentPage()),
+                new MenuItem("Add a new operator", () => new OperatorDetailPage(null)),
             };
             var operatorTr = GetSubMenu("Operator", operatorMenuItems.ToArray());
             AddChangeSubmenuAction(_operator, operatorTr);
