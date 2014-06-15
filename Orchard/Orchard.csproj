@@ -56,6 +56,12 @@
       <DependentUpon>Step3Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Step3VM.cs" />
+    <Compile Include="Model\Sprayer.cs" />
+    <Compile Include="Model\Operator.cs" />
+    <Compile Include="Model\OrchardBlock.cs" />
+    <Compile Include="Page\ListingPage.xaml.cs">
+      <DependentUpon>ListingPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="../packages/Xamarin.Forms.1.1.0.6201/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.Forms.targets" />
@@ -63,6 +69,7 @@
     <Folder Include="Data\" />
     <Folder Include="Page\" />
     <Folder Include="ViewModel\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Intro.txt">
@@ -99,6 +106,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Page\Step3Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\ListingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

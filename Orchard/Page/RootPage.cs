@@ -75,6 +75,21 @@ namespace Orchard
             }
             else
             {
+                if (e.PageName == "List of sprayers")
+                {
+                    var l = new List<Sprayer>()
+                    {
+                        new Sprayer(){ Name = "1" },
+                        new Sprayer(){ Name = "2" },
+                        new Sprayer(){ Name = "3" },
+                    };
+                    var lp = new ListingPage()
+                    {
+                        ItemSource = l
+                    };
+
+                    Detail = new NavigationPage(lp);
+                }
                 Debug.WriteLine("Page requested not found, name = {0}", e.PageName);
             }
 
