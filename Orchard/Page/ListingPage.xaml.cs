@@ -33,7 +33,7 @@ namespace Orchard
 
         protected override void OnAppearing()
         {
-            _listView.SelectedItem = -1;
+            //_listView.SelectedItem = -1;
         }
     }
 }
