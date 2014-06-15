@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Orchard.OperatorDetailPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <BoxView x:Name="_calc" Grid.Row="0" Grid.Column="0" Color="Red"/>
+            <StackLayout x:Name="_sprayer" Grid.Row="0" Grid.Column="1">
+            	<Label Text="Name"/>
+            	<Entry Text="{Binding Name}" />
+            </StackLayout>
+
+            <TableView Intent="Form" HasUnevenRows="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+            	<TableView.Root>
+            		<TableRoot>
+            			<TableSection>
+            				<EntryCell Label="Certification number" Text="{Binding CertificationNumber}"/>
+            				<ViewCell Height="150">
+            					<StackLayout Padding="8" HeightRequest="150">
+            						<Label Text="Note"/>
+	            					<Editor HeightRequest="100" Text="{Binding Note}"/>
+	            				</StackLayout>
+            				</ViewCell>
+            			</TableSection>
+            		</TableRoot>
+            	</TableView.Root>
+	        </TableView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+

@@ -56,7 +56,14 @@ namespace Orchard
 
             Master = new NavigationPage(menuPage) { Title = "Menu" };
 
-            Detail = _calcPages[pageNames[1]];
+            var currOp = new Operator()
+            {
+                Name = "abc",
+                CertificationNumber = "123",
+                Note = "first note"
+            };
+
+            Detail = _calcPages[pageNames[0]];
         }
 
         SortedDictionary<string, Page> _calcPages;
@@ -82,6 +89,21 @@ namespace Orchard
                         new Sprayer(){ Name = "1" },
                         new Sprayer(){ Name = "2" },
                         new Sprayer(){ Name = "3" },
+                    };
+                    var lp = new ListingPage()
+                    {
+                        ItemSource = l
+                    };
+
+                    Detail = new NavigationPage(lp);
+                }
+                if (e.PageName == "List of operators")
+                {
+                    var l = new List<Operator>()
+                    {
+                        new Operator() { Name = "a" },
+                        new Operator() { Name = "b" },
+                        new Operator() { Name = "c" },
                     };
                     var lp = new ListingPage()
                     {

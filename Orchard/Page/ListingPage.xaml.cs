@@ -15,7 +15,11 @@ namespace Orchard
             _listView.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
                 var t = e.Item.GetType();
-                Debug.WriteLine(t.Name);
+                if (t == typeof(Operator))
+                {
+                    Navigation.PushAsync(new OperatorDetailPage(((Operator)e.Item)));
+                }
+
             };
         }
 
@@ -25,6 +29,11 @@ namespace Orchard
             {
                 _listView.ItemsSource = value;
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            _listView.SelectedItem = -1;
         }
     }
 }
