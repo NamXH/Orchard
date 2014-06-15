@@ -8,9 +8,11 @@ namespace Orchard
 {
     public partial class ListingPage : ContentPage
     {
-        public ListingPage()
+        public ListingPage(ViewModelBase vm)
         {
             InitializeComponent();
+
+            BindingContext = vm;
 
             _listView.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
@@ -21,14 +23,8 @@ namespace Orchard
                 }
 
             };
-        }
 
-        public IEnumerable ItemSource
-        {
-            set
-            {
-                _listView.ItemsSource = value;
-            }
+            _listView.SetBinding(ListView.ItemsSourceProperty, "Models");
         }
 
         protected override void OnAppearing()
