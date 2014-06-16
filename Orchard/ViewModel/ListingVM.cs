@@ -4,31 +4,17 @@ using System.Collections.Generic;
 
 namespace Orchard
 {
-    public class ListingVM<T> : ViewModelBase
+    public class ListingVM<T>  : ViewModelBase where T : new()
     {
-        public ListingVM(Func<IEnumerable<T>> loadingDataFunc = null)
+        public ListingVM()
         {
             Models = new ObservableCollection<T>();
            
 
-            if (loadingDataFunc != null)
+            var itemList = DbManager.GetTable<T>();
+            foreach (var item in itemList)
             {
-                var dataList = loadingDataFunc();
-                foreach (var item in dataList)
-                {
-                    Models.Add(item);
-                }
-            }
-            else
-            {
-                // Load dummy data.
-                if (typeof(T) == typeof(Operator))
-                {
-                    var o1 = new Operator() { Name = "abc", CertificationNumber = "123", Note = "first note" };
-                    var t = (T)Convert.ChangeType(o1, typeof(T));
-                    // var t = (T)o1;
-                    Models.Add(t);
-                }
+                Models.Add(item);
             }
         }
 

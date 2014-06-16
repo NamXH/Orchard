@@ -22,7 +22,6 @@ namespace Orchard
 
             Master = new NavigationPage(menuPage) { Title = "Menu" };
             Detail = menuPage.DefaultPage;
-
         }
 
         public void OnMenuItemChanged(object sender, MenuItemChangedEventArg e)
