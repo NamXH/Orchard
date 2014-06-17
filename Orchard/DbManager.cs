@@ -7,8 +7,9 @@ namespace Orchard
 {
     public static class DbManager
     {
-        static SQLite.SQLiteConnection _db;
+        static object _locker = new object();
 
+        static SQLite.SQLiteConnection _db;
 
         static DbManager()
         {
@@ -32,8 +33,19 @@ namespace Orchard
 
         public static IList<T> GetTable<T>() where T : new()
         {
-            var ret = _db.Table<T>().ToList();
-            return ret;
+            lock (_locker)
+            {
+                var ret = _db.Table<T>().ToList();
+                return ret;
+            }
+        }
+
+        public static void AddItem<T>(T item) where T : new()
+        {
+            lock (_locker)
+            {
+                _db.Insert(item);
+            }
         }
 
         static void CreateDummyData()

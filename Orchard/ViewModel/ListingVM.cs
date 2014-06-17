@@ -10,6 +10,12 @@ namespace Orchard
         {
             Models = new ObservableCollection<T>();
            
+            RefreshData();
+        }
+
+        public void RefreshData()
+        {
+            Models.Clear();
 
             var itemList = DbManager.GetTable<T>();
             foreach (var item in itemList)

@@ -58,9 +58,6 @@
     <Compile Include="Model\Sprayer.cs" />
     <Compile Include="Model\Operator.cs" />
     <Compile Include="Model\OrchardBlock.cs" />
-    <Compile Include="Page\ListingPage.xaml.cs">
-      <DependentUpon>ListingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Page\OperatorDetailPage.xaml.cs">
       <DependentUpon>OperatorDetailPage.xaml</DependentUpon>
     </Compile>
@@ -68,6 +65,7 @@
     <Compile Include="Page\MenuItem.cs" />
     <Compile Include="ViewModel\ListingVM.cs" />
     <Compile Include="DbManager.cs" />
+    <Compile Include="Page\ListingPage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="../packages/Xamarin.Forms.1.1.0.6201/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.Forms.targets" />
@@ -112,9 +110,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Page\Step3Page.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Page\ListingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Page\OperatorDetailPage.xaml">

@@ -31,6 +31,12 @@
 	            					<Editor HeightRequest="100" Text="{Binding Note}"/>
 	            				</StackLayout>
             				</ViewCell>
+							<ViewCell Height="200">
+            					<StackLayout Padding="8">
+            						<Button x:Name="_addBtn" Text="Add"/>
+            						<Button x:Name="_cancelBtn" Text="Cancel"/>
+	            				</StackLayout>
+            				</ViewCell>
             			</TableSection>
             		</TableRoot>
             	</TableView.Root>
