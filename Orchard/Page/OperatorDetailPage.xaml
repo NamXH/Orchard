@@ -14,8 +14,8 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <BoxView x:Name="_calc" Grid.Row="0" Grid.Column="0" Color="Red"/>
-            <StackLayout x:Name="_sprayer" Grid.Row="0" Grid.Column="1">
+            <BoxView Grid.Row="0" Grid.Column="0" Color="Red"/>
+            <StackLayout Grid.Row="0" Grid.Column="1">
             	<Label Text="Name"/>
             	<Entry Text="{Binding Name}" />
             </StackLayout>

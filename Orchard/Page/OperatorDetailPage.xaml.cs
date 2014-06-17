@@ -34,6 +34,7 @@ namespace Orchard
             {
                 Debug.WriteLine("Cancel clicked");
             };
+            //var picker = new MediaPicker();
         }
     }
 }
