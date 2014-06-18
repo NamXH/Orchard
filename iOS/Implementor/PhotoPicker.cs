@@ -4,6 +4,7 @@ using System.Threading;
 using System.Linq;
 using Xamarin.Forms;
 using Orchard.iOS;
+using Xamarin.Media;
 
 [assembly: Dependency(typeof(PhotoPicker))]
 namespace Orchard.iOS
@@ -26,14 +27,17 @@ namespace Orchard.iOS
                 else
                     viewController = window.RootViewController; 
             }
-
-            while (viewController.PresentedViewController != null)
-                viewController = viewController.PresentedViewController;
-
-            var picker = new UIImagePickerController();
-
-
-            viewController.PresentViewController(picker, true, null);
+//
+//            while (viewController.PresentedViewController != null)
+//                viewController = viewController.PresentedViewController;
+//
+//            var picker = new UIImagePickerController();
+//
+//
+//            viewController.PresentViewController(picker, true, null);
+            var picker = new MediaPicker();
+            var controller = picker.GetPickPhotoUI();
+            viewController.PresentViewController(controller, true, null);
         }
     }
 }
