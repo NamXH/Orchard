@@ -35,7 +35,11 @@ namespace Orchard
             };
 
             var calcTr = GetSubMenu("Calc", _calcMenuItems.ToArray());
-            AddChangeSubmenuAction(_calc, calcTr);
+//            TwitterButton.Clicked += (object sender, EventArgs e) =>
+//            {
+//                Debug.WriteLine("clicked");
+//            };
+            //AddChangeSubmenuAction(_calc, calcTr);
 
             var sLVM = new ListingVM<Sprayer>();
             var sprayerMenuItems = new List<MenuItem>()
