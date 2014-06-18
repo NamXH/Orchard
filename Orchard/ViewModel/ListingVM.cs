@@ -10,7 +10,7 @@ namespace Orchard
         {
             Models = new ObservableCollection<T>();
            
-            RefreshData();
+            //RefreshData();
         }
 
         public void RefreshData()
