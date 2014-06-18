@@ -18,8 +18,10 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <!--controls:ImageButton x:Name="TwitterButton" Grid.ColumnSpan="2" Text="Twitter" BackgroundColor="#01abdf" TextColor="#ffffff"  Image="icon_twitter" Orientation="ImageToLeft"  /-->
-            <!--BoxView x:Name="_calc" Grid.ColumnSpan="2" Color="Red"/-->
+            <controls:ImageButton x:Name="TwitterButton" Grid.ColumnSpan="2" Text="Twitter"
+            	BackgroundColor="#01abdf" TextColor="#ffffff" Image="icon_twitter" Orientation="Bottom" 
+            	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="CalcClicked"/>
+            
             <BoxView x:Name="_sprayer" Grid.Row="1" Grid.Column="0" Color="Green"/>
             <BoxView x:Name="_operator" Grid.Row="1" Grid.Column="1" Color="Yellow"/>
             <BoxView x:Name="_blocks" Grid.Row="2" Grid.Column="0" Color="Blue"/>

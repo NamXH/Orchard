@@ -95,6 +95,11 @@ namespace Orchard
             return nextMenuItem.NaviPage;
         }
 
+        public void CalcClicked(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Clicked");
+        }
+
         public TableRoot GetSubMenu(string sectionName, params MenuItem[] items)
         {
             var tRoot = new TableRoot();

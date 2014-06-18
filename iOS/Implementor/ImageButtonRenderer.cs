@@ -26,112 +26,45 @@ namespace XForms.Toolkit.iOS.Controls.ImageButton
             if (imageButton != null && targetButton != null && !String.IsNullOrEmpty(imageButton.Image))
             {
                 SetImage(imageButton.Image, imageButton.ImageWidthRequest, imageButton.ImageHeightRequest, targetButton);
-
-                switch (imageButton.Orientation)
-                {
-                    case ImageOrientation.ImageToLeft:
-                        AlignToLeft(targetButton);
-                        break;
-                    case ImageOrientation.ImageToRight:
-                        AlignToRight(imageButton.ImageWidthRequest, targetButton);
-                        break;
-                    case ImageOrientation.ImageOnTop:
-                        AlignToTop(imageButton.ImageHeightRequest, imageButton.ImageWidthRequest, targetButton);
-                        break;
-                    case ImageOrientation.ImageOnBottom:
-                        AlignToBottom(imageButton.ImageHeightRequest, imageButton.ImageWidthRequest, targetButton);
-                        break;
-                }                
+                   
             }
-        }
-
-        private void AlignToLeft(UIButton targetButton)
-        {
-            targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
-            targetButton.TitleLabel.TextAlignment = UITextAlignment.Left;
-
-            var titleInsets = new UIEdgeInsets(0, controlPadding, 0, -1 * (controlPadding));
-            targetButton.TitleEdgeInsets = titleInsets;
-        }
-
-        private void AlignToRight(int widthRequest, UIButton targetButton)
-        {
-            targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Right;
-            targetButton.TitleLabel.TextAlignment = UITextAlignment.Right;
-
-            var titleInsets = new UIEdgeInsets(0, -1 * (widthRequest + controlPadding), 0, (widthRequest + controlPadding));
-
-            targetButton.TitleEdgeInsets = titleInsets;
-            var imageInsets = new UIEdgeInsets(0, widthRequest, 0, -1 * widthRequest);
-            targetButton.ImageEdgeInsets = imageInsets;
-            //targetButton.SizeToFit();
-        }
-
-        private void AlignToTop(int heightRequest, int widthRequest, UIButton targetButton)
-        {
-            targetButton.VerticalAlignment = UIControlContentVerticalAlignment.Top;
-            targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
-            targetButton.TitleLabel.TextAlignment = UITextAlignment.Center;
-            targetButton.TitleLabel.Text = "Microsoft";
-            targetButton.SizeToFit();
-
-            var titleWidth = targetButton.TitleLabel.IntrinsicContentSize.Width;
-
-            UIEdgeInsets titleInsets;
-            UIEdgeInsets imageInsets;
-
-            if (UIDevice.CurrentDevice.Model.Contains(iPad))
-            {
-                titleInsets = new UIEdgeInsets(heightRequest, Convert.ToInt32(-1 * widthRequest / 2), -1 * heightRequest, Convert.ToInt32(widthRequest / 2));
-                imageInsets = new UIEdgeInsets(0, Convert.ToInt32(titleWidth / 2), 0, -1 * Convert.ToInt32(titleWidth / 2));
-            }
-            else
-            {
-                titleInsets = new UIEdgeInsets(heightRequest, Convert.ToInt32(-1 * widthRequest / 2), -1 * heightRequest, Convert.ToInt32(widthRequest / 2));
-                imageInsets = new UIEdgeInsets(0, titleWidth / 2, 0, -1 * titleWidth / 2);
-            }
-            targetButton.TitleEdgeInsets = titleInsets;
-            targetButton.ImageEdgeInsets = imageInsets;
-        }
-
-        private void AlignToBottom(int heightRequest, int widthRequest, UIButton targetButton)
-        {
-            targetButton.VerticalAlignment = UIControlContentVerticalAlignment.Bottom;
-            targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
-            targetButton.TitleLabel.TextAlignment = UITextAlignment.Center;
-            targetButton.SizeToFit();
-            var titleWidth = targetButton.TitleLabel.IntrinsicContentSize.Width;
-
-            UIEdgeInsets titleInsets;
-            UIEdgeInsets imageInsets;
-
-            if (UIDevice.CurrentDevice.Model.Contains(iPad))
-            {
-                titleInsets = new UIEdgeInsets(-1 * heightRequest, Convert.ToInt32(-1 * widthRequest / 2), heightRequest,
-                    Convert.ToInt32(widthRequest / 2));
-                imageInsets = new UIEdgeInsets(0, titleWidth / 2, 0, -1 * titleWidth / 2);
-            }
-            else
-            {
-                titleInsets = new UIEdgeInsets(-1 * heightRequest, -1 * widthRequest, heightRequest, widthRequest);
-                imageInsets = new UIEdgeInsets(0, 0, 0, 0);                
-            }
-            targetButton.TitleEdgeInsets = titleInsets;
-            targetButton.ImageEdgeInsets = imageInsets;
         }
 
         private void SetImage(string imageName, int widthRequest, int heightRequest, UIButton targetButton)
         {
-            var image = UIImage.FromBundle(imageName);
+            var image = UIImage.LoadFromData(MonoTouch.Foundation.NSData.FromUrl(new Uri("http://developer.xamarin.com/guides/cross-platform/xamarin-forms/working-with/images/Images/Local-sml.png")));
 
-            UIGraphics.BeginImageContext(new SizeF(widthRequest, heightRequest));
-            image.Draw(new RectangleF(0, 0, widthRequest, heightRequest));
-            var resultImage = UIGraphics.GetImageFromCurrentImageContext();
-            UIGraphics.EndImageContext();
-            var resizableImage = resultImage.CreateResizableImage(new UIEdgeInsets(0, 0, widthRequest, heightRequest));
+            targetButton.SetBackgroundImage(image, UIControlState.Normal);
 
-            targetButton.SetImage(resizableImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal),
-                UIControlState.Normal);
+            switch (ImageButton.Orientation)
+            {
+                case TextAligment.Left:
+                    {
+                        targetButton.TitleEdgeInsets = new UIEdgeInsets(0, 20, 0, 0);
+                        targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
+                    }
+                    break;
+                case TextAligment.Top:
+                    {
+                        targetButton.TitleEdgeInsets = new UIEdgeInsets(5, 0, 0, 0);
+                        targetButton.VerticalAlignment = UIControlContentVerticalAlignment.Top;
+                    }
+                    break;
+                case TextAligment.Right:
+                    {
+                        targetButton.TitleEdgeInsets = new UIEdgeInsets(0, 0, 0, 20);
+                        targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Right;
+                    }
+                    break;
+                case TextAligment.Bottom:
+                    {
+                        targetButton.TitleEdgeInsets = new UIEdgeInsets(0, 0, 5, 0);
+                        targetButton.VerticalAlignment = UIControlContentVerticalAlignment.Bottom;
+                    }
+                    break;
+                default:
+                    throw new InvalidOperationException();
+            }
         }
     }
 }

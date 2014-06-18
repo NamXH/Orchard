@@ -28,12 +28,12 @@ namespace XForms.Toolkit.Controls
         /// The orientation of the image relative to the text.
         /// </summary>
         public static readonly BindableProperty OrientationProperty =
-            BindableProperty.Create<ImageButton, ImageOrientation>(
-                p => p.Orientation, ImageOrientation.ImageToLeft);
+            BindableProperty.Create<ImageButton, TextAligment>(
+                p => p.Orientation, TextAligment.Left);
 
-        public ImageOrientation Orientation
+        public TextAligment Orientation
         {
-            get { return (ImageOrientation)GetValue(OrientationProperty); }
+            get { return (TextAligment)GetValue(OrientationProperty); }
             set { SetValue(OrientationProperty, value); }
         }
 
@@ -66,11 +66,11 @@ namespace XForms.Toolkit.Controls
         }
     }
 
-    public enum ImageOrientation
+    public enum TextAligment
     {
-        ImageToLeft = 0,
-        ImageOnTop = 1,
-        ImageToRight = 2,
-        ImageOnBottom = 3
+        Left = 0,
+        Top = 1,
+        Right = 2,
+        Bottom = 3
     }
 }
