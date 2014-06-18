@@ -33,8 +33,10 @@ namespace Orchard
             _cancelBtn.Clicked += (object sender, EventArgs e) =>
             {
                 Debug.WriteLine("Cancel clicked");
+
+                var picker = DependencyService.Get<IPhotoPicker>();
+                picker.Show();
             };
-            //var picker = new MediaPicker();
         }
     }
 }
