@@ -42,7 +42,13 @@ namespace Orchard
         {
             var picker = DependencyService.Get<IPhotoPicker>();
             var res = await picker.Show();
-            Debug.WriteLine("Chosen pic: {0}", res);
+
+            var f = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(res);
+            using (var fs = await f.OpenAsync(PCLStorage.FileAccess.Read))
+            {
+                Debug.WriteLine("File length: {0}", fs.Length);
+            }
+
         }
     }
 }
