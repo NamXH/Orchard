@@ -41,19 +41,17 @@ namespace Orchard
 //            };
             //AddChangeSubmenuAction(_calc, calcTr);
 
-            var sLVM = new ListingVM<Sprayer>();
             var sprayerMenuItems = new List<MenuItem>()
             {
-                new MenuItem("List of sprayers", () => new ListingPage<Sprayer>(sLVM)),
+                new MenuItem("List of sprayers", () => new ListingPage<Sprayer>()),
                 new MenuItem("Add a new sprayer", () => new ContentPage()),
             };
             var spayerTr = GetSubMenu("Sprayer", sprayerMenuItems.ToArray());
             AddChangeSubmenuAction(_sprayer, spayerTr);
 
-            var operatorLVM = new ListingVM<Operator>();
             var operatorMenuItems = new List<MenuItem>()
             {
-                new MenuItem("List of operator", () => new ListingPage<Operator>(operatorLVM)),
+                new MenuItem("List of operator", () => new ListingPage<Operator>()),
                 new MenuItem("Add a new operator", () => new OperatorDetailPage(null)),
             };
             var operatorTr = GetSubMenu("Operator", operatorMenuItems.ToArray());
@@ -61,7 +59,7 @@ namespace Orchard
 
             var orchardBlockMenuItems = new List<MenuItem>()
             {
-                new MenuItem("List of orchard blocks", () => new ListingPage<OrchardBlock>(new ListingVM<OrchardBlock>())),
+                new MenuItem("List of orchard blocks", () => new ListingPage<OrchardBlock>()),
                 new MenuItem("Add a new orchard block", () => new ContentPage()),
             };
             var blockTr = GetSubMenu("Orchard blocks", orchardBlockMenuItems.ToArray());

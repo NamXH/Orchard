@@ -5,12 +5,13 @@ namespace Orchard
 {
     public class ListingPage<T> : ContentPage where T : new()
     {
-        public ListingPage(ListingVM<T> viewmodel)
+        public ListingPage()
         {
-            BindingContext = viewmodel;
+            var vm = new ListingVM<T>();
+            BindingContext = vm;
 
             var listView = new ListView();
-            listView.ItemsSource = viewmodel.Models;
+            listView.ItemsSource = vm.Models;
             listView.ItemTemplate = new DataTemplate(() =>
             {
                 var ic = new ImageCell();
