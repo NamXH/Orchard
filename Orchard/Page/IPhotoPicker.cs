@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Orchard
 {
     public interface IPhotoPicker
     {
-        void Show();
+        Task<string> Show();
     }
 }
 

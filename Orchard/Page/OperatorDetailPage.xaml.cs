@@ -30,12 +30,13 @@ namespace Orchard
                 DbManager.AddItem(op);
             };
 
-            _cancelBtn.Clicked += (object sender, EventArgs e) =>
+            _cancelBtn.Clicked += async (object sender, EventArgs e) =>
             {
                 Debug.WriteLine("Cancel clicked");
 
                 var picker = DependencyService.Get<IPhotoPicker>();
-                picker.Show();
+                var res = await picker.Show();
+                Debug.WriteLine("Chosen pic: {0}", res);
             };
         }
     }

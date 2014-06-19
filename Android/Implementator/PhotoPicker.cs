@@ -4,14 +4,14 @@ using Android.App;
 using Orchard.Android;
 using Xamarin.Forms;
 using Android.Content;
+using System.Threading.Tasks;
 
 [assembly: Dependency(typeof(PhotoPicker))]
 namespace Orchard.Android
 {
     public class PhotoPicker : IPhotoPicker
     {
-
-        public void Show()
+        public async Task<string> Show()
         {
             var picker = new MediaPicker(Application.Context);
             var intent = picker.GetPickPhotoUI();
@@ -19,7 +19,9 @@ namespace Orchard.Android
             intent.SetFlags(ActivityFlags.NewTask);
 
             Application.Context.StartActivity(intent);
-            //StartActivityForResult(intent, 1);
+           
+
+            return "to do later";
         }
     }
 }

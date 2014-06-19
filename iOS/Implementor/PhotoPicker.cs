@@ -5,33 +5,31 @@ using System.Linq;
 using Xamarin.Forms;
 using Orchard.iOS;
 using Xamarin.Media;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 [assembly: Dependency(typeof(PhotoPicker))]
 namespace Orchard.iOS
 {
     public class PhotoPicker : IPhotoPicker
     {
-        public void Show()
+        public async Task<string> Show()
         {
-            var window = UIApplication.SharedApplication.KeyWindow;
-            if (window == null)
-                throw new InvalidOperationException("There's no current active window");
-
-            var viewController = window.RootViewController;
-
-            if (viewController == null)
-            {
-                window = UIApplication.SharedApplication.Windows.OrderByDescending(w => w.WindowLevel).FirstOrDefault(w => w.RootViewController != null);
-                if (window == null)
-                    throw new InvalidOperationException("Could not find current view controller");
-                else
-                    viewController = window.RootViewController; 
-            }
-
-
             var picker = new MediaPicker();
-            var controller = picker.GetPickPhotoUI();
-            viewController.PresentViewController(controller, true, null);
+            MediaFile mf = null;
+            try
+            {
+                mf = await picker.PickPhotoAsync();
+            }
+            catch (TaskCanceledException)
+            {
+                Debug.WriteLine("photo picker canceled");
+            }
+            if (mf == null)
+            {
+                return null;
+            }
+            return mf.Path;
         }
     }
 }
