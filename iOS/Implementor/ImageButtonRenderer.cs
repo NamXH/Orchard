@@ -3,17 +3,17 @@ using System;
 using System.Drawing;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using XForms.Toolkit.Controls;
-using XForms.Toolkit.iOS.Controls.ImageButton;
+using Orchard;
+using Orchard.iOS;
 
 [assembly: ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
-namespace XForms.Toolkit.iOS.Controls.ImageButton
+namespace Orchard.iOS
 {
     public class ImageButtonRenderer : ButtonRenderer
     {
         private const int controlPadding = 2;
 
-        private  Toolkit.Controls.ImageButton ImageButton { get { return (XForms.Toolkit.Controls.ImageButton)Element; } }
+        private  ImageButton ImageButton { get { return (ImageButton)Element; } }
 
         private const string iPad = "iPad";
         private const string iPhone = "iPhone";

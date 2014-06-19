@@ -2,7 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:XForms.Toolkit.Controls;assembly=Orchard"
+    xmlns:local="clr-namespace:Orchard;assembly=Orchard"
     x:Class="Orchard.MenuPage"
     Title="Menu">
     <ContentPage.Content>
@@ -18,8 +18,8 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <controls:ImageButton x:Name="TwitterButton" Grid.ColumnSpan="2" Text="Twitter"
-            	BackgroundColor="#01abdf" TextColor="#ffffff" Image="icon_twitter" Orientation="Bottom" 
+            <local:ImageButton x:Name="TwitterButton" Grid.ColumnSpan="2" 
+            	TextColor="#ffffff" Image="icon_twitter" Orientation="Bottom" 
             	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="CalcClicked"/>
             
             <BoxView x:Name="_sprayer" Grid.Row="1" Grid.Column="0" Color="Green"/>

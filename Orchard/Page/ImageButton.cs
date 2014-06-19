@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace XForms.Toolkit.Controls
+namespace Orchard
 {
     /// <summary>
     /// Creates a button with text and an image.
