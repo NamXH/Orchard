@@ -40,15 +40,24 @@ namespace Orchard
 
         public async void ImageClicked(object sender, EventArgs e)
         {
-            var picker = DependencyService.Get<IPhotoPicker>();
-            var res = await picker.Show();
+            var actionList = new string[] { "Take Photo", "Choose Photo" };
+            var action = await DisplayActionSheet(null, "Cancel", null, actionList);
 
-            var f = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(res);
-            using (var fs = await f.OpenAsync(PCLStorage.FileAccess.Read))
+            if (action == actionList[0])
             {
-                Debug.WriteLine("File length: {0}", fs.Length);
+                // TODO.
             }
-
+            else if (action == actionList[1])
+            {
+                var picker = DependencyService.Get<IPhotoPicker>();
+                var res = await picker.Show();
+                        
+                var f = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(res);
+                using (var fs = await f.OpenAsync(PCLStorage.FileAccess.Read))
+                {
+                    Debug.WriteLine("File length: {0}", fs.Length);
+                }
+            }
         }
     }
 }
