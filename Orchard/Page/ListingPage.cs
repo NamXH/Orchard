@@ -20,6 +20,16 @@ namespace Orchard
                 return ic;
             });
 
+            listView.ItemTapped += (object sender, ItemTappedEventArgs e) =>
+            {
+                var t = e.Item.GetType();
+                if (t == typeof(Operator))
+                {
+                    Navigation.PushAsync(new OperatorDetailPage(((Operator)e.Item)));
+                }
+
+            };
+
             Content = listView;
         }
 
@@ -29,12 +39,6 @@ namespace Orchard
             {
                 return (ListingVM<T>)BindingContext;
             }
-        }
-
-        protected override void OnAppearing()
-        {
-            ViewModel.RefreshData();
-            base.OnAppearing();
         }
     }
 }

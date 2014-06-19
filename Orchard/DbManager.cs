@@ -61,6 +61,22 @@ namespace Orchard
             };
 
             _db.InsertAll(oList);
+
+            var sList = new List<Sprayer>()
+            {
+                new Sprayer() { Name = "1" },
+                new Sprayer() { Name = "2" },
+                new Sprayer() { Name = "3" },
+            };
+            _db.InsertAll(sList);
+
+            var obList = new List<OrchardBlock>()
+            {
+                new OrchardBlock() { Name = "b1" },
+                new OrchardBlock() { Name = "b2" },
+                new OrchardBlock() { Name = "b3" },
+            };
+            _db.InsertAll(obList);
         }
     }
 }

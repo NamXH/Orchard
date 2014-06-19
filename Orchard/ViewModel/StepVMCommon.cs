@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Orchard
 {
-    public class StepVMCommon : ViewModelBase
+    public class StepVMCommon : NPCBase
     {
         public StepVMCommon(string questionListFileName, string helpTextFileName, string defaultHelpText)
         {

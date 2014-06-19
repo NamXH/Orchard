@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Orchard
 {
-    public abstract class ViewModelBase : INotifyPropertyChanged
+    public abstract class NPCBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

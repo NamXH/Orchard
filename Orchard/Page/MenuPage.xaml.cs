@@ -95,6 +95,7 @@ namespace Orchard
 
         public void CalcClicked(object sender, EventArgs e)
         {
+            //_subMenu.Root = subMenu;
             Debug.WriteLine("Clicked");
         }
 

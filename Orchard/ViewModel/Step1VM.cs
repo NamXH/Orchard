@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Orchard
 {
-    public class Step1VM : ViewModelBase
+    public class Step1VM : NPCBase
     {
         public Step1VM()
         {

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace Orchard
 {
-    public class ListingVM<T>  : ViewModelBase where T : new()
+    public class ListingVM<T>  : NPCBase where T : new()
     {
         public ListingVM()
         {
             Models = new ObservableCollection<T>();
            
-            //RefreshData();
+            RefreshData();
         }
 
         public void RefreshData()

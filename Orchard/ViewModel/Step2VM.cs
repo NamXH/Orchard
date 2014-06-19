@@ -2,7 +2,7 @@
 
 namespace Orchard
 {
-    public class Step2VM : ViewModelBase
+    public class Step2VM : NPCBase
     {
         public Step2VM()
         {
