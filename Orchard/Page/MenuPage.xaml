@@ -18,19 +18,25 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <local:ImageButton x:Name="TwitterButton" Grid.ColumnSpan="2" 
-            	TextColor="#ffffff" Image="icon_twitter" Orientation="Bottom" 
-            	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="CalcClicked"/>
-            
-            <BoxView x:Name="_sprayer" Grid.Row="1" Grid.Column="0" Color="Green"/>
-            <BoxView x:Name="_operator" Grid.Row="1" Grid.Column="1" Color="Yellow"/>
-            <BoxView x:Name="_blocks" Grid.Row="2" Grid.Column="0" Color="Blue"/>
-            <BoxView x:Name="_app" Grid.Row="2" Grid.Column="1" Color="Purple"/>
+            <local:ImageButton x:Name="_calc" Grid.ColumnSpan="2" 
+            	Text="Calculate" Image="icon_twitter" Orientation="Bottom" 
+            	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ChangeSubMenuClicked"/>
 
-            <ContentView Grid.Row="3" Grid.ColumnSpan="2" >
-	            <TableView x:Name="_subMenu" Intent="Menu">
-	        	</TableView>
-        	</ContentView>
+            <local:ImageButton x:Name="_sprayer" Grid.Row="1" Grid.Column="0"
+            	Text="Sprayer" Image="icon_twitter" Orientation="Bottom" 
+            	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ListingClicked"/>
+            <local:ImageButton x:Name="_operator" Grid.Row="1" Grid.Column="1"
+            	Text="Operator" Image="icon_twitter" Orientation="Bottom" 
+            	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ListingClicked"/>
+            <local:ImageButton x:Name="_blocks" Grid.Row="2" Grid.Column="0"
+            	Text="Orchard Blocks" Image="icon_twitter" Orientation="Bottom" 
+            	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ListingClicked"/>
+
+            <local:ImageButton x:Name="_app" Grid.Row="2" Grid.Column="1"
+            	Text="App" Image="icon_twitter" Orientation="Bottom" 
+            	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ChangeSubMenuClicked"/>
+
+            <ListView x:Name="_subMenu" Grid.Row="3" Grid.ColumnSpan="2" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -34,50 +34,40 @@ namespace Orchard
                 new MenuItem("Step 5", () => new ContentPage()),
             };
 
-            var calcTr = GetSubMenu("Calc", _calcMenuItems.ToArray());
-//            TwitterButton.Clicked += (object sender, EventArgs e) =>
-//            {
-//                Debug.WriteLine("clicked");
-//            };
-            //AddChangeSubmenuAction(_calc, calcTr);
-
-            var sprayerMenuItems = new List<MenuItem>()
-            {
-                new MenuItem("List of sprayers", () => new ListingPage<Sprayer>()),
-                new MenuItem("Add a new sprayer", () => new ContentPage()),
-            };
-            var spayerTr = GetSubMenu("Sprayer", sprayerMenuItems.ToArray());
-            AddChangeSubmenuAction(_sprayer, spayerTr);
-
-            var operatorMenuItems = new List<MenuItem>()
-            {
-                new MenuItem("List of operator", () => new ListingPage<Operator>()),
-                new MenuItem("Add a new operator", () => new OperatorDetailPage(null)),
-            };
-            var operatorTr = GetSubMenu("Operator", operatorMenuItems.ToArray());
-            AddChangeSubmenuAction(_operator, operatorTr);
-
-            var orchardBlockMenuItems = new List<MenuItem>()
-            {
-                new MenuItem("List of orchard blocks", () => new ListingPage<OrchardBlock>()),
-                new MenuItem("Add a new orchard block", () => new ContentPage()),
-            };
-            var blockTr = GetSubMenu("Orchard blocks", orchardBlockMenuItems.ToArray());
-            AddChangeSubmenuAction(_blocks, blockTr);
-
-            var appMenuItems = new List<MenuItem>()
+            _appMenuItems = new List<MenuItem>()
             {
                 new MenuItem("About", () => new ContentPage()),
                 new MenuItem("Settings", () => new ContentPage()),
                 new MenuItem("Help", () => new ContentPage()),
             };
-            var appTr = GetSubMenu("App", appMenuItems.ToArray());
-            AddChangeSubmenuAction(_app, appTr);
 
-            _subMenu.Root = calcTr;
+            _subMenu.ItemsSource = _calcMenuItems;
+
+            _subMenu.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
+            {
+                if (e.SelectedItem != null)
+                {
+                    var mi = (MenuItem)e.SelectedItem;
+                    _subMenu.SelectedItem = null;
+                    _chosenItemCmd.Execute(mi);
+                }
+            };
+
+            _subMenu.ItemTemplate = new DataTemplate(() =>
+            {
+                var tc = new TextCell();
+                tc.SetBinding(TextCell.TextProperty, "MenuTitle");
+
+                return tc;
+            });
         }
 
         List<MenuItem> _calcMenuItems;
+        List<MenuItem> _appMenuItems;
+
+        MenuItem _sprayerList = new MenuItem("List of sprayers", () => new ListingPage<Sprayer>());
+        MenuItem _operatorList = new MenuItem("List of operator", () => new ListingPage<Operator>());
+        MenuItem _blockList = new MenuItem("List of orchard blocks", () => new ListingPage<OrchardBlock>());
 
         public Page DefaultPage
         {
@@ -93,41 +83,40 @@ namespace Orchard
             return nextMenuItem.NaviPage;
         }
 
-        public void CalcClicked(object sender, EventArgs e)
+        public void ChangeSubMenuClicked(object sender, EventArgs e)
         {
-            //_subMenu.Root = subMenu;
-            Debug.WriteLine("Clicked");
-        }
-
-        public TableRoot GetSubMenu(string sectionName, params MenuItem[] items)
-        {
-            var tRoot = new TableRoot();
-            var tSec = new TableSection(sectionName);
-
-            foreach (var item in items)
+            var ib = (ImageButton)sender;
+            switch (ib.Text)
             {
-                var cell = new TextCell()
-                {
-                    Text = item.MenuTitle,
-                    Command = _chosenItemCmd,
-                    CommandParameter = item,
-                };
-                tSec.Add(cell);
+                case "Calculate":
+                    _subMenu.ItemsSource = _calcMenuItems;
+                    break;
+                case "App":
+                    _subMenu.ItemsSource = _appMenuItems;
+                    break;
+                default:
+                    throw new InvalidOperationException();
             }
-            tRoot.Add(tSec);
-
-            return tRoot;
         }
 
-        public void AddChangeSubmenuAction(View view, TableRoot subMenu)
+        public void ListingClicked(object sender, EventArgs e)
         {
-            view.GestureRecognizers.Add(new TapGestureRecognizer()
+            var ib = (ImageButton)sender;
+            switch (ib.Text)
             {
-                Command = new Command(() =>
-                {
-                    _subMenu.Root = subMenu;
-                })
-            });
+                case "Sprayer":
+                    _chosenItemCmd.Execute(_sprayerList);
+                    break;
+                case "Operator":
+                    _chosenItemCmd.Execute(_operatorList);
+                    break;
+                case "Orchard Blocks":
+                    _chosenItemCmd.Execute(_blockList);
+                    break;
+                default:
+                    throw new InvalidOperationException();
+            }
+            _subMenu.ItemsSource = null;
         }
 
         public event EventHandler<MenuItemChangedEventArg> MenuItemChanged;
