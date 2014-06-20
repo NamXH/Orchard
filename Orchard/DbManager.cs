@@ -2,9 +2,15 @@
 using SQLite;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace Orchard
 {
+    public interface ISQLite
+    {
+        SQLiteConnection GetConnection();
+    }
+
     public static class DbManager
     {
         static object _locker = new object();
@@ -13,7 +19,7 @@ namespace Orchard
 
         static DbManager()
         {
-            _db = new SQLiteConnection("database.dat");
+            _db = DependencyService.Get<ISQLite>().GetConnection();
             CreateDummyData();
         }
 

@@ -69,6 +69,6 @@ Global
 		{F214B1FD-6F49-41B3-9FF5-B233958BB09F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\Orchard.iOS.csproj
+		StartupItem = Android\Orchard.Android.csproj
 	EndGlobalSection
 EndGlobal

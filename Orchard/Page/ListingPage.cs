@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace Orchard
 {
@@ -10,9 +11,9 @@ namespace Orchard
             var vm = new ListingVM<T>();
             BindingContext = vm;
 
-            var listView = new ListView();
-            listView.ItemsSource = vm.Models;
-            listView.ItemTemplate = new DataTemplate(() =>
+            _listView = new ListView();
+            _listView.ItemsSource = vm.Models;
+            _listView.ItemTemplate = new DataTemplate(() =>
             {
                 var ic = new ImageCell();
                 ic.SetBinding(ImageCell.TextProperty, "Name");
@@ -20,7 +21,7 @@ namespace Orchard
                 return ic;
             });
 
-            listView.ItemTapped += (object sender, ItemTappedEventArgs e) =>
+            _listView.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
                 var t = e.Item.GetType();
                 if (t == typeof(Operator))
@@ -30,8 +31,15 @@ namespace Orchard
 
             };
 
-            Content = listView;
+            Content = _listView;
+
+            this.ToolbarItems.Add(new ToolbarItem("add", null, () =>
+            {
+                Debug.WriteLine("add");
+            }));
         }
+
+        ListView _listView;
 
         ListingVM<T> ViewModel
         {
