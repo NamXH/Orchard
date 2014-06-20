@@ -28,14 +28,18 @@ namespace Orchard
                 {
                     Navigation.PushAsync(new OperatorDetailPage(((Operator)e.Item)));
                 }
-
+                _listView.SelectedItem = null;
             };
 
             Content = _listView;
 
             this.ToolbarItems.Add(new ToolbarItem("add", null, () =>
             {
-                Debug.WriteLine("add");
+                var t = typeof(T);
+                if (t == typeof(Operator))
+                {
+                    Navigation.PushAsync(new OperatorDetailPage(null));
+                }
             }));
         }
 
