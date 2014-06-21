@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Diagnostics;
+using PCLStorage;
 
 namespace Orchard
 {
@@ -17,7 +18,7 @@ namespace Orchard
             {
                 var ic = new ImageCell();
                 ic.SetBinding(ImageCell.TextProperty, "Name");
-
+                ic.SetBinding(ImageCell.ImageSourceProperty, new Binding("Image", 0, new LocalImgToImgSourceConverter()));
                 return ic;
             });
 
@@ -55,6 +56,25 @@ namespace Orchard
             {
                 return (ListingVM<T>)BindingContext;
             }
+        }
+    }
+
+    public class LocalImgToImgSourceConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var localImgSource = (string)value;
+            if (localImgSource == null)
+            {
+                return null;
+            }
+            var imgSource = PortablePath.Combine(FileSystem.Current.LocalStorage.Path, localImgSource);
+            return imgSource;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }
