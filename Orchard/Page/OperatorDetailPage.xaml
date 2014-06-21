@@ -15,9 +15,8 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <local:ImageButton Grid.Row="0" Grid.Column="0"
-            	Image="icon_twitter" Orientation="Bottom" Clicked="ImageClicked"
-            	/>
+            <local:ImageButton Grid.Row="0" Grid.Column="0" Orientation="Bottom" Clicked="ImageClicked"/>
+
             <StackLayout Grid.Row="0" Grid.Column="1">
             	<Label Text="Name"/>
             	<Entry Text="{Binding Name}" />
