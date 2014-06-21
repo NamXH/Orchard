@@ -6,7 +6,7 @@
     x:Class="Orchard.MenuPage"
     Title="Menu">
     <ContentPage.Content>
-        <Grid>
+        <Grid Padding="0,10,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -19,8 +19,8 @@
             </Grid.RowDefinitions>
 
             <local:ImageButton x:Name="_calc" Grid.ColumnSpan="2" 
-            	Text="Calculate" Image="Orchard.Images.calc.png" Orientation="Right" 
-            	ImageHeightRequest="100" ImageWidthRequest="100" Clicked="ChangeSubMenuClicked"/>
+            	Font="Bold,Large" Text="Calculate" Image="Orchard.Images.calc.png" Orientation="Right" 
+            	ImageHeightRequest="100" ImageWidthRequest="150" Clicked="ChangeSubMenuClicked"/>
 
             <local:ImageButton x:Name="_sprayer" Grid.Row="1" Grid.Column="0"
             	Text="Sprayer" Image="Orchard.Images.sprayer.png" Orientation="Bottom" 
