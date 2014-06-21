@@ -64,11 +64,7 @@ namespace Orchard
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var localImgSource = (string)value;
-            if (localImgSource == null)
-            {
-                return null;
-            }
-            var imgSource = PortablePath.Combine(FileSystem.Current.LocalStorage.Path, localImgSource);
+            var imgSource = localImgSource == null ? null : PortablePath.Combine(FileSystem.Current.LocalStorage.Path, localImgSource);
             return imgSource;
         }
 

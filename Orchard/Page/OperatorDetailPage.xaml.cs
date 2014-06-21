@@ -90,6 +90,7 @@ namespace Orchard
                 {
                     await photoStream.CopyToAsync(lfStream);
                 }
+                _currItem.Image = null;
                 _currItem.Image = relativeFilename;
                 // HACK: binding is not working, set manually.
                 ((ImageButton)sender).Image = null;
