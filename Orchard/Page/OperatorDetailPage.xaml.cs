@@ -14,13 +14,16 @@ namespace Orchard
             if (current == null)
             {
                 // Adding a new one. TODO
-
+                _addBtn.IsVisible = true;
+                _delBtn.IsVisible = false;
                 var newOp = new Operator();
                 BindingContext = newOp;
             }
             else
             {
                 // Editing mode.
+                _addBtn.IsVisible = false;
+                _delBtn.IsVisible = true;
                 BindingContext = current;
             }
 
@@ -28,13 +31,6 @@ namespace Orchard
             {
                 var op = (Operator)BindingContext;
                 DbManager.AddItem(op);
-            };
-
-            _cancelBtn.Clicked += (object sender, EventArgs e) =>
-            {
-                Debug.WriteLine("Cancel clicked");
-
-
             };
         }
 
@@ -58,6 +54,11 @@ namespace Orchard
                     Debug.WriteLine("File length: {0}", fs.Length);
                 }
             }
+        }
+
+        public void CancelClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
         }
     }
 }

@@ -5,45 +5,27 @@
     xmlns:local="clr-namespace:Orchard;assembly=Orchard"
     x:Class="Orchard.OperatorDetailPage">
     <ContentPage.Content>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
+        <ScrollView>
+			<StackLayout Padding="8">
+				<StackLayout Orientation="Horizontal">
+					<local:ImageButton WidthRequest="100" HeightRequest="100" Clicked="ImageClicked" Orientation="Bottom"/>
+					<StackLayout HorizontalOptions="FillAndExpand">
+		            	<Label Text="Name"/>
+		            	<Entry Text="{Binding Name}" />
+		            </StackLayout>
+				</StackLayout>
 
-            <local:ImageButton Grid.Row="0" Grid.Column="0" Orientation="Bottom" Clicked="ImageClicked"/>
+				<Label Text="Certification number"/>
+				<Entry Text="{Binding CertificationNumber}"/>
 
-            <StackLayout Grid.Row="0" Grid.Column="1">
-            	<Label Text="Name"/>
-            	<Entry Text="{Binding Name}" />
-            </StackLayout>
-
-            <TableView Intent="Form" HasUnevenRows="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
-            	<TableView.Root>
-            		<TableRoot>
-            			<TableSection>
-            				<EntryCell Label="Certification number" Text="{Binding CertificationNumber}"/>
-            				<ViewCell Height="150">
-            					<StackLayout Padding="8" HeightRequest="150">
-            						<Label Text="Note"/>
-	            					<Editor HeightRequest="100" Text="{Binding Note}"/>
-	            				</StackLayout>
-            				</ViewCell>
-							<ViewCell Height="200">
-            					<StackLayout Padding="8">
-            						<Button x:Name="_addBtn" Text="Add"/>
-            						<Button x:Name="_cancelBtn" Text="Cancel"/>
-	            				</StackLayout>
-            				</ViewCell>
-            			</TableSection>
-            		</TableRoot>
-            	</TableView.Root>
-	        </TableView>
-        </Grid>
+				<Label Text="Note"/>
+				<Editor HeightRequest="200" Text="{Binding Note}"/>
+		
+				<Button x:Name="_addBtn" Text="Add" TextColor="White" BackgroundColor="Green"/>
+				<Button x:Name="_delBtn" Text="Delete" TextColor="White" BackgroundColor="Red"/>
+				<Button x:Name="_cancelBtn" Text="Cancel" Clicked="CancelClicked"/>
+			</StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
 
