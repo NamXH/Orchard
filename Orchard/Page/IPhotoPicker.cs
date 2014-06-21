@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace Orchard
 {
-    public interface IPhotoPicker
+    public interface IMediaPicker
     {
-        Task<string> Show();
+        Task<string> PickPhoto();
     }
 }
 

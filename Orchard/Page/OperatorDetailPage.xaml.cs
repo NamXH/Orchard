@@ -26,12 +26,6 @@ namespace Orchard
                 _delBtn.IsVisible = true;
                 BindingContext = current;
             }
-
-            _addBtn.Clicked += (object sender, EventArgs e) =>
-            {
-                var op = (Operator)BindingContext;
-                DbManager.AddItem(op);
-            };
         }
 
         public async void ImageClicked(object sender, EventArgs e)
@@ -45,19 +39,38 @@ namespace Orchard
             }
             else if (action == actionList[1])
             {
-                var picker = DependencyService.Get<IPhotoPicker>();
-                var res = await picker.Show();
+                var picker = DependencyService.Get<IMediaPicker>();
+                var res = await picker.PickPhoto();
                         
-                var f = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(res);
-                using (var fs = await f.OpenAsync(PCLStorage.FileAccess.Read))
+                if (res != null)
                 {
-                    Debug.WriteLine("File length: {0}", fs.Length);
+                    var f = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(res);
+                    using (var fs = await f.OpenAsync(PCLStorage.FileAccess.Read))
+                    {
+                        Debug.WriteLine("File length: {0}", fs.Length);
+                    }
                 }
+            }
+        }
+
+        public void AddClicked(object sender, EventArgs e)
+        {
+            var op = (Operator)BindingContext;
+            DbManager.AddItem(op);
+        }
+
+        public async void DelClicked(object sender, EventArgs e)
+        {
+            var action = await DisplayActionSheet(null, "Cancel", "Delete?");
+            if (action == "Delete?")
+            {
+                // TODO: delte item here.
             }
         }
 
         public void CancelClicked(object sender, EventArgs e)
         {
+            // TODO: cancel in editing mode.
             Navigation.PopAsync();
         }
     }

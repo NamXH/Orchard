@@ -6,12 +6,12 @@ using Xamarin.Forms;
 using Android.Content;
 using System.Threading.Tasks;
 
-[assembly: Dependency(typeof(PhotoPicker))]
+[assembly: Dependency(typeof(MyMediaPicker))]
 namespace Orchard.Android
 {
-    public class PhotoPicker : IPhotoPicker
+    public class MyMediaPicker : IMediaPicker
     {
-        public async Task<string> Show()
+        public async Task<string> PickPhoto()
         {
             var picker = new MediaPicker(Application.Context);
             var intent = picker.GetPickPhotoUI();

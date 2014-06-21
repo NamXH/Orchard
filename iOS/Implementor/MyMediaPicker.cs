@@ -8,12 +8,12 @@ using Xamarin.Media;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-[assembly: Dependency(typeof(PhotoPicker))]
+[assembly: Dependency(typeof(MyMediaPicker))]
 namespace Orchard.iOS
 {
-    public class PhotoPicker : IPhotoPicker
+    public class MyMediaPicker : IMediaPicker
     {
-        public async Task<string> Show()
+        public async Task<string> PickPhoto()
         {
             var picker = new MediaPicker();
             MediaFile mf = null;
