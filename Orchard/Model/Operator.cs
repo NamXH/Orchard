@@ -26,7 +26,12 @@ namespace Orchard
             set { SetProperty(ref _name, value); }
         }
 
-        public string Image { get; set; }
+        string _image;
+        public string Image
+        { 
+            get { return _image; }
+            set { SetProperty(ref _image, value); }
+        }
 
         string _certificationNumber;
 

@@ -8,7 +8,7 @@
         <ScrollView>
 			<StackLayout Padding="8">
 				<StackLayout Orientation="Horizontal">
-					<local:ImageButton WidthRequest="100" HeightRequest="100" Clicked="ImageClicked" Orientation="Bottom"/>
+					<local:ImageButton Image="{Binding Image}" WidthRequest="100" HeightRequest="100" ImageWidthRequest="100" ImageHeightRequest="100" Clicked="ImageClicked" Orientation="Bottom"/>
 					<StackLayout HorizontalOptions="FillAndExpand">
 		            	<Label Text="Name"/>
 		            	<Entry Text="{Binding Name}" />

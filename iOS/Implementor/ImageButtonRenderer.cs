@@ -6,6 +6,7 @@ using Xamarin.Forms.Platform.iOS;
 using Orchard;
 using Orchard.iOS;
 using System.Reflection;
+using System.Diagnostics;
 
 [assembly: ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
 namespace Orchard.iOS
@@ -31,14 +32,40 @@ namespace Orchard.iOS
 
             if (imageButton != null && targetButton != null && !String.IsNullOrEmpty(imageButton.Image))
             {
-                SetImage(imageButton.Image, imageButton.ImageWidthRequest, imageButton.ImageHeightRequest, targetButton);
+                UpdateImage(imageButton.Image, imageButton.ImageWidthRequest, imageButton.ImageHeightRequest, targetButton);
             }
         }
 
-        private void SetImage(string imageName, int widthRequest, int heightRequest, UIButton targetButton)
+        protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == ImageButton.ImageProperty.PropertyName)
+            {
+
+                Debug.WriteLine(e.PropertyName);
+                UpdateImage(ImageButton.Image, ImageButton.ImageWidthRequest, ImageButton.ImageHeightRequest, Control);
+                return;
+            }
+        }
+
+        private void UpdateImage(string imageName, int widthRequest, int heightRequest, UIButton targetButton)
         {
             var assembly = typeof(App).GetTypeInfo().Assembly;
-            var image = UIImage.FromResource(assembly, imageName);
+            UIImage image = null;
+            if (imageName != null)
+            {
+                try
+                {
+                    image = UIImage.FromResource(assembly, imageName);
+                }
+                catch (Exception)
+                {
+                    var path = PCLStorage.FileSystem.Current.LocalStorage.Path;
+                    var iPath = PCLStorage.PortablePath.Combine(path, imageName);
+                    image = UIImage.FromFile(iPath);
+                }
+            }
 
             var imageView = new UIImageView();
 

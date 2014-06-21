@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Diagnostics;
+using System.IO;
+using PCLStorage;
 
 namespace Orchard
 {
@@ -46,34 +48,52 @@ namespace Orchard
         }
 
         Operator _currItem;
+        string _opFolder = "operators";
 
         public async void ImageClicked(object sender, EventArgs e)
         {
             var actionList = new string[] { "Take Photo", "Choose Photo" };
             var action = await DisplayActionSheet(null, "Cancel", null, actionList);
+            var picker = DependencyService.Get<IMediaPicker>();
+            Stream photoStream = null;
 
             if (action == actionList[0])
             {
-                var picker = DependencyService.Get<IMediaPicker>();
-                using (var res = await picker.TakePhoto())
-                {
-                    if (res != null)
-                    {
-                        Debug.WriteLine("Length: {0}", res.Length);
-                    }
-                }
+                photoStream = await picker.TakePhoto();
             }
             else if (action == actionList[1])
             {
-                var picker = DependencyService.Get<IMediaPicker>();
-                        
-                using (var res = await picker.PickPhoto())
+                photoStream = await picker.PickPhoto();
+            }
+            if (photoStream == null)
+            {
+                return;
+            }
+            using (photoStream)
+            {
+                Debug.WriteLine("Length: {0}", photoStream.Length);
+                var checkFolder = await FileSystem.Current.LocalStorage.CheckExistsAsync(_opFolder);
+                if (checkFolder == ExistenceCheckResult.NotFound)
                 {
-                    if (res != null)
-                    {
-                        Debug.WriteLine("Length: {0}", res.Length);
-                    }
+                    await FileSystem.Current.LocalStorage.CreateFolderAsync(_opFolder, CreationCollisionOption.FailIfExists);
                 }
+                if (_currItem.Id == 0)
+                {
+                    // TODO: get next id from db and assign it here.
+
+                }
+                var relativeFilename = PortablePath.Combine(_opFolder, string.Format("{0}.png", _currItem.Id));
+                var localFile = await FileSystem.Current.LocalStorage.CreateFileAsync(
+                                    relativeFilename,
+                                    CreationCollisionOption.ReplaceExisting);
+                using (var lfStream = await localFile.OpenAsync(FileAccess.ReadAndWrite))
+                {
+                    await photoStream.CopyToAsync(lfStream);
+                }
+                _currItem.Image = relativeFilename;
+                // HACK: binding is not working, set manually.
+                ((ImageButton)sender).Image = null;
+                ((ImageButton)sender).Image = _currItem.Image;
             }
         }
 
