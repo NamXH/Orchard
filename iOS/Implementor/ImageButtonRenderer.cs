@@ -25,6 +25,10 @@ namespace Orchard.iOS
             var imageButton = this.ImageButton;
 
             var targetButton = Control;
+
+            targetButton.Layer.BorderWidth = 1;
+            targetButton.Layer.BorderColor = targetButton.CurrentTitleColor.CGColor;
+
             if (imageButton != null && targetButton != null && !String.IsNullOrEmpty(imageButton.Image))
             {
                 SetImage(imageButton.Image, imageButton.ImageWidthRequest, imageButton.ImageHeightRequest, targetButton);
