@@ -19,21 +19,21 @@
             </Grid.RowDefinitions>
 
             <local:ImageButton x:Name="_calc" Grid.ColumnSpan="2" 
-            	Text="Calculate" Image="icon_twitter" Orientation="Bottom" 
-            	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ChangeSubMenuClicked"/>
+            	Text="Calculate" Image="Orchard.Images.calc.png" Orientation="Right" 
+            	ImageHeightRequest="100" ImageWidthRequest="100" Clicked="ChangeSubMenuClicked"/>
 
             <local:ImageButton x:Name="_sprayer" Grid.Row="1" Grid.Column="0"
-            	Text="Sprayer" Image="icon_twitter" Orientation="Bottom" 
+            	Text="Sprayer" Image="Orchard.Images.sprayer.png" Orientation="Bottom" 
             	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ListingClicked"/>
             <local:ImageButton x:Name="_operator" Grid.Row="1" Grid.Column="1"
-            	Text="Operator" Image="icon_twitter" Orientation="Bottom" 
+            	Text="Operator" Image="" Orientation="Bottom" 
             	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ListingClicked"/>
             <local:ImageButton x:Name="_blocks" Grid.Row="2" Grid.Column="0"
-            	Text="Orchard Blocks" Image="icon_twitter" Orientation="Bottom" 
+            	Text="Orchard Blocks" Image="" Orientation="Bottom" 
             	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ListingClicked"/>
 
             <local:ImageButton x:Name="_app" Grid.Row="2" Grid.Column="1"
-            	Text="App" Image="icon_twitter" Orientation="Bottom" 
+            	Text="App" Image="Orchard.Images.information.png" Orientation="Bottom" 
             	ImageHeightRequest="50" ImageWidthRequest="50" Clicked="ChangeSubMenuClicked"/>
 
             <ListView x:Name="_subMenu" Grid.Row="3" Grid.ColumnSpan="2" />

@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using Orchard;
 using Orchard.iOS;
+using System.Reflection;
 
 [assembly: ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
 namespace Orchard.iOS
@@ -22,19 +23,31 @@ namespace Orchard.iOS
         {
             base.OnElementChanged(e);
             var imageButton = this.ImageButton;
-            var targetButton = Control as UIButton;
+
+            var targetButton = Control;
             if (imageButton != null && targetButton != null && !String.IsNullOrEmpty(imageButton.Image))
             {
                 SetImage(imageButton.Image, imageButton.ImageWidthRequest, imageButton.ImageHeightRequest, targetButton);
-                   
             }
         }
 
         private void SetImage(string imageName, int widthRequest, int heightRequest, UIButton targetButton)
         {
-            var image = UIImage.LoadFromData(MonoTouch.Foundation.NSData.FromUrl(new Uri("http://developer.xamarin.com/guides/cross-platform/xamarin-forms/working-with/images/Images/Local-sml.png")));
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            var image = UIImage.FromResource(assembly, imageName);
 
-            targetButton.SetBackgroundImage(image, UIControlState.Normal);
+            var imageView = new UIImageView();
+
+            var widthCt = NSLayoutConstraint.Create(imageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, widthRequest);
+            var heightCt = NSLayoutConstraint.Create(imageView, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, heightRequest);
+
+            imageView.AddConstraint(widthCt);
+            imageView.AddConstraint(heightCt);
+            imageView.TranslatesAutoresizingMaskIntoConstraints = false;
+            imageView.Image = image;
+            imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
+
+            targetButton.AddSubview(imageView);
 
             switch (ImageButton.Orientation)
             {
@@ -52,12 +65,24 @@ namespace Orchard.iOS
                     break;
                 case TextAligment.Right:
                     {
+                        var yCenterCt = NSLayoutConstraint.Create(imageView, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, targetButton, NSLayoutAttribute.CenterY, 1, 0);
+                        var xLeftCt = NSLayoutConstraint.Create(imageView, NSLayoutAttribute.Left, NSLayoutRelation.Equal, targetButton, NSLayoutAttribute.Left, 1, 0);
+
+                        targetButton.AddConstraint(yCenterCt);
+                        targetButton.AddConstraint(xLeftCt);
+
                         targetButton.TitleEdgeInsets = new UIEdgeInsets(0, 0, 0, 20);
                         targetButton.HorizontalAlignment = UIControlContentHorizontalAlignment.Right;
                     }
                     break;
                 case TextAligment.Bottom:
                     {
+                        var xCenterCt = NSLayoutConstraint.Create(imageView, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, targetButton, NSLayoutAttribute.CenterX, 1, 0);
+                        var yTopCt = NSLayoutConstraint.Create(imageView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, targetButton, NSLayoutAttribute.Top, 1, 0);
+
+                        targetButton.AddConstraint(xCenterCt);
+                        targetButton.AddConstraint(yTopCt);
+
                         targetButton.TitleEdgeInsets = new UIEdgeInsets(0, 0, 5, 0);
                         targetButton.VerticalAlignment = UIControlContentVerticalAlignment.Bottom;
                     }
