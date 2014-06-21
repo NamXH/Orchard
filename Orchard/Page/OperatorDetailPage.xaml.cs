@@ -35,19 +35,24 @@ namespace Orchard
 
             if (action == actionList[0])
             {
-                // TODO.
+                var picker = DependencyService.Get<IMediaPicker>();
+                using (var res = await picker.TakePhoto())
+                {
+                    if (res != null)
+                    {
+                        Debug.WriteLine("Length: {0}", res.Length);
+                    }
+                }
             }
             else if (action == actionList[1])
             {
                 var picker = DependencyService.Get<IMediaPicker>();
-                var res = await picker.PickPhoto();
                         
-                if (res != null)
+                using (var res = await picker.PickPhoto())
                 {
-                    var f = await PCLStorage.FileSystem.Current.GetFileFromPathAsync(res);
-                    using (var fs = await f.OpenAsync(PCLStorage.FileAccess.Read))
+                    if (res != null)
                     {
-                        Debug.WriteLine("File length: {0}", fs.Length);
+                        Debug.WriteLine("Length: {0}", res.Length);
                     }
                 }
             }

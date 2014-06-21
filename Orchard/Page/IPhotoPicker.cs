@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Orchard
 {
     public interface IMediaPicker
     {
-        Task<string> PickPhoto();
+        Task<Stream> PickPhoto();
+        Task<Stream> TakePhoto();
     }
 }
 
