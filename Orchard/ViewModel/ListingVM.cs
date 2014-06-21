@@ -24,6 +24,11 @@ namespace Orchard
             }
         }
 
+        public void OnNeedRefreshData(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
         public ObservableCollection<T> Models { get; private set; }
     }
 }

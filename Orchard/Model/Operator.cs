@@ -1,9 +1,23 @@
 ﻿using System;
+using SQLite;
 
 namespace Orchard
 {
     public class Operator : NPCBase
     {
+        public Operator Copy()
+        {
+            return (Operator)this.MemberwiseClone();
+        }
+
+        int _id;
+        [PrimaryKey, AutoIncrement]
+        public int Id
+        {
+            get { return _id; }
+            set { SetProperty(ref _id, value); }
+        }
+
         string _name;
 
         public string Name

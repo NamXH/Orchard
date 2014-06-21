@@ -7,13 +7,13 @@ namespace Orchard
 {
     public partial class OperatorDetailPage : ContentPage
     {
-        public OperatorDetailPage(Operator current)
+        public OperatorDetailPage(Operator currItem)
         {
             InitializeComponent();
-
-            if (current == null)
+            _currItem = currItem;
+            if (currItem == null)
             {
-                // Adding a new one. TODO
+                // Adding a new one.
                 _addBtn.IsVisible = true;
                 _delBtn.IsVisible = false;
                 var newOp = new Operator();
@@ -24,7 +24,26 @@ namespace Orchard
                 // Editing mode.
                 _addBtn.IsVisible = false;
                 _delBtn.IsVisible = true;
-                BindingContext = current;
+
+                var localCurrItem = currItem.Copy();
+                BindingContext = localCurrItem;
+            }
+        }
+
+        Operator _currItem;
+        bool _actionKeyPressed;
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (_currItem != null && !_actionKeyPressed)
+            {
+                // Not a result of pressing add/del/cancel button.
+                // Editing mode, need to save.
+                var op = (Operator)BindingContext;
+                DbManager.Update(op);
+                // Update all needed properties.
+                _currItem.Name = op.Name;
             }
         }
 
@@ -62,6 +81,9 @@ namespace Orchard
         {
             var op = (Operator)BindingContext;
             DbManager.AddItem(op);
+            IssueNeedRefreshData();
+            _actionKeyPressed = true;
+            Navigation.PopAsync();
         }
 
         public async void DelClicked(object sender, EventArgs e)
@@ -69,14 +91,29 @@ namespace Orchard
             var action = await DisplayActionSheet(null, "Cancel", "Delete?");
             if (action == "Delete?")
             {
-                // TODO: delte item here.
+                var op = (Operator)BindingContext;
+                DbManager.DeleteItem(op);
+                IssueNeedRefreshData();
+                _actionKeyPressed = true;
+                Navigation.PopAsync();
             }
         }
 
         public void CancelClicked(object sender, EventArgs e)
         {
-            // TODO: cancel in editing mode.
+            _actionKeyPressed = true;
             Navigation.PopAsync();
+        }
+
+        public event EventHandler<EventArgs> NeedRefreshData;
+
+        public void IssueNeedRefreshData()
+        {
+            var handler = NeedRefreshData;
+            if (handler != null)
+            {
+                handler.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }

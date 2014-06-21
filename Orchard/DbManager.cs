@@ -54,6 +54,22 @@ namespace Orchard
             }
         }
 
+        public static void DeleteItem<T>(T item) where T:new()
+        {
+            lock (_locker)
+            {
+                _db.Delete(item);
+            }
+        }
+
+        public static void Update<T>(T item) where T:new()
+        {
+            lock (_locker)
+            {
+                _db.Update(item);
+            }
+        }
+
         static void CreateDummyData()
         {
             DropTables();

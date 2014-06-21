@@ -26,7 +26,9 @@ namespace Orchard
                 var t = e.Item.GetType();
                 if (t == typeof(Operator))
                 {
-                    Navigation.PushAsync(new OperatorDetailPage(((Operator)e.Item)));
+                    var odPage = new OperatorDetailPage((Operator)e.Item);
+                    odPage.NeedRefreshData += ViewModel.OnNeedRefreshData;
+                    Navigation.PushAsync(odPage);
                 }
                 _listView.SelectedItem = null;
             };
@@ -38,7 +40,9 @@ namespace Orchard
                 var t = typeof(T);
                 if (t == typeof(Operator))
                 {
-                    Navigation.PushAsync(new OperatorDetailPage(null));
+                    var odPage = new OperatorDetailPage(null);
+                    odPage.NeedRefreshData += ViewModel.OnNeedRefreshData;
+                    Navigation.PushAsync(odPage);
                 }
             }));
         }
