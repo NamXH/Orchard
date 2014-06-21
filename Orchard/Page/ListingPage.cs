@@ -13,6 +13,7 @@ namespace Orchard
             BindingContext = vm;
 
             _listView = new ListView();
+            _listView.RowHeight = 50;
             _listView.ItemsSource = vm.Models;
             _listView.ItemTemplate = new DataTemplate(() =>
             {
