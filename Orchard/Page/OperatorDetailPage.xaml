@@ -21,9 +21,7 @@
 				<Label Text="Note"/>
 				<Editor HeightRequest="200" Text="{Binding Note}"/>
 		
-				<Button x:Name="_addBtn" Text="Add" TextColor="White" BackgroundColor="Green" Clicked="AddClicked"/>
 				<Button x:Name="_delBtn" Text="Delete" TextColor="White" BackgroundColor="Red" Clicked="DelClicked"/>
-				<Button Text="Cancel" Clicked="CancelClicked"/>
 			</StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -14,7 +14,6 @@ namespace Orchard
             if (currItem == null)
             {
                 // Adding a new one.
-                _addBtn.IsVisible = true;
                 _delBtn.IsVisible = false;
                 var newOp = new Operator();
                 BindingContext = newOp;
@@ -22,30 +21,31 @@ namespace Orchard
             else
             {
                 // Editing mode.
-                _addBtn.IsVisible = false;
-                _delBtn.IsVisible = true;
-
                 var localCurrItem = currItem.Copy();
                 BindingContext = localCurrItem;
             }
+
+            ToolbarItems.Add(new ToolbarItem("Done", null, () =>
+            {
+                var op = (Operator)BindingContext;
+                if (_currItem == null)
+                {
+                    // Adding a new item.
+                    DbManager.AddItem(op);
+                    IssueNeedRefreshData();
+                }
+                else
+                {
+                    // Editing an existing item.
+                    DbManager.Update(op);
+                    // Update all needed properties.
+                    _currItem.Name = op.Name;
+                }
+                Navigation.PopAsync();
+            }));
         }
 
         Operator _currItem;
-        bool _actionKeyPressed;
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            if (_currItem != null && !_actionKeyPressed)
-            {
-                // Not a result of pressing add/del/cancel button.
-                // Editing mode, need to save.
-                var op = (Operator)BindingContext;
-                DbManager.Update(op);
-                // Update all needed properties.
-                _currItem.Name = op.Name;
-            }
-        }
 
         public async void ImageClicked(object sender, EventArgs e)
         {
@@ -77,15 +77,6 @@ namespace Orchard
             }
         }
 
-        public void AddClicked(object sender, EventArgs e)
-        {
-            var op = (Operator)BindingContext;
-            DbManager.AddItem(op);
-            IssueNeedRefreshData();
-            _actionKeyPressed = true;
-            Navigation.PopAsync();
-        }
-
         public async void DelClicked(object sender, EventArgs e)
         {
             var action = await DisplayActionSheet(null, "Cancel", "Delete?");
@@ -94,15 +85,8 @@ namespace Orchard
                 var op = (Operator)BindingContext;
                 DbManager.DeleteItem(op);
                 IssueNeedRefreshData();
-                _actionKeyPressed = true;
                 Navigation.PopAsync();
             }
-        }
-
-        public void CancelClicked(object sender, EventArgs e)
-        {
-            _actionKeyPressed = true;
-            Navigation.PopAsync();
         }
 
         public event EventHandler<EventArgs> NeedRefreshData;
