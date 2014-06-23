@@ -39,6 +39,12 @@ namespace Orchard
                 }
             }
         }
+
+        public static string PictureFolderForType<T>()
+        {
+            var type = typeof(T);
+            return type.ToString();
+        }
     }
 }
 

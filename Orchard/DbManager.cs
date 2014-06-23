@@ -77,7 +77,7 @@ namespace Orchard
 
             var oList = new List<Operator>()
             {
-                new Operator() { Name = "aaa", Image="operators/1.png" },
+                new Operator() { Name = "aaa", CertificationNumber="123" },
                 new Operator() { Name = "bbb" },
                 new Operator() { Name = "ccc" }
             };

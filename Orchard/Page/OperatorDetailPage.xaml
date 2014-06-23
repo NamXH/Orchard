@@ -6,7 +6,7 @@
     x:Class="Orchard.OperatorDetailPage">
     <ContentPage.Content>
         <ScrollView>
-			<StackLayout Padding="8">
+			<StackLayout x:Name="_sl" Padding="8">
 				<StackLayout Orientation="Horizontal">
 					<local:ImageButton Image="{Binding Image}" WidthRequest="100" HeightRequest="100" ImageWidthRequest="100" ImageHeightRequest="100" Clicked="ImageClicked" Orientation="Bottom"/>
 					<StackLayout HorizontalOptions="FillAndExpand">
@@ -15,8 +15,8 @@
 		            </StackLayout>
 				</StackLayout>
 
-				<Label Text="Certification number"/>
-				<Entry Text="{Binding CertificationNumber}"/>
+				<!--Label Text="Certification number"/>
+				<Entry Text="{Binding CertificationNumber}"/-->
 
 				<Label Text="Note"/>
 				<Editor HeightRequest="200" Text="{Binding Note}"/>

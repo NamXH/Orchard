@@ -4,6 +4,8 @@ using Xamarin.Forms;
 using System.Diagnostics;
 using System.IO;
 using PCLStorage;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Orchard
 {
@@ -42,13 +44,20 @@ namespace Orchard
                     DbManager.Update(op);
                     // Update all needed properties.
                     _currItem.Name = op.Name;
+                    _currItem.CertificationNumber = op.CertificationNumber;
                 }
                 Navigation.PopAsync();
             }));
+
+            var vList = BuildViews<Operator, string>(curr => curr.CertificationNumber);
+            foreach (var view in vList)
+            {
+                _sl.Children.Add(view);
+            }
+
         }
 
         Operator _currItem;
-        string _opFolder = "operators";
 
         public async void ImageClicked(object sender, EventArgs e)
         {
@@ -72,17 +81,17 @@ namespace Orchard
             using (photoStream)
             {
                 Debug.WriteLine("Length: {0}", photoStream.Length);
-                var checkFolder = await FileSystem.Current.LocalStorage.CheckExistsAsync(_opFolder);
+                var checkFolder = await FileSystem.Current.LocalStorage.CheckExistsAsync(Helper.PictureFolderForType<Operator>());
                 if (checkFolder == ExistenceCheckResult.NotFound)
                 {
-                    await FileSystem.Current.LocalStorage.CreateFolderAsync(_opFolder, CreationCollisionOption.FailIfExists);
+                    await FileSystem.Current.LocalStorage.CreateFolderAsync(Helper.PictureFolderForType<Operator>(), CreationCollisionOption.FailIfExists);
                 }
                 if (_currItem.Id == 0)
                 {
                     // TODO: get next id from db and assign it here.
 
                 }
-                var relativeFilename = PortablePath.Combine(_opFolder, string.Format("{0}.png", _currItem.Id));
+                var relativeFilename = _currItem.Image;
                 var localFile = await FileSystem.Current.LocalStorage.CreateFileAsync(
                                     relativeFilename,
                                     CreationCollisionOption.ReplaceExisting);
@@ -90,8 +99,8 @@ namespace Orchard
                 {
                     await photoStream.CopyToAsync(lfStream);
                 }
-                _currItem.Image = null;
-                _currItem.Image = relativeFilename;
+
+                _currItem.RaisePropertyChanged("Image");
                 // HACK: binding is not working, set manually.
                 ((ImageButton)sender).Image = null;
                 ((ImageButton)sender).Image = _currItem.Image;
@@ -112,13 +121,44 @@ namespace Orchard
 
         public event EventHandler<EventArgs> NeedRefreshData;
 
-        public void IssueNeedRefreshData()
+        private void IssueNeedRefreshData()
         {
             var handler = NeedRefreshData;
             if (handler != null)
             {
                 handler.Invoke(this, EventArgs.Empty);
             }
+        }
+
+        private IList<View> BuildViews<ItemType, PropertyType>(Expression<Func<ItemType, PropertyType>> getter)
+        {
+            if (getter == null)
+            {
+                throw new ArgumentNullException("getter");
+            }
+            var expression = getter.Body;
+            var unaryExpression = expression as UnaryExpression;
+            if (unaryExpression != null)
+            {
+                expression = unaryExpression.Operand;
+            }
+            var memberExpression = expression as MemberExpression;
+            if (memberExpression == null)
+            {
+                throw new ArgumentException("getter must be a MemberExpression", "getter");
+            }
+            var propertyInfo = (PropertyInfo)memberExpression.Member;
+
+            if (propertyInfo.PropertyType == typeof(string))
+            {
+                var ret = new List<View>();
+                ret.Add(new Label() { Text = propertyInfo.Name });
+                var entry = new Entry();
+                entry.SetBinding(Entry.TextProperty, propertyInfo.Name);
+                ret.Add(entry);
+                return ret;
+            }
+            return null;
         }
     }
 }

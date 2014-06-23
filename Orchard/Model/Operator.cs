@@ -1,5 +1,6 @@
 ﻿using System;
 using SQLite;
+using PCLStorage;
 
 namespace Orchard
 {
@@ -11,6 +12,7 @@ namespace Orchard
         }
 
         int _id;
+
         [PrimaryKey, AutoIncrement]
         public int Id
         {
@@ -26,11 +28,12 @@ namespace Orchard
             set { SetProperty(ref _name, value); }
         }
 
-        string _image;
         public string Image
         { 
-            get { return _image; }
-            set { SetProperty(ref _image, value); }
+            get
+            {
+                return PortablePath.Combine(Helper.PictureFolderForType<Operator>(), string.Format("{0}.png", Id));
+            }
         }
 
         string _certificationNumber;
