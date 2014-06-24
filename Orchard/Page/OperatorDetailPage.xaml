@@ -8,10 +8,10 @@
         <ScrollView>
 			<StackLayout x:Name="_sl" Padding="8">
 				<StackLayout Orientation="Horizontal">
-					<local:ImageButton Image="{Binding Image}" WidthRequest="100" HeightRequest="100" ImageWidthRequest="100" ImageHeightRequest="100" Clicked="ImageClicked" Orientation="Bottom"/>
+					<local:ImageButton Image="{Binding LocalItem.Image}" WidthRequest="100" HeightRequest="100" ImageWidthRequest="100" ImageHeightRequest="100" Clicked="ImageClicked" Orientation="Bottom"/>
 					<StackLayout HorizontalOptions="FillAndExpand">
 		            	<Label Text="Name"/>
-		            	<Entry Text="{Binding Name}" />
+		            	<Entry Text="{Binding LocalItem.Name}" />
 		            </StackLayout>
 				</StackLayout>
 
@@ -19,9 +19,9 @@
 				<Entry Text="{Binding CertificationNumber}"/-->
 
 				<Label Text="Note"/>
-				<Editor HeightRequest="200" Text="{Binding Note}"/>
+				<Editor HeightRequest="200" Text="{Binding LocalItem.Note}"/>
 		
-				<Button x:Name="_delBtn" Text="Delete" TextColor="White" BackgroundColor="Red" Clicked="DelClicked"/>
+				<Button x:Name="_delBtn" IsVisible="{Binding IsEditing}" Text="Delete" TextColor="White" BackgroundColor="Red" Clicked="DelClicked"/>
 			</StackLayout>
         </ScrollView>
     </ContentPage.Content>

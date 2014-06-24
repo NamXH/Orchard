@@ -14,50 +14,41 @@ namespace Orchard
         public OperatorDetailPage(Operator currItem)
         {
             InitializeComponent();
-            _currItem = currItem;
-            if (currItem == null)
+            var vm = new DetailVM<Operator>(x => x.Copy(), (x, y) =>
             {
-                // Adding a new one.
-                _delBtn.IsVisible = false;
-                var newOp = new Operator();
-                BindingContext = newOp;
-            }
-            else
+                x.Name = y.Name;
+                x.CertificationNumber = y.CertificationNumber;
+                x.Note = y.Note;
+            })
             {
-                // Editing mode.
-                var localCurrItem = currItem.Copy();
-                BindingContext = localCurrItem;
-            }
+                CurrItem = currItem
+            };
+            BindingContext = vm;
 
             ToolbarItems.Add(new ToolbarItem("Done", null, () =>
             {
-                var op = (Operator)BindingContext;
-                if (_currItem == null)
+                vm.DoneCmd.Execute(null);
+                if (!vm.IsEditing)
                 {
-                    // Adding a new item.
-                    DbManager.AddItem(op);
                     IssueNeedRefreshData();
-                }
-                else
-                {
-                    // Editing an existing item.
-                    DbManager.Update(op);
-                    // Update all needed properties.
-                    _currItem.Name = op.Name;
-                    _currItem.CertificationNumber = op.CertificationNumber;
                 }
                 Navigation.PopAsync();
             }));
 
-            var vList = BuildViews<Operator, string>(curr => curr.CertificationNumber);
-            foreach (var view in vList)
+            var vList = BuildViews<Sprayer, Sprayer.VolumeUnit>(curr => curr.TankUnit);
+            if (vList != null)
             {
-                _sl.Children.Add(view);
+                foreach (var view in vList)
+                {
+                    _sl.Children.Insert(1, view);
+                }
             }
-
         }
 
-        Operator _currItem;
+        DetailVM<Operator> VM
+        {
+            get { return (DetailVM<Operator>)BindingContext; }
+        }
 
         public async void ImageClicked(object sender, EventArgs e)
         {
@@ -78,33 +69,12 @@ namespace Orchard
             {
                 return;
             }
-            using (photoStream)
-            {
-                Debug.WriteLine("Length: {0}", photoStream.Length);
-                var checkFolder = await FileSystem.Current.LocalStorage.CheckExistsAsync(Helper.PictureFolderForType<Operator>());
-                if (checkFolder == ExistenceCheckResult.NotFound)
-                {
-                    await FileSystem.Current.LocalStorage.CreateFolderAsync(Helper.PictureFolderForType<Operator>(), CreationCollisionOption.FailIfExists);
-                }
-                if (_currItem.Id == 0)
-                {
-                    // TODO: get next id from db and assign it here.
 
-                }
-                var relativeFilename = _currItem.Image;
-                var localFile = await FileSystem.Current.LocalStorage.CreateFileAsync(
-                                    relativeFilename,
-                                    CreationCollisionOption.ReplaceExisting);
-                using (var lfStream = await localFile.OpenAsync(FileAccess.ReadAndWrite))
-                {
-                    await photoStream.CopyToAsync(lfStream);
-                }
+            await VM.ChangeImg(photoStream);
 
-                _currItem.RaisePropertyChanged("Image");
-                // HACK: binding is not working, set manually.
-                ((ImageButton)sender).Image = null;
-                ((ImageButton)sender).Image = _currItem.Image;
-            }
+            // HACK: binding is not working, set manually.
+            ((ImageButton)sender).Image = null;
+            ((ImageButton)sender).Image = VM.LocalItem.Image;
         }
 
         public async void DelClicked(object sender, EventArgs e)
@@ -112,8 +82,7 @@ namespace Orchard
             var action = await DisplayActionSheet(null, "Cancel", "Delete?");
             if (action == "Delete?")
             {
-                var op = (Operator)BindingContext;
-                DbManager.DeleteItem(op);
+                VM.DelCmd.Execute(null);
                 IssueNeedRefreshData();
                 Navigation.PopAsync();
             }
@@ -157,6 +126,18 @@ namespace Orchard
                 entry.SetBinding(Entry.TextProperty, propertyInfo.Name);
                 ret.Add(entry);
                 return ret;
+            }
+            var dbType = ((dynamic)propertyInfo.PropertyType).BaseType;
+            if (dbType == typeof(Enum))
+            {
+                var names = Enum.GetNames(propertyInfo.PropertyType);
+                Debug.WriteLine("enum type");
+                var p = new Picker();
+                foreach (var n in names)
+                {
+                    p.Items.Add(n);
+                }
+                return new List<View>{ p };
             }
             return null;
         }

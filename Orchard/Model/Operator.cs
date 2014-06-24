@@ -4,7 +4,7 @@ using PCLStorage;
 
 namespace Orchard
 {
-    public class Operator : NPCBase
+    public class Operator : NPCBase, IDataItem
     {
         public Operator Copy()
         {
