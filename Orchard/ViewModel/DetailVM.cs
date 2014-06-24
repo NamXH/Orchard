@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Orchard
 {
-    public class DetailVM<T> : NPCBase where T : NPCBase, IDataItem, new()
+    public class DetailVM<T> : NPCBase where T : IDataItem, new()
     {
         public DetailVM(Func<T, T> copyFunc, Action<T, T> updateAct)
         {
@@ -69,10 +69,6 @@ namespace Orchard
                 {
                     await photoStream.CopyToAsync(lfStream);
                 }
-                if (CurrItem != null)
-                {
-                    CurrItem.RaisePropertyChanged("Image");
-                }
             }
         }
 
@@ -84,6 +80,7 @@ namespace Orchard
             {
                 if (_doneCmd == null)
                 {
+
                     _doneCmd = new Command(arg =>
                     {
                         if (IsEditing)

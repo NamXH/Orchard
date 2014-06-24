@@ -4,7 +4,7 @@ using PCLStorage;
 
 namespace Orchard
 {
-    public class OrchardBlock : NPCBase
+    public class OrchardBlock : NPCBase, IDataItem
     {
         public OrchardBlock Copy()
         {

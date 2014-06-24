@@ -4,7 +4,7 @@ using PCLStorage;
 
 namespace Orchard
 {
-    public class Sprayer : NPCBase
+    public class Sprayer : NPCBase, IDataItem
     {
         public Sprayer Copy()
         {

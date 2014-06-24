@@ -25,13 +25,7 @@ namespace Orchard
 
             _listView.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
-                var t = e.Item.GetType();
-                if (t == typeof(Operator))
-                {
-                    var odPage = new OperatorDetailPage((Operator)e.Item);
-                    odPage.NeedRefreshData += ViewModel.OnNeedRefreshData;
-                    Navigation.PushAsync(odPage);
-                }
+                NavToDetailPage((T)e.Item);
                 _listView.SelectedItem = null;
             };
 
@@ -39,13 +33,7 @@ namespace Orchard
 
             this.ToolbarItems.Add(new ToolbarItem("add", null, () =>
             {
-                var t = typeof(T);
-                if (t == typeof(Operator))
-                {
-                    var odPage = new OperatorDetailPage(null);
-                    odPage.NeedRefreshData += ViewModel.OnNeedRefreshData;
-                    Navigation.PushAsync(odPage);
-                }
+                NavToDetailPage(default(T));
             }));
         }
 
@@ -57,6 +45,13 @@ namespace Orchard
             {
                 return (ListingVM<T>)BindingContext;
             }
+        }
+
+        void NavToDetailPage(T currItem)
+        {
+            var detailPage = new DetailPage((IDataItem)currItem);
+            detailPage.NeedRefreshData += ViewModel.OnNeedRefreshData;
+            Navigation.PushAsync(detailPage);
         }
     }
 

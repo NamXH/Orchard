@@ -58,9 +58,6 @@
     <Compile Include="Model\Sprayer.cs" />
     <Compile Include="Model\Operator.cs" />
     <Compile Include="Model\OrchardBlock.cs" />
-    <Compile Include="Page\OperatorDetailPage.xaml.cs">
-      <DependentUpon>OperatorDetailPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Page\MenuItem.cs" />
     <Compile Include="ViewModel\ListingVM.cs" />
     <Compile Include="DbManager.cs" />
@@ -70,6 +67,9 @@
     <Compile Include="ViewModel\NPCBase.cs" />
     <Compile Include="ViewModel\DetailVM.cs" />
     <Compile Include="Model\IDataItem.cs" />
+    <Compile Include="Page\DetailPage.xaml.cs">
+      <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="../packages/Xamarin.Forms.1.1.1.6206/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.Forms.targets" />
@@ -117,9 +117,6 @@
     <EmbeddedResource Include="Page\Step3Page.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Page\OperatorDetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Images\information.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -128,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Images\sprayer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page\DetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
