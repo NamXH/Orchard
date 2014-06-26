@@ -8,11 +8,11 @@ namespace Orchard
 {
     public partial class DetailPage : ContentPage
     {
-        public DetailPage(IDataItem currItem)
+        public DetailPage(IDataItem currItem, Type currType)
         {
             InitializeComponent();
 
-            if (currItem.GetType() == typeof(Operator))
+            if (currType == typeof(Operator))
             {
                 BindingContext = new DetailVM<Operator>(x => x.Copy(), (x, y) =>
                 {
@@ -24,7 +24,7 @@ namespace Orchard
                     CurrItem = (Operator)currItem
                 };
             }
-            else if (currItem.GetType() == typeof(Sprayer))
+            else if (currType == typeof(Sprayer))
             {
                 BindingContext = new DetailVM<Sprayer>(x => x.Copy(), (x, y) =>
                 {
@@ -36,7 +36,7 @@ namespace Orchard
                     CurrItem = (Sprayer)currItem
                 };
             }
-            else if (currItem.GetType() == typeof(OrchardBlock))
+            else if (currType == typeof(OrchardBlock))
             {
                 BindingContext = new DetailVM<OrchardBlock>(x => x.Copy(), (x, y) =>
                 {

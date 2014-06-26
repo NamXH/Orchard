@@ -49,7 +49,7 @@ namespace Orchard
 
         void NavToDetailPage(T currItem)
         {
-            var detailPage = new DetailPage((IDataItem)currItem);
+            var detailPage = new DetailPage((IDataItem)currItem, typeof(T));
             detailPage.NeedRefreshData += ViewModel.OnNeedRefreshData;
             Navigation.PushAsync(detailPage);
         }
