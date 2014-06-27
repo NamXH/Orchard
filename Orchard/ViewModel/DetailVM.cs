@@ -52,10 +52,10 @@ namespace Orchard
             using (photoStream)
             {
                 Debug.WriteLine("Length: {0}", photoStream.Length);
-                var checkFolder = await FileSystem.Current.LocalStorage.CheckExistsAsync(Helper.PictureFolderForType<Operator>());
+                var checkFolder = await FileSystem.Current.LocalStorage.CheckExistsAsync(Helper.PictureFolderForType<T>());
                 if (checkFolder == ExistenceCheckResult.NotFound)
                 {
-                    await FileSystem.Current.LocalStorage.CreateFolderAsync(Helper.PictureFolderForType<Operator>(), CreationCollisionOption.FailIfExists);
+                    await FileSystem.Current.LocalStorage.CreateFolderAsync(Helper.PictureFolderForType<T>(), CreationCollisionOption.FailIfExists);
                 }
                 if (LocalItem.Id == 0)
                 {
