@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using System.IO;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Orchard
 {
@@ -69,7 +70,7 @@ namespace Orchard
         public async void ImageClicked(object sender, EventArgs e)
         {
             var actionList = new string[] { "Take Photo", "Choose Photo" };
-            var action = await DisplayActionSheet(null, "Cancel", null, actionList);
+            var action = await DisplayActionSheet(null, "Cancel", "Remove", actionList);
             var picker = DependencyService.Get<IMediaPicker>();
             Stream photoStream = null;
 
@@ -81,6 +82,12 @@ namespace Orchard
             {
                 photoStream = await picker.PickPhoto();
             }
+            else if (action == "Remove")
+            {
+                // TODO.
+                Debug.WriteLine("remove img");
+            }
+
             if (photoStream == null)
             {
                 return;
