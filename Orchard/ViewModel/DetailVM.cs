@@ -28,7 +28,7 @@ namespace Orchard
                 _currItem = value;
                 if (_currItem == null)
                 {
-                    LocalItem = default(T);
+                    LocalItem = new T();
                 }
                 else
                 {
