@@ -56,8 +56,9 @@
 
 					<AbsoluteLayout>
 						<local:MyPicker WidthRequest="150" HeightRequest="100">
-								<Label Text="abc" BackgroundColor="Red"/>
-								<Label Text="def" BackgroundColor="Maroon"/>
+								<Image Source="{local:ImageResource Orchard.Images.calc.png}"/>
+								<Image Source="{local:ImageResource Orchard.Images.information.png}"/>
+								<Image Source="{local:ImageResource Orchard.Images.sprayer.png}"/>
 						</local:MyPicker>
 					</AbsoluteLayout>
 					<Button Text="Next" Clicked="NextClicked" />
