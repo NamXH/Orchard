@@ -49,6 +49,7 @@ namespace Orchard
                     CurrItem = (OrchardBlock)currItem
                 };
             }
+            SetupUIForType(currType);
 
 
             ToolbarItems.Add(new ToolbarItem("Done", null, () =>
@@ -65,6 +66,23 @@ namespace Orchard
         dynamic VM
         {
             get { return (dynamic)BindingContext; }
+        }
+
+        void SetupUIForType(Type currType)
+        {
+            if (currType == typeof(Operator))
+            {
+                var detailOpView = new DetailOperatorView();
+                _sl.Children.Insert(1, detailOpView);
+            }
+            else if (currType == typeof(Sprayer))
+            {
+
+            }
+            else if (currType == typeof(OrchardBlock))
+            {
+
+            }
         }
 
         public async void ImageClicked(object sender, EventArgs e)

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orchard.DetailOperatorView">
+	<ContentView.Content>
+		<StackLayout>
+			<Label Text="Certification number"/>
+			<Entry Text="{Binding LocalItem.CertificationNumber}"/>
+
+			<Label Text="Note"/>
+			<Editor HeightRequest="200" Text="{Binding LocalItem.Note}"/>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>
