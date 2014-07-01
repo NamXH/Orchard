@@ -8,6 +8,7 @@
 	    	<StackLayout>
 	    		<Label x:Name="_lb1"/>
 	    		<Button Text="Next" Clicked="NextClicked"/>
+	    		<Button Text="Measure" Clicked="MeasureClicked"/>
 	    	</StackLayout>
     	</ScrollView>
     </ContentPage.Content>
