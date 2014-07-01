@@ -1,87 +1,71 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
-    xmlns:local="clr-namespace:Orchard;assembly=Orchard"
-    x:Class="Orchard.Step1Page">
-    <ContentPage.Content>
-    <RelativeLayout x:Name="_rLayout">
-    	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
-		    <StackLayout x:Name="_questionContainer" Spacing="20">
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
-	    			<Picker>
-	    				<Picker.Items>
-		    				<system:String>Yes</system:String>
-		    				<system:String>No</system:String>
-	    				</Picker.Items>
-	    			</Picker>
-		    	</local:QuestionLayout>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.Step1Page">
+	<ContentPage.Content>
+		<RelativeLayout x:Name="_rLayout">
+			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
+				<StackLayout x:Name="_questionContainer" Spacing="20">
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
+						<Picker>
+							<Picker.Items>
+								<system:String>Yes</system:String>
+								<system:String>No</system:String>
+							</Picker.Items>
+						</Picker>
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
+						<Picker SelectedIndex="{Binding Q2SelectedIdx}">
+							<Picker.Items>
+								<system:String>Optimized Rate</system:String>
+								<system:String>Label Rate</system:String>
+							</Picker.Items>
+						</Picker>
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
+						<DatePicker Date="{Binding Q3AppTime}" />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[3]}">
+						<TimePicker Time="{Binding Q4Time}" />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[4]}">
+						<Entry />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[5]}">
+						<Entry />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[6]}">
+						<Entry />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[7]}">
+						<Entry />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[8]}">
+						<Entry />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[9]}">
+						<Entry />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[10]}">
+						<Entry />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[11]}">
+						<Entry />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[12]}">
+						<Entry />
+					</local:QuestionLayout>
 
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
-	    			<Picker SelectedIndex="{Binding Q2SelectedIdx}">
-	    				<Picker.Items>
-		    				<system:String>Optimized Rate</system:String>
-		    				<system:String>Label Rate</system:String>
-	    				</Picker.Items>
-	    			</Picker>
-		    	</local:QuestionLayout>
-
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
-	    			<DatePicker Date="{Binding Q3AppTime}"/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[3]}">
-	    			<TimePicker Time="{Binding Q4Time}"/>
-		    	</local:QuestionLayout>
-
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[4]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-				
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[5]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-				
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[6]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-				
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[7]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-				
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[8]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[9]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[10]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[11]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[12]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<Button Text="Next" Clicked="NextClicked"/>
-		    </StackLayout>
-	    </ScrollView>
-		<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2"
-			RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}"
-			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}" >
-			<Label TextColor="Black" Text="{Binding Common.HelpText}" />
-    	</ScrollView>
-    </RelativeLayout>
-
-    </ContentPage.Content>
+					<AbsoluteLayout>
+						<local:MyPicker WidthRequest="150" HeightRequest="100">
+								<Label Text="abc" BackgroundColor="Red"/>
+								<Label Text="def" BackgroundColor="Maroon"/>
+						</local:MyPicker>
+					</AbsoluteLayout>
+					<Button Text="Next" Clicked="NextClicked" />
+				</StackLayout>
+			</ScrollView>
+			<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}">
+				<Label TextColor="Black" Text="{Binding Common.HelpText}" />
+			</ScrollView>
+		</RelativeLayout>
+	</ContentPage.Content>
 </ContentPage>
-
