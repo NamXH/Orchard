@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailOrchardBlockView">
 	<ContentView.Resources>
 		<ResourceDictionary>
-			
+			<local:EnumToPickerIdxConverter x:Key="eTopidxCov" />
 			<local:DoubleToStringConverter x:Key="doubleToStrCov" />
 		</ResourceDictionary>
 	</ContentView.Resources>
@@ -41,10 +41,10 @@
 				<Entry Text="{Binding LocalItem.AvgRowLength, Converter={StaticResource doubleToStrCov}}" />
 			</local:QuestionLayout>
 			<Picker x:Name="_yearPlantedPicker" Title="Year" SelectedIndex="{Binding SelectedYearPlantedIdx}" Grid.Row="1" Grid.Column="1" />
-			<Picker x:Name="_blockSizeUnit" Title="Unit" Grid.Row="2" Grid.Column="1" />
-			<Picker x:Name="_avgTHUnit" Title="Unit" Grid.Row="3" Grid.Column="1" />
-			<Picker x:Name="_avgCWUnit" Title="Unit" Grid.Row="4" Grid.Column="1" />
-			<Picker x:Name="_avgRLUnit" Title="Unit" Grid.Row="5" Grid.Column="1" />
+			<Picker x:Name="_blockSizeUnit" SelectedIndex="{Binding LocalItem.BlockSizeUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="2" Grid.Column="1" />
+			<Picker x:Name="_avgTHUnit" SelectedIndex="{Binding LocalItem.AvgTreeHeightUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="3" Grid.Column="1" />
+			<Picker x:Name="_avgCWUnit" SelectedIndex="{Binding LocalItem.AvgCanopyWidthUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" />
+			<Picker x:Name="_avgRLUnit" SelectedIndex="{Binding LocalItem.AvgRowLengthUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="5" Grid.Column="1" />
 			<local:MyPicker WidthRequest="150" HeightRequest="100" Grid.Row="6" Grid.Column="0">
 				<Image Source="{local:ImageResource Orchard.Images.calc.png}" />
 				<Image Source="{local:ImageResource Orchard.Images.information.png}" />

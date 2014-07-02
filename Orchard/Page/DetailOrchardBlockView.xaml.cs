@@ -17,11 +17,13 @@ namespace Orchard
                 currYear--;
             }
 
-            var mu = UnitsNet.Units.LengthUnit.Meter.ToString();
-
-            foreach (var u in Enum.GetNames(typeof(OrchardBlock.LengthUnit)))
+            foreach (var u in EnumToPickerIdxConverter.AreaUnitNames)
             {
                 _blockSizeUnit.Items.Add(u);
+            }
+
+            foreach (var u in EnumToPickerIdxConverter.LengthUnitNames)
+            {
                 _avgTHUnit.Items.Add(u);
                 _avgCWUnit.Items.Add(u);
                 _avgRLUnit.Items.Add(u);
