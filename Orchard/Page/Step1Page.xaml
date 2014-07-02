@@ -4,7 +4,7 @@
 		<RelativeLayout x:Name="_rLayout">
 			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
 				<StackLayout x:Name="_questionContainer" Spacing="20">
-					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
 						<Picker>
 							<Picker.Items>
 								<system:String>Yes</system:String>
@@ -55,11 +55,7 @@
 					</local:QuestionLayout>
 
 					<AbsoluteLayout>
-						<local:MyPicker WidthRequest="150" HeightRequest="100">
-								<Image Source="{local:ImageResource Orchard.Images.calc.png}"/>
-								<Image Source="{local:ImageResource Orchard.Images.information.png}"/>
-								<Image Source="{local:ImageResource Orchard.Images.sprayer.png}"/>
-						</local:MyPicker>
+						
 					</AbsoluteLayout>
 					<Button Text="Next" Clicked="NextClicked" />
 				</StackLayout>

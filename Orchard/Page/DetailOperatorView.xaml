@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Orchard.DetailOperatorView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailOperatorView">
 	<ContentView.Content>
 		<StackLayout>
-			<Label Text="Certification number"/>
-			<Entry Text="{Binding LocalItem.CertificationNumber}"/>
+			<local:QuestionLayout QuestionLabel="Certification number">
+				<Entry Text="{Binding LocalItem.CertificationNumber}"/>
+			</local:QuestionLayout>
 
-			<Label Text="Note"/>
-			<Editor HeightRequest="200" Text="{Binding LocalItem.Note}"/>
+			<local:QuestionLayout QuestionLabel="Note" Orientation="Vertical">
+				<Editor HeightRequest="200" BackgroundColor="Silver" Text="{Binding LocalItem.Note}"/>
+			</local:QuestionLayout>
+
 		</StackLayout>
 	</ContentView.Content>
 </ContentView>

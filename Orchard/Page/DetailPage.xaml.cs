@@ -70,19 +70,21 @@ namespace Orchard
 
         void SetupUIForType(Type currType)
         {
+            View subView = null;
             if (currType == typeof(Operator))
             {
-                var detailOpView = new DetailOperatorView();
-                _sl.Children.Insert(1, detailOpView);
+                subView = new DetailOperatorView();
+
             }
             else if (currType == typeof(Sprayer))
             {
-
+                subView = new DetailSprayerView();
             }
             else if (currType == typeof(OrchardBlock))
             {
-
+                subView = new DetailOrchardBlockView();
             }
+            _sl.Children.Insert(1, subView);
         }
 
         public async void ImageClicked(object sender, EventArgs e)

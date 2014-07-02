@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailOrchardBlockView">
+	<ContentView.Content>
+		<StackLayout>
+			<local:QuestionLayout QuestionLabel="Varieties planted">
+				<Entry Text="{Binding LocalItem.CertificationNumber}"/>
+			</local:QuestionLayout>
+
+			<local:QuestionLayout QuestionLabel="Rootstock">
+				<Editor HeightRequest="200" Text="{Binding LocalItem.Note}"/>
+			</local:QuestionLayout>
+
+			<local:MyPicker WidthRequest="150" HeightRequest="100">
+				<Image Source="{local:ImageResource Orchard.Images.calc.png}"/>
+				<Image Source="{local:ImageResource Orchard.Images.information.png}"/>
+				<Image Source="{local:ImageResource Orchard.Images.sprayer.png}"/>
+			</local:MyPicker>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>
