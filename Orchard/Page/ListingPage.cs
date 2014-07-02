@@ -5,7 +5,7 @@ using PCLStorage;
 
 namespace Orchard
 {
-    public class ListingPage<T> : ContentPage where T : new()
+    public class ListingPage<T> : ContentPage where T : IDataItem, new()
     {
         public ListingPage()
         {
@@ -49,7 +49,7 @@ namespace Orchard
 
         void NavToDetailPage(T currItem)
         {
-            var detailPage = new DetailPage((IDataItem)currItem, typeof(T));
+            var detailPage = new DetailGeneralPage<T>(currItem); //new DetailPage((IDataItem)currItem, typeof(T));
             detailPage.NeedRefreshData += ViewModel.OnNeedRefreshData;
             Navigation.PushAsync(detailPage);
         }

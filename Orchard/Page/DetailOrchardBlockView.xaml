@@ -1,52 +1,53 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailOrchardBlockView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailOrchardBlockView">
 	<ContentView.Content>
 		<Grid>
 			<Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="1*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
 			<local:QuestionLayout QuestionLabel="Varieties planted" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="{Binding LocalItem.CertificationNumber}"/>
+				<Entry Text="{Binding LocalItem.CertificationNumber}" />
 			</local:QuestionLayout>
-
-				<local:QuestionLayout QuestionLabel="Rootstock" Grid.Row="1" Grid.Column="0">
-					<Entry Text="abc"/>
-				</local:QuestionLayout>
-				<local:QuestionLayout QuestionLabel="Block Size(area)" Grid.Row="2" Grid.Column="0">
-					<Entry Text="abc"/>
-				</local:QuestionLayout>
-				<local:QuestionLayout QuestionLabel="Average Tree Height" Grid.Row="3" Grid.Column="0">
-					<Entry Text="abc"/>
-				</local:QuestionLayout>
-				<local:QuestionLayout QuestionLabel="Average Canopy Width (driplines)" Grid.Row="4" Grid.Column="0">
-					<Entry Text="abc"/>
-				</local:QuestionLayout>
-				<local:QuestionLayout QuestionLabel="Average Row Length" Grid.Row="5" Grid.Column="0">
-					<Entry Text="abc"/>
-				</local:QuestionLayout>
-
-					<Entry Text="abc" Grid.Row="1" Grid.Column="1"/>
-					<Entry Text="abc" Grid.Row="2" Grid.Column="1"/>
-					<Entry Text="abc" Grid.Row="3" Grid.Column="1"/>
-					<Entry Text="abc" Grid.Row="4" Grid.Column="1"/>
-					<Entry Text="abc" Grid.Row="5" Grid.Column="1"/>
-
+			<local:QuestionLayout QuestionLabel="Rootstock" Grid.Row="1" Grid.Column="0">
+				<Entry Text="abc" />
+			</local:QuestionLayout>
+			<local:QuestionLayout QuestionLabel="Block Size(area)" Grid.Row="2" Grid.Column="0">
+				<Entry Text="abc" />
+			</local:QuestionLayout>
+			<local:QuestionLayout QuestionLabel="Average Tree Height" Grid.Row="3" Grid.Column="0">
+				<Entry Text="abc" />
+			</local:QuestionLayout>
+			<local:QuestionLayout QuestionLabel="Average Canopy Width (driplines)" Grid.Row="4" Grid.Column="0">
+				<Entry Text="abc" />
+			</local:QuestionLayout>
+			<local:QuestionLayout QuestionLabel="Average Row Length" Grid.Row="5" Grid.Column="0">
+				<Entry Text="abc" />
+			</local:QuestionLayout>
+			<Picker Grid.Row="1" Grid.Column="1">
+				<Picker.Items>
+					<system:String>Optimized Rate</system:String>
+					<system:String>Label Rate</system:String>
+				</Picker.Items>
+			</Picker>
+			<Button Text="metre" Grid.Row="2" Grid.Column="1" />
+			<Entry Text="abc" Grid.Row="3" Grid.Column="1" />
+			<Entry Text="abc" Grid.Row="4" Grid.Column="1" />
+			<Entry Text="abc" Grid.Row="5" Grid.Column="1" />
 			<local:MyPicker WidthRequest="150" HeightRequest="100" Grid.Row="6" Grid.Column="0">
-				<Image Source="{local:ImageResource Orchard.Images.calc.png}"/>
-				<Image Source="{local:ImageResource Orchard.Images.information.png}"/>
-				<Image Source="{local:ImageResource Orchard.Images.sprayer.png}"/>
+				<Image Source="{local:ImageResource Orchard.Images.calc.png}" />
+				<Image Source="{local:ImageResource Orchard.Images.information.png}" />
+				<Image Source="{local:ImageResource Orchard.Images.sprayer.png}" />
 			</local:MyPicker>
 		</Grid>
 	</ContentView.Content>

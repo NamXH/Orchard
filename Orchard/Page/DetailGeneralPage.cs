@@ -1,17 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 using System.IO;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Orchard
 {
-    public partial class DetailPage : ContentPage
+    public class DetailGeneralPage<T> : ContentPage where T : IDataItem, new()
     {
-        public DetailPage(IDataItem currItem, Type currType)
+        public DetailGeneralPage(T currItem)
         {
-            InitializeComponent();
+            var dgv = new DetailGeneralView();
+            dgv.SetupHandlers(ImageClicked, DelClicked);
+            Content = dgv;
+            _sl = dgv.MainStackLayout;
+
+
+            var currType = typeof(T);
 
             if (currType == typeof(Operator))
             {
@@ -22,7 +27,7 @@ namespace Orchard
                     x.Note = y.Note;
                 })
                 {
-                    CurrItem = (Operator)currItem
+                    CurrItem = (Operator)((object)currItem)
                 };
             }
             else if (currType == typeof(Sprayer))
@@ -30,11 +35,11 @@ namespace Orchard
                 BindingContext = new DetailVM<Sprayer>(x => x.Copy(), (x, y) =>
                 {
                     x.Name = y.Name;
-//                    x.CertificationNumber = y.CertificationNumber;
-//                    x.Note = y.Note;
+                    //                    x.CertificationNumber = y.CertificationNumber;
+                    //                    x.Note = y.Note;
                 })
                 {
-                    CurrItem = (Sprayer)currItem
+                    CurrItem = (Sprayer)((object)currItem)
                 };
             }
             else if (currType == typeof(OrchardBlock))
@@ -42,11 +47,11 @@ namespace Orchard
                 BindingContext = new DetailVM<OrchardBlock>(x => x.Copy(), (x, y) =>
                 {
                     x.Name = y.Name;
-//                    x.CertificationNumber = y.CertificationNumber;
-//                    x.Note = y.Note;
+                    //                    x.CertificationNumber = y.CertificationNumber;
+                    //                    x.Note = y.Note;
                 })
                 {
-                    CurrItem = (OrchardBlock)currItem
+                    CurrItem = (OrchardBlock)((object)currItem)
                 };
             }
             SetupUIForType(currType);
@@ -63,10 +68,12 @@ namespace Orchard
             }));
         }
 
-        dynamic VM
+        DetailVM<T> VM
         {
-            get { return (dynamic)BindingContext; }
+            get { return (DetailVM<T>)BindingContext; }
         }
+
+        StackLayout _sl;
 
         void SetupUIForType(Type currType)
         {
@@ -115,7 +122,7 @@ namespace Orchard
 
             var t = (Task)VM.ChangeImg(photoStream);
             await t;
-            var li = (NPCBase)VM.LocalItem;
+            var li = (NPCBase)((object)VM.LocalItem);
             li.RaisePropertyChanged("Image");
             // HACK: binding is not working, set manually.
             ((ImageButton)sender).Image = null;
