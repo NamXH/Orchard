@@ -8,7 +8,11 @@ namespace Orchard
     {
         public OrchardBlock Copy()
         {
+            UnitsNet.Length abc;
+
             return (OrchardBlock)this.MemberwiseClone();
+
+
         }
 
         int _id;
@@ -60,36 +64,68 @@ namespace Orchard
             set { SetProperty(ref _yearPlanted, value); }
         }
 
-        AreaUnit _blockSize;
+        double _blockSize;
 
-        public AreaUnit BlockSize
+        public double BlockSize
         {
             get { return _blockSize; }
             set { SetProperty(ref _blockSize, value); }
         }
 
-        LengthUnit _avgTreeHeight;
+        AreaUnit _blockSizeUnit;
 
-        public LengthUnit AvgTreeHeight
+        public AreaUnit BlockSizeUnit
+        {
+            get { return _blockSizeUnit; }
+            set { SetProperty(ref _blockSizeUnit, value); }
+        }
+
+        double _avgTreeHeight;
+
+        public double AvgTreeHeight
         {
             get { return _avgTreeHeight; }
             set { SetProperty(ref _avgTreeHeight, value); }
         }
 
-        LengthUnit _avgCanopyWidth;
+        LengthUnit _avgTreeHeightUnit;
 
-        public LengthUnit AvgCanopyWidth
+        public LengthUnit AvgTreeHeightUnit
+        {
+            get { return _avgTreeHeightUnit; }
+            set { SetProperty(ref _avgTreeHeightUnit, value); }
+        }
+
+        double _avgCanopyWidth;
+
+        public double AvgCanopyWidth
         {
             get { return _avgCanopyWidth; }
             set { SetProperty(ref _avgCanopyWidth, value); }
         }
 
-        LengthUnit _avgRowLength;
+        LengthUnit _avgCanopyWidthUnit;
 
-        public LengthUnit AvgRowLength
+        public LengthUnit AvgCanopyWidthUnit
+        {
+            get { return _avgCanopyWidthUnit; }
+            set { SetProperty(ref _avgCanopyWidthUnit, value); }
+        }
+
+        double _avgRowLength;
+
+        public double AvgRowLength
         {
             get { return _avgRowLength; }
             set { SetProperty(ref _avgRowLength, value); }
+        }
+
+        LengthUnit _avgRowLengthUnit;
+
+        public LengthUnit AvgRowLengthUnit
+        {
+            get { return _avgRowLengthUnit; }
+            set { SetProperty(ref _avgRowLengthUnit, value); }
         }
 
         TreeShape _avgTreeShape;

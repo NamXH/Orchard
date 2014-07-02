@@ -35,8 +35,16 @@ namespace Orchard
                 BindingContext = new DetailVM<Sprayer>(x => x.Copy(), (x, y) =>
                 {
                     x.Name = y.Name;
-                    //                    x.CertificationNumber = y.CertificationNumber;
-                    //                    x.Note = y.Note;
+                    x.Model = y.Model;
+                    x.Category = y.Category;
+                    x.Tractor = y.Tractor;
+                    x.TractorGear = y.TractorGear;
+                    x.TractorRPM = y.TractorRPM;
+                    x.TankCapacity = y.TankCapacity;
+                    x.TankUnit = y.TankUnit;
+                    x.NumOfNozzles = y.NumOfNozzles;
+                    x.RefillTime = y.RefillTime;
+                    x.RowTurnTime = y.RowTurnTime;
                 })
                 {
                     CurrItem = (Sprayer)((object)currItem)
@@ -47,8 +55,14 @@ namespace Orchard
                 BindingContext = new DetailVM<OrchardBlock>(x => x.Copy(), (x, y) =>
                 {
                     x.Name = y.Name;
-                    //                    x.CertificationNumber = y.CertificationNumber;
-                    //                    x.Note = y.Note;
+                    x.VarietiesPlanted = y.VarietiesPlanted;
+                    x.RootStock = y.RootStock;
+                    x.YearPlanted = y.YearPlanted;
+                    x.BlockSize = y.BlockSize;
+                    x.AvgTreeHeight = y.AvgTreeHeight;
+                    x.AvgCanopyWidth = y.AvgCanopyWidth;
+                    x.AvgRowLength = y.AvgRowLength;
+                    x.AvgTreeShape = y.AvgTreeShape;
                 })
                 {
                     CurrItem = (OrchardBlock)((object)currItem)

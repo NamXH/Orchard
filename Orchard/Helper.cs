@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Globalization;
 
 namespace Orchard
 {
@@ -46,6 +47,22 @@ namespace Orchard
         {
             var type = typeof(T);
             return type.ToString();
+        }
+    }
+
+    public class DoubleToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var d = (double)value;
+            return d.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var str = value as string;
+            var d = double.Parse(str);
+            return d;
         }
     }
 

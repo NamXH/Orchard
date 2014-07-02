@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailOrchardBlockView">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			
+			<local:DoubleToStringConverter x:Key="doubleToStrCov" />
+		</ResourceDictionary>
+	</ContentView.Resources>
 	<ContentView.Content>
 		<Grid>
 			<Grid.ColumnDefinitions>
@@ -17,33 +23,28 @@
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 			<local:QuestionLayout QuestionLabel="Varieties planted" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="{Binding LocalItem.CertificationNumber}" />
+				<Entry Text="{Binding LocalItem.VarietiesPlanted}" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Rootstock" Grid.Row="1" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="{Binding LocalItem.RootStock}" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Block Size(area)" Grid.Row="2" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="{Binding LocalItem.BlockSize, Converter={StaticResource doubleToStrCov}}" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Tree Height" Grid.Row="3" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="{Binding LocalItem.AvgTreeHeight, Converter={StaticResource doubleToStrCov}}" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Canopy Width (driplines)" Grid.Row="4" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="{Binding LocalItem.AvgCanopyWidth, Converter={StaticResource doubleToStrCov}}" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Row Length" Grid.Row="5" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="{Binding LocalItem.AvgRowLength, Converter={StaticResource doubleToStrCov}}" />
 			</local:QuestionLayout>
-			<Picker Grid.Row="1" Grid.Column="1">
-				<Picker.Items>
-					<system:String>Optimized Rate</system:String>
-					<system:String>Label Rate</system:String>
-				</Picker.Items>
-			</Picker>
-			<Button Text="metre" Grid.Row="2" Grid.Column="1" />
-			<Entry Text="abc" Grid.Row="3" Grid.Column="1" />
-			<Entry Text="abc" Grid.Row="4" Grid.Column="1" />
-			<Entry Text="abc" Grid.Row="5" Grid.Column="1" />
+			<Picker x:Name="_yearPlantedPicker" Title="Year" SelectedIndex="{Binding SelectedYearPlantedIdx}" Grid.Row="1" Grid.Column="1" />
+			<Picker x:Name="_blockSizeUnit" Title="Unit" Grid.Row="2" Grid.Column="1" />
+			<Picker x:Name="_avgTHUnit" Title="Unit" Grid.Row="3" Grid.Column="1" />
+			<Picker x:Name="_avgCWUnit" Title="Unit" Grid.Row="4" Grid.Column="1" />
+			<Picker x:Name="_avgRLUnit" Title="Unit" Grid.Row="5" Grid.Column="1" />
 			<local:MyPicker WidthRequest="150" HeightRequest="100" Grid.Row="6" Grid.Column="0">
 				<Image Source="{local:ImageResource Orchard.Images.calc.png}" />
 				<Image Source="{local:ImageResource Orchard.Images.information.png}" />
