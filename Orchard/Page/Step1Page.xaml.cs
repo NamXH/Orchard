@@ -29,9 +29,28 @@ namespace Orchard
             }
         }
 
+        Step1VM VM
+        {
+            get
+            {
+                return (Step1VM)BindingContext;
+            }
+        }
+
         public void NextClicked(object sender, EventArgs e)
         {
             MessagingCenter.Send((Page)this, "next");
+        }
+
+        public void ChooseSprayerClicked(object sender, EventArgs e)
+        {
+            var listingPage = new ListingPage<Sprayer>(true);
+            listingPage.ItemChosen += (object s, ChosenItemEventArg<Sprayer> arg) =>
+            {
+                VM.ChosenSprayer = arg.ChosenItem;
+                Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
+            };
+            Navigation.PushAsync(listingPage);
         }
     }
 

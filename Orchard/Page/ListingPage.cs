@@ -7,7 +7,7 @@ namespace Orchard
 {
     public class ListingPage<T> : ContentPage where T : IDataItem, new()
     {
-        public ListingPage()
+        public ListingPage(bool choosingMode = false)
         {
             var vm = new ListingVM<T>();
             BindingContext = vm;
@@ -25,8 +25,20 @@ namespace Orchard
 
             _listView.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
-                NavToDetailPage((T)e.Item);
-                _listView.SelectedItem = null;
+                if (choosingMode)
+                {
+                    var handler = ItemChosen;
+                    if (handler != null)
+                    {
+                        handler.Invoke(this, new ChosenItemEventArg<T>() { ChosenItem = (T)e.Item });
+                    }
+                    Navigation.PopAsync();
+                }
+                else
+                {
+                    NavToDetailPage((T)e.Item);
+                    _listView.SelectedItem = null;
+                }
             };
 
             Content = _listView;
@@ -53,6 +65,13 @@ namespace Orchard
             detailPage.NeedRefreshData += ViewModel.OnNeedRefreshData;
             Navigation.PushAsync(detailPage);
         }
+
+        public event EventHandler<ChosenItemEventArg<T>> ItemChosen;
+    }
+
+    public class ChosenItemEventArg<T> : EventArgs
+    {
+        public T ChosenItem { get; set; }
     }
 
     public class LocalImgToImgSourceConverter : IValueConverter

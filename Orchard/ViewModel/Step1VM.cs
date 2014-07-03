@@ -14,8 +14,8 @@ namespace Orchard
         {
             Common = new StepVMCommon("Step1Questions.txt", "Step1HelpTexts.txt", "Basic Information");
 
-            Q2SelectedIdx = -1;
-            Q3AppTime = DateTime.Now;
+//            Q2SelectedIdx = -1;
+//            Q3AppTime = DateTime.Now;
         }
 
         public StepVMCommon Common
@@ -40,60 +40,28 @@ namespace Orchard
             set { SetProperty(ref _currRowSprayingMode, value); }
         }
 
-        int _q2SelectedIdx;
+        Sprayer _chosenSprayer;
 
-        public int Q2SelectedIdx
+        public Sprayer ChosenSprayer
         {
-            get
-            {
-                return _q2SelectedIdx;
-            }
-            set
-            {
-                SetProperty(ref _q2SelectedIdx, value);
-            }
+            get { return _chosenSprayer; }
+            set { SetProperty(ref _chosenSprayer, value); }
         }
 
-        bool _stoogle;
+        OrchardBlock _chosenOrchardBlock;
 
-        public bool SToggle
+        public OrchardBlock OrchardBlock
         {
-            get
-            {
-                return _stoogle;
-            }
-            set
-            {
-                SetProperty(ref _stoogle, value);
-            }
+            get { return _chosenOrchardBlock; }
+            set { SetProperty(ref _chosenOrchardBlock, value); }
         }
 
-        DateTime _q3AppTime;
+        Operator _chosenOperator;
 
-        public DateTime Q3AppTime
+        public Operator ChosenOperator
         {
-            get
-            {
-                return _q3AppTime;
-            }
-            set
-            {
-                SetProperty(ref _q3AppTime, value);
-            }
-        }
-
-        TimeSpan _q4Time;
-
-        public TimeSpan Q4Time
-        {
-            get
-            {
-                return _q4Time;
-            }
-            set
-            {
-                SetProperty(ref _q4Time, value);
-            }
+            get { return _chosenOperator; }
+            set { SetProperty(ref _chosenOperator, value); }
         }
 
         public enum OptimizeMode

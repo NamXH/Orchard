@@ -12,7 +12,7 @@
 				<StackLayout x:Name="_questionContainer" Spacing="20">
 					<Picker x:Name="_opMode" SelectedIndex="{Binding CurrOptimizeMode, Converter={StaticResource opModeTopidxCov}}" Title="Mode" />
 					<Picker x:Name="_rowSprayingMode" SelectedIndex="{Binding CurrRowSprayingMode, Converter={StaticResource rowSprayingModeTopidxCov}}" Title="Mode" />
-
+					<Button Text="Choose sprayer" Clicked="ChooseSprayerClicked" />
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
 						<Picker>
 							<Picker.Items>
