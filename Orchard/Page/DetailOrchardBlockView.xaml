@@ -30,16 +30,16 @@
 				<Entry Text="{Binding LocalItem.RootStock}" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Block Size(area)" Grid.Row="2" Grid.Column="0">
-				<Entry Text="{Binding LocalItem.BlockSize, Converter={StaticResource doubleToStrCov}}" />
+				<Entry Text="{Binding LocalItem.BlockSize, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Tree Height" Grid.Row="3" Grid.Column="0">
-				<Entry Text="{Binding LocalItem.AvgTreeHeight, Converter={StaticResource doubleToStrCov}}" />
+				<Entry Text="{Binding LocalItem.AvgTreeHeight, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Canopy Width (driplines)" Grid.Row="4" Grid.Column="0">
-				<Entry Text="{Binding LocalItem.AvgCanopyWidth, Converter={StaticResource doubleToStrCov}}" />
+				<Entry Text="{Binding LocalItem.AvgCanopyWidth, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Row Length" Grid.Row="5" Grid.Column="0">
-				<Entry Text="{Binding LocalItem.AvgRowLength, Converter={StaticResource doubleToStrCov}}" />
+				<Entry Text="{Binding LocalItem.AvgRowLength, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" />
 			</local:QuestionLayout>
 
 			<Picker x:Name="_yearPlantedPicker" Title="Year" SelectedIndex="{Binding LocalItem.YearPlanted, Converter={StaticResource yToPidxCov}}" Grid.Row="1" Grid.Column="1" />

@@ -59,9 +59,13 @@ namespace Orchard
                     x.RootStock = y.RootStock;
                     x.YearPlanted = y.YearPlanted;
                     x.BlockSize = y.BlockSize;
+                    x.BlockSizeUnit = y.BlockSizeUnit;
                     x.AvgTreeHeight = y.AvgTreeHeight;
+                    x.AvgTreeHeightUnit = y.AvgTreeHeightUnit;
                     x.AvgCanopyWidth = y.AvgCanopyWidth;
+                    x.AvgCanopyWidthUnit = y.AvgCanopyWidthUnit;
                     x.AvgRowLength = y.AvgRowLength;
+                    x.AvgRowLengthUnit = y.AvgRowLengthUnit;
                     x.AvgTreeShape = y.AvgTreeShape;
                 })
                 {
