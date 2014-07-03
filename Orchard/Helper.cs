@@ -84,80 +84,54 @@ namespace Orchard
         }
     }
 
-    public class EnumToPickerIdxConverter : IValueConverter
+    public class EnumToPickerIdxCov<T> : IValueConverter
     {
-        static EnumToPickerIdxConverter()
+        static EnumToPickerIdxCov()
         {
-            LengthUnitNames = new List<string>(Enum.GetNames(typeof(OrchardBlock.LengthUnit)));
-            AreaUnitNames = new List<string>(Enum.GetNames(typeof(OrchardBlock.AreaUnit)));
-            SprayerCatNames = new List<string>(Enum.GetNames(typeof(Sprayer.Cat)));
-            VolumeUnitNames = new List<string>(Enum.GetNames(typeof(Sprayer.VolumeUnit)));
+            Names = new List<string>(Enum.GetNames(typeof(T)));
         }
-
-        public static readonly List<string> LengthUnitNames;
-        public static readonly List<string> AreaUnitNames;
-        public static readonly List<string> SprayerCatNames;
-        public static readonly List<string> VolumeUnitNames;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var currType = value.GetType();
             var name = Enum.GetName(currType, value);
-
-            if (currType == typeof(OrchardBlock.LengthUnit))
-            {
-                var idx = LengthUnitNames.IndexOf(name);
-                return idx;
-            }
-            if (currType == typeof(OrchardBlock.AreaUnit))
-            {
-                var idx = AreaUnitNames.IndexOf(name);
-                return idx;
-            }
-            if (currType == typeof(Sprayer.Cat))
-            {
-                var idx = SprayerCatNames.IndexOf(name);
-                return idx;
-            }
-            if (currType == typeof(Sprayer.VolumeUnit))
-            {
-                var idx = VolumeUnitNames.IndexOf(name);
-                return idx;
-            }
-            throw new InvalidDataException();
+            var idx = Names.IndexOf(name);
+            return idx;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (targetType == typeof(OrchardBlock.LengthUnit))
-            {
-                return GetEnumFromIdx((int)value, LengthUnitNames, targetType);
-            }
-            if (targetType == typeof(OrchardBlock.AreaUnit))
-            {
-                return GetEnumFromIdx((int)value, AreaUnitNames, targetType);
-            }
-            if (targetType == typeof(Sprayer.Cat))
-            {
-                return GetEnumFromIdx((int)value, SprayerCatNames, targetType);
-            }
-            if (targetType == typeof(Sprayer.VolumeUnit))
-            {
-                return GetEnumFromIdx((int)value, VolumeUnitNames, targetType);
-            }
-            throw new InvalidDataException();
-        }
-
-        private object GetEnumFromIdx(int idx, List<string> nameList, Type eType)
-        {
-            if (idx < 0 || idx >= nameList.Count)
+            var idx = (int)value;
+            if (idx < 0 || idx >= Names.Count)
             {
                 return null;
             }
-            var name = nameList[idx];
-            var ret = Enum.Parse(eType, name);
+            var name = Names[idx];
+            var ret = Enum.Parse(targetType, name);
             return ret;
         }
+
+        public static readonly List<string> Names;
+    }
+
+    public class LengthUnitToPickerIdxCov : EnumToPickerIdxCov<OrchardBlock.LengthUnit>
+    {
+
+    }
+
+    public class AreaUnitToPickerIdxCov : EnumToPickerIdxCov<OrchardBlock.AreaUnit>
+    {
+
+    }
+
+    public class SprayerCatToPickerIdxCov : EnumToPickerIdxCov<Sprayer.Cat>
+    {
+
+    }
+
+    public class VolumeUnitToPickerIdxCov : EnumToPickerIdxCov<Sprayer.VolumeUnit>
+    {
+
     }
 
     public class YearToPickerIdxConverter : IValueConverter

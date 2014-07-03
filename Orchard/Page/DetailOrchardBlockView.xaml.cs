@@ -15,12 +15,12 @@ namespace Orchard
                 _yearPlantedPicker.Items.Add(u);
             }
 
-            foreach (var u in EnumToPickerIdxConverter.AreaUnitNames)
+            foreach (var u in AreaUnitToPickerIdxCov.Names)
             {
                 _blockSizeUnit.Items.Add(u);
             }
 
-            foreach (var u in EnumToPickerIdxConverter.LengthUnitNames)
+            foreach (var u in LengthUnitToPickerIdxCov.Names)
             {
                 _avgTHUnit.Items.Add(u);
                 _avgCWUnit.Items.Add(u);

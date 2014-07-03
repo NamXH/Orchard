@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailOrchardBlockView">
 	<ContentView.Resources>
 		<ResourceDictionary>
-			<local:EnumToPickerIdxConverter x:Key="eTopidxCov" />
+			<local:LengthUnitToPickerIdxCov x:Key="lengthUnitTopidxCov" />
+			<local:AreaUnitToPickerIdxCov x:Key="areaUnitTopidxCov" />
 			<local:YearToPickerIdxConverter x:Key="yToPidxCov" />
 			<local:DoubleToStringConverter x:Key="doubleToStrCov" />
 		</ResourceDictionary>
@@ -42,10 +43,10 @@
 				<Entry Text="{Binding LocalItem.AvgRowLength, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<Picker x:Name="_yearPlantedPicker" Title="Year" SelectedIndex="{Binding LocalItem.YearPlanted, Converter={StaticResource yToPidxCov}}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" />
-			<Picker x:Name="_blockSizeUnit" SelectedIndex="{Binding LocalItem.BlockSizeUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" />
-			<Picker x:Name="_avgTHUnit" SelectedIndex="{Binding LocalItem.AvgTreeHeightUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />
-			<Picker x:Name="_avgCWUnit" SelectedIndex="{Binding LocalItem.AvgCanopyWidthUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
-			<Picker x:Name="_avgRLUnit" SelectedIndex="{Binding LocalItem.AvgRowLengthUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" />
+			<Picker x:Name="_blockSizeUnit" SelectedIndex="{Binding LocalItem.BlockSizeUnit, Converter={StaticResource areaUnitTopidxCov}}" Title="Unit" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" />
+			<Picker x:Name="_avgTHUnit" SelectedIndex="{Binding LocalItem.AvgTreeHeightUnit, Converter={StaticResource lengthUnitTopidxCov}}" Title="Unit" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />
+			<Picker x:Name="_avgCWUnit" SelectedIndex="{Binding LocalItem.AvgCanopyWidthUnit, Converter={StaticResource lengthUnitTopidxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
+			<Picker x:Name="_avgRLUnit" SelectedIndex="{Binding LocalItem.AvgRowLengthUnit, Converter={StaticResource lengthUnitTopidxCov}}" Title="Unit" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" />
 			<local:MyPicker WidthRequest="150" HeightRequest="100" Grid.Row="6" Grid.Column="0">
 				<Image Source="{local:ImageResource Orchard.Images.calc.png}" />
 				<Image Source="{local:ImageResource Orchard.Images.information.png}" />

@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailSprayerView">
 	<ContentView.Resources>
 		<ResourceDictionary>
-			<local:EnumToPickerIdxConverter x:Key="eTopidxCov" />
+			<local:SprayerCatToPickerIdxCov x:Key="sprayerCatToPIdxCov" />
+			<local:VolumeUnitToPickerIdxCov x:Key="volumeUToPIdxCov" />
 			<local:IntToStringConverter x:Key="intToStrCov" />
 			<local:DoubleToStringConverter x:Key="doubleToStrCov" />
 		</ResourceDictionary>
@@ -28,7 +29,7 @@
 				<Entry Text="{Binding LocalItem.Model}" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Sprayer Category" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-				<Picker x:Name="_sprayerCat" SelectedIndex="{Binding LocalItem.Category, Converter={StaticResource eTopidxCov}}" Title="Unit" VerticalOptions="Center" />
+				<Picker x:Name="_sprayerCat" SelectedIndex="{Binding LocalItem.Category, Converter={StaticResource sprayerCatToPIdxCov}}" Title="Unit" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Tractor Used" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
 				<Entry Text="{Binding LocalItem.Tractor}" VerticalOptions="Center" />
@@ -48,8 +49,8 @@
 			<local:QuestionLayout QuestionLabel="Average Turn Time at End of Row" Grid.Row="7" Grid.Column="0">
 				<Entry Text="{Binding LocalItem.RowTurnTime, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" VerticalOptions="Center" />
 			</local:QuestionLayout>
-			<Entry Placeholder="RPM" Text="{Binding LocalItem.TractorRPM, Converter={StaticResource intToStrCov}}" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />
-			<Picker x:Name="_tankCapUnit" SelectedIndex="{Binding LocalItem.TankCapacityUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
+			<Entry Placeholder="RPM" Text="{Binding LocalItem.TractorRPM, Converter={StaticResource intToStrCov}}" Grid.Row="3" Grid.Column="1" Keyboard="Numeric" VerticalOptions="Center" />
+			<Picker x:Name="_tankCapUnit" SelectedIndex="{Binding LocalItem.TankCapacityUnit, Converter={StaticResource volumeUToPIdxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
 			<Label Text="Minutes" Grid.Row="6" Grid.Column="1" VerticalOptions="Center" />
 			<Label Text="Seconds" Grid.Row="7" Grid.Column="1" VerticalOptions="Center" />
 		</Grid>

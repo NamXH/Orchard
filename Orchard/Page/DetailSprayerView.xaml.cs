@@ -10,12 +10,12 @@ namespace Orchard
         {
             InitializeComponent();
 
-            foreach (var u in EnumToPickerIdxConverter.SprayerCatNames)
+            foreach (var u in SprayerCatToPickerIdxCov.Names)
             {
                 _sprayerCat.Items.Add(u);
             }
 
-            foreach (var u in EnumToPickerIdxConverter.VolumeUnitNames)
+            foreach (var u in VolumeUnitToPickerIdxCov.Names)
             {
                 _tankCapUnit.Items.Add(u);
             }
