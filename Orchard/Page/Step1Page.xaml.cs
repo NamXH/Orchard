@@ -52,6 +52,28 @@ namespace Orchard
             };
             Navigation.PushAsync(listingPage);
         }
+
+        public void ChooseOrchardBlockClicked(object sender, EventArgs e)
+        {
+            var listingPage = new ListingPage<OrchardBlock>(true);
+            listingPage.ItemChosen += (object s, ChosenItemEventArg<OrchardBlock> arg) =>
+            {
+                VM.ChosenOrchardBlock = arg.ChosenItem;
+                Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
+            };
+            Navigation.PushAsync(listingPage);
+        }
+
+        public void ChooseOperatorClicked(object sender, EventArgs e)
+        {
+            var listingPage = new ListingPage<Operator>(true);
+            listingPage.ItemChosen += (object s, ChosenItemEventArg<Operator> arg) =>
+            {
+                VM.ChosenOperator = arg.ChosenItem;
+                Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
+            };
+            Navigation.PushAsync(listingPage);
+        }
     }
 
     public class MyPicker : Layout<View>

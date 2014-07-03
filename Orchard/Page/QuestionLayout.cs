@@ -101,6 +101,8 @@ namespace Orchard
                         new RowDefinition{ Height = GridLength.Auto },
                         new RowDefinition{ Height = GridLength.Auto },
                     };
+                    // HACK: label inside a grid would not wrap. Set width manually fixes it.
+                    _questionLb.WidthRequest = 200;
                     foreach (var cView in Children)
                     {
                         if (cView != _questionLb)

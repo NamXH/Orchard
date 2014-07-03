@@ -50,7 +50,7 @@ namespace Orchard
 
         OrchardBlock _chosenOrchardBlock;
 
-        public OrchardBlock OrchardBlock
+        public OrchardBlock ChosenOrchardBlock
         {
             get { return _chosenOrchardBlock; }
             set { SetProperty(ref _chosenOrchardBlock, value); }
