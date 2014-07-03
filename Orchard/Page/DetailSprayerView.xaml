@@ -3,7 +3,7 @@
 	<ContentView.Content>
 		<Grid>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="3*" />
 				<ColumnDefinition Width="1*" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
@@ -18,47 +18,33 @@
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 			<local:QuestionLayout QuestionLabel="Sprayer Make/Model" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="{Binding LocalItem.CertificationNumber}" />
+				<Entry Text="{Binding LocalItem.CertificationNumber}" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Sprayer Category" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="{Binding LocalItem.CertificationNumber}" />
+				<Entry Text="{Binding LocalItem.CertificationNumber}" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Tractor Used" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="{Binding LocalItem.CertificationNumber}" />
+				<Entry Text="{Binding LocalItem.CertificationNumber}" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Tractor Gear" Grid.Row="3" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="abc" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Tank Capacity" Grid.Row="4" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="abc" VerticalOptions="Center" />
 			</local:QuestionLayout>
-			<local:QuestionLayout QuestionLabel="Total Number of Nozzles" Grid.Row="5" Grid.Column="0">
-				<Entry Text="abc" />
+			<local:QuestionLayout QuestionLabel="Total Number of Nozzles" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+				<Entry Text="abc" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Time to Refill" Grid.Row="6" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="abc" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Turn Time at End of Row" Grid.Row="7" Grid.Column="0">
-				<Entry Text="abc" />
+				<Entry Text="abc" VerticalOptions="Center" />
 			</local:QuestionLayout>
-
-
-			<Picker Grid.Row="1" Grid.Column="1">
-				<Picker.Items>
-					<system:String>Optimized Rate</system:String>
-					<system:String>Label Rate</system:String>
-				</Picker.Items>
-			</Picker>
-			<Button Text="metre" Grid.Row="2" Grid.Column="1" />
-			<Entry Text="abc" Grid.Row="3" Grid.Column="1" />
-			<Entry Text="abc" Grid.Row="4" Grid.Column="1" />
-			<Entry Text="abc" Grid.Row="5" Grid.Column="1" />
-
-			<local:MyPicker WidthRequest="150" HeightRequest="100" Grid.Row="8" Grid.Column="0">
-				<Image Source="{local:ImageResource Orchard.Images.calc.png}" />
-				<Image Source="{local:ImageResource Orchard.Images.information.png}" />
-				<Image Source="{local:ImageResource Orchard.Images.sprayer.png}" />
-			</local:MyPicker>
+			<Entry Placeholder="RPM" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />
+			<Picker Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
+			<Label Text="Minutes" Grid.Row="6" Grid.Column="1" VerticalOptions="Center" />
+			<Label Text="Seconds" Grid.Row="7" Grid.Column="1" VerticalOptions="Center" />
 		</Grid>
 	</ContentView.Content>
 </ContentView>

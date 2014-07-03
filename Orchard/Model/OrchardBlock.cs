@@ -8,11 +8,7 @@ namespace Orchard
     {
         public OrchardBlock Copy()
         {
-            UnitsNet.Length abc;
-
             return (OrchardBlock)this.MemberwiseClone();
-
-
         }
 
         int _id;

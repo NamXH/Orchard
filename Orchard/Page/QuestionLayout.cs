@@ -9,12 +9,10 @@ namespace Orchard
         {
             VerticalOptions = LayoutOptions.FillAndExpand;
 
-           
-            _questionLb = new Label(){ }; 
+            _questionLb = new Label(){ Font = Font.SystemFontOfSize(NamedSize.Small), VerticalOptions = LayoutOptions.Center }; 
             this.Children.Add(_questionLb);
             Orientation = StackOrientation.Horizontal;
         }
-
 
         protected override void OnAdded(View view)
         {

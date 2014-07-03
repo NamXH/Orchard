@@ -3,13 +3,11 @@
 	<ContentView.Content>
 		<StackLayout>
 			<local:QuestionLayout QuestionLabel="Certification number">
-				<Entry Text="{Binding LocalItem.CertificationNumber}"/>
+				<Entry Text="{Binding LocalItem.CertificationNumber}" VerticalOptions="Center"/>
 			</local:QuestionLayout>
-
 			<local:QuestionLayout QuestionLabel="Note" Orientation="Vertical">
-				<Editor HeightRequest="200" BackgroundColor="Silver" Text="{Binding LocalItem.Note}"/>
+				<Editor HeightRequest="200" BackgroundColor="Silver" Text="{Binding LocalItem.Note}" />
 			</local:QuestionLayout>
-
 		</StackLayout>
 	</ContentView.Content>
 </ContentView>
