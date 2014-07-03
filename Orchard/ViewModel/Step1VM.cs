@@ -24,6 +24,14 @@ namespace Orchard
             set;
         }
 
+        OptimizeMode _opMode;
+
+        public OptimizeMode OpMode
+        {
+            get { return _opMode; }
+            set { SetProperty(ref _opMode, value); }
+        }
+
         int _q2SelectedIdx;
 
         public int Q2SelectedIdx
@@ -78,6 +86,12 @@ namespace Orchard
             {
                 SetProperty(ref _q4Time, value);
             }
+        }
+
+        public enum OptimizeMode
+        {
+            OptimizedRate,
+            LabelRate
         }
     }
 }

@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.Step1Page">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:OptimizeModeToPickerIdxCov x:Key="opModeTopidxCov" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<ContentPage.Content>
 		<RelativeLayout x:Name="_rLayout">
 			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
 				<StackLayout x:Name="_questionContainer" Spacing="20">
+					<Picker x:Name="_opMode" SelectedIndex="{Binding OpMode, Converter={StaticResource opModeTopidxCov}}" Title="Mode" />
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
 						<Picker>
 							<Picker.Items>
@@ -53,9 +59,7 @@
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[12]}">
 						<Entry />
 					</local:QuestionLayout>
-
 					<AbsoluteLayout>
-						
 					</AbsoluteLayout>
 					<Button Text="Next" Clicked="NextClicked" />
 				</StackLayout>

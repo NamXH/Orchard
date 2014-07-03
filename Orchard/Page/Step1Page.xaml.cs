@@ -17,6 +17,11 @@ namespace Orchard
             BindingContext = vm;
 
             ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, vm.Common.QuestionTapped);
+
+            foreach (var str in OptimizeModeToPickerIdxCov.Names)
+            {
+                _opMode.Items.Add(str);
+            }
         }
 
         public void NextClicked(object sender, EventArgs e)

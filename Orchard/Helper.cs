@@ -84,18 +84,61 @@ namespace Orchard
         }
     }
 
-    public class EnumToPickerIdxCov<T> : IValueConverter
+    public class EnumExt<T>
+    {
+        static EnumExt()
+        {
+            _toStr = new Dictionary<T, string>();
+
+            foreach (var v in Enum.GetValues(typeof(T)))
+            {
+                _toStr.Add((T)v, Enum.GetName(typeof(T), v));
+            }
+        }
+
+        protected static Dictionary<T, string> _toStr;
+
+        public string GetDescription(T curr)
+        {
+            return _toStr[curr];
+        }
+
+        public IList<string> DescList()
+        {
+            return _toStr.Values.ToList();
+        }
+
+        public T FromDesc(string desc)
+        {
+            var ret = _toStr.First(x => string.CompareOrdinal(x.Value, desc) == 0);
+            return ret.Key;
+        }
+    }
+
+    public class OpModeEnumExt : EnumExt<Step1VM.OptimizeMode>
+    {
+        static OpModeEnumExt()
+        {
+            _toStr = new Dictionary<Step1VM.OptimizeMode, string>();
+            _toStr.Add(Step1VM.OptimizeMode.LabelRate, "Label Rate");
+            _toStr.Add(Step1VM.OptimizeMode.OptimizedRate, "Optimized Rate");
+        }
+    }
+
+    public class EnumToPickerIdxCov<T, TEx> : IValueConverter where TEx : EnumExt<T>, new()
     {
         static EnumToPickerIdxCov()
         {
-            Names = new List<string>(Enum.GetNames(typeof(T)));
+            _extObj = new TEx();
+            Names = new List<string>(_extObj.DescList());
         }
+
+        static EnumExt<T> _extObj;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var currType = value.GetType();
-            var name = Enum.GetName(currType, value);
-            var idx = Names.IndexOf(name);
+            var desc = _extObj.GetDescription((T)value);
+            var idx = Names.IndexOf(desc);
             return idx;
         }
 
@@ -107,29 +150,35 @@ namespace Orchard
                 return null;
             }
             var name = Names[idx];
-            var ret = Enum.Parse(targetType, name);
+
+            var ret = _extObj.FromDesc(name);
             return ret;
         }
 
         public static readonly List<string> Names;
     }
 
-    public class LengthUnitToPickerIdxCov : EnumToPickerIdxCov<OrchardBlock.LengthUnit>
+    public class OptimizeModeToPickerIdxCov : EnumToPickerIdxCov<Step1VM.OptimizeMode, OpModeEnumExt>
     {
 
     }
 
-    public class AreaUnitToPickerIdxCov : EnumToPickerIdxCov<OrchardBlock.AreaUnit>
+    public class LengthUnitToPickerIdxCov : EnumToPickerIdxCov<OrchardBlock.LengthUnit, EnumExt<OrchardBlock.LengthUnit>>
     {
 
     }
 
-    public class SprayerCatToPickerIdxCov : EnumToPickerIdxCov<Sprayer.Cat>
+    public class AreaUnitToPickerIdxCov : EnumToPickerIdxCov<OrchardBlock.AreaUnit, EnumExt<OrchardBlock.AreaUnit>>
     {
 
     }
 
-    public class VolumeUnitToPickerIdxCov : EnumToPickerIdxCov<Sprayer.VolumeUnit>
+    public class SprayerCatToPickerIdxCov : EnumToPickerIdxCov<Sprayer.Cat, EnumExt<Sprayer.Cat>>
+    {
+
+    }
+
+    public class VolumeUnitToPickerIdxCov : EnumToPickerIdxCov<Sprayer.VolumeUnit, EnumExt<Sprayer.VolumeUnit>>
     {
 
     }
