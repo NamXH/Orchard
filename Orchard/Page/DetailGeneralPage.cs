@@ -129,8 +129,13 @@ namespace Orchard
             }
             else if (action == "Remove")
             {
-                // TODO.
-                Debug.WriteLine("remove img");
+                // Pass null to ChangeImg to delete.
+                await (Task)VM.ChangeImg(null);
+                ((NPCBase)((object)VM.LocalItem)).RaisePropertyChanged("Image");
+                // HACK: binding is not working, set manually.
+                ((ImageButton)sender).Image = null;
+                ((ImageButton)sender).Image = VM.LocalItem.Image;
+                return;
             }
 
             if (photoStream == null)
@@ -138,10 +143,8 @@ namespace Orchard
                 return;
             }
 
-            var t = (Task)VM.ChangeImg(photoStream);
-            await t;
-            var li = (NPCBase)((object)VM.LocalItem);
-            li.RaisePropertyChanged("Image");
+            await VM.ChangeImg(photoStream);
+            ((NPCBase)((object)VM.LocalItem)).RaisePropertyChanged("Image");
             // HACK: binding is not working, set manually.
             ((ImageButton)sender).Image = null;
             ((ImageButton)sender).Image = VM.LocalItem.Image;

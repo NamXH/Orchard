@@ -49,6 +49,17 @@ namespace Orchard
 
         public async Task ChangeImg(Stream photoStream)
         {
+            if (photoStream == null)
+            {
+                // Need to delete.
+                var checkExist = await FileSystem.Current.LocalStorage.CheckExistsAsync(LocalItem.Image);
+                if (checkExist == ExistenceCheckResult.FileExists)
+                {
+                    var imgFile = await FileSystem.Current.LocalStorage.GetFileAsync(LocalItem.Image);
+                    await imgFile.DeleteAsync();
+                }
+                return;
+            }
             using (photoStream)
             {
                 Debug.WriteLine("Length: {0}", photoStream.Length);
@@ -65,6 +76,7 @@ namespace Orchard
                 var localFile = await FileSystem.Current.LocalStorage.CreateFileAsync(
                                     LocalItem.Image,
                                     CreationCollisionOption.ReplaceExisting);
+
                 using (var lfStream = await localFile.OpenAsync(FileAccess.ReadAndWrite))
                 {
                     await photoStream.CopyToAsync(lfStream);
