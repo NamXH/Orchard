@@ -3,13 +3,14 @@
 	<ContentView.Resources>
 		<ResourceDictionary>
 			<local:EnumToPickerIdxConverter x:Key="eTopidxCov" />
+			<local:YearToPickerIdxConverter x:Key="yToPidxCov" />
 			<local:DoubleToStringConverter x:Key="doubleToStrCov" />
 		</ResourceDictionary>
 	</ContentView.Resources>
 	<ContentView.Content>
 		<Grid>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="3*" />
 				<ColumnDefinition Width="1*" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
@@ -40,7 +41,8 @@
 			<local:QuestionLayout QuestionLabel="Average Row Length" Grid.Row="5" Grid.Column="0">
 				<Entry Text="{Binding LocalItem.AvgRowLength, Converter={StaticResource doubleToStrCov}}" />
 			</local:QuestionLayout>
-			<Picker x:Name="_yearPlantedPicker" Title="Year" SelectedIndex="{Binding SelectedYearPlantedIdx}" Grid.Row="1" Grid.Column="1" />
+
+			<Picker x:Name="_yearPlantedPicker" Title="Year" SelectedIndex="{Binding LocalItem.YearPlanted, Converter={StaticResource yToPidxCov}}" Grid.Row="1" Grid.Column="1" />
 			<Picker x:Name="_blockSizeUnit" SelectedIndex="{Binding LocalItem.BlockSizeUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="2" Grid.Column="1" />
 			<Picker x:Name="_avgTHUnit" SelectedIndex="{Binding LocalItem.AvgTreeHeightUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="3" Grid.Column="1" />
 			<Picker x:Name="_avgCWUnit" SelectedIndex="{Binding LocalItem.AvgCanopyWidthUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" />

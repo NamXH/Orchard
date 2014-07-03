@@ -10,11 +10,9 @@ namespace Orchard
         {
             InitializeComponent();
 
-            var currYear = DateTime.Now.Year;
-            for (var i = 0; i < 100; ++i)
+            foreach (var u in YearToPickerIdxConverter.YearNames)
             {
-                _yearPlantedPicker.Items.Add(currYear.ToString());
-                currYear--;
+                _yearPlantedPicker.Items.Add(u);
             }
 
             foreach (var u in EnumToPickerIdxConverter.AreaUnitNames)

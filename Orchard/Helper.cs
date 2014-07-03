@@ -126,6 +126,41 @@ namespace Orchard
         }
     }
 
+    public class YearToPickerIdxConverter : IValueConverter
+    {
+        static YearToPickerIdxConverter()
+        {
+            YearNames = new List<string>();
+            _currYear = DateTime.Now.Year;
+            for (var i = 0; i < 100; ++i)
+            {
+                YearNames.Add((_currYear - i).ToString());
+            }
+        }
+
+        public static readonly List<string> YearNames;
+
+        static int _currYear;
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var currValYear = ((DateTime)value).Year;
+            var idx = _currYear - currValYear;
+            if (idx < 0 || idx > 99)
+            {
+                idx = -1;
+            }
+            return idx;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var idx = (int)value;
+            var currDt = new DateTime(_currYear, 1, 1);
+            return currDt.AddYears(-idx);
+        }
+    }
+
     [ContentProperty("Source")]
     public class ImageResourceExtension : IMarkupExtension
     {
