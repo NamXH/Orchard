@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.DetailSprayerView">
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<local:EnumToPickerIdxConverter x:Key="eTopidxCov" />
+			<local:IntToStringConverter x:Key="intToStrCov" />
+			<local:DoubleToStringConverter x:Key="doubleToStrCov" />
+		</ResourceDictionary>
+	</ContentView.Resources>
 	<ContentView.Content>
 		<Grid>
 			<Grid.ColumnDefinitions>
@@ -18,31 +25,31 @@
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 			<local:QuestionLayout QuestionLabel="Sprayer Make/Model" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="{Binding LocalItem.CertificationNumber}" VerticalOptions="Center" />
+				<Entry Text="{Binding LocalItem.Model}" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Sprayer Category" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="{Binding LocalItem.CertificationNumber}" VerticalOptions="Center" />
+				<Picker x:Name="_sprayerCat" SelectedIndex="{Binding LocalItem.Category, Converter={StaticResource eTopidxCov}}" Title="Unit" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Tractor Used" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="{Binding LocalItem.CertificationNumber}" VerticalOptions="Center" />
+				<Entry Text="{Binding LocalItem.Tractor}" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Tractor Gear" Grid.Row="3" Grid.Column="0">
-				<Entry Text="abc" VerticalOptions="Center" />
+				<Entry Text="{Binding LocalItem.TractorGear}" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Tank Capacity" Grid.Row="4" Grid.Column="0">
-				<Entry Text="abc" VerticalOptions="Center" />
+				<Entry Text="{Binding LocalItem.TankCapacity, Converter={StaticResource intToStrCov}}" Keyboard="Numeric" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Total Number of Nozzles" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
-				<Entry Text="abc" VerticalOptions="Center" />
+				<Entry Text="{Binding LocalItem.NumOfNozzles, Converter={StaticResource intToStrCov}}" Keyboard="Numeric" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Time to Refill" Grid.Row="6" Grid.Column="0">
-				<Entry Text="abc" VerticalOptions="Center" />
+				<Entry Text="{Binding LocalItem.RefillTime, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" VerticalOptions="Center" />
 			</local:QuestionLayout>
 			<local:QuestionLayout QuestionLabel="Average Turn Time at End of Row" Grid.Row="7" Grid.Column="0">
-				<Entry Text="abc" VerticalOptions="Center" />
+				<Entry Text="{Binding LocalItem.RowTurnTime, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" VerticalOptions="Center" />
 			</local:QuestionLayout>
-			<Entry Placeholder="RPM" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />
-			<Picker Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
+			<Entry Placeholder="RPM" Text="{Binding LocalItem.TractorRPM, Converter={StaticResource intToStrCov}}" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />
+			<Picker x:Name="_tankCapUnit" SelectedIndex="{Binding LocalItem.TankCapacityUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
 			<Label Text="Minutes" Grid.Row="6" Grid.Column="1" VerticalOptions="Center" />
 			<Label Text="Seconds" Grid.Row="7" Grid.Column="1" VerticalOptions="Center" />
 		</Grid>

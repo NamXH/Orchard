@@ -84,12 +84,12 @@ namespace Orchard
             set { SetProperty(ref _tankCapacity, value); }
         }
 
-        VolumeUnit _tankUnit;
+        VolumeUnit _tankCapacityUnit;
 
-        public VolumeUnit TankUnit
+        public VolumeUnit TankCapacityUnit
         {
-            get { return _tankUnit; }
-            set { SetProperty(ref _tankUnit, value); }
+            get { return _tankCapacityUnit; }
+            set { SetProperty(ref _tankCapacityUnit, value); }
         }
 
         int _numOfNozzles;

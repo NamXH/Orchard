@@ -9,6 +9,16 @@ namespace Orchard
         public DetailSprayerView()
         {
             InitializeComponent();
+
+            foreach (var u in EnumToPickerIdxConverter.SprayerCatNames)
+            {
+                _sprayerCat.Items.Add(u);
+            }
+
+            foreach (var u in EnumToPickerIdxConverter.VolumeUnitNames)
+            {
+                _tankCapUnit.Items.Add(u);
+            }
         }
     }
 }

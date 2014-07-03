@@ -68,16 +68,36 @@ namespace Orchard
         }
     }
 
+    public class IntToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var d = (int)value;
+            return d.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var str = value as string;
+            var d = int.Parse(str);
+            return d;
+        }
+    }
+
     public class EnumToPickerIdxConverter : IValueConverter
     {
         static EnumToPickerIdxConverter()
         {
             LengthUnitNames = new List<string>(Enum.GetNames(typeof(OrchardBlock.LengthUnit)));
             AreaUnitNames = new List<string>(Enum.GetNames(typeof(OrchardBlock.AreaUnit)));
+            SprayerCatNames = new List<string>(Enum.GetNames(typeof(Sprayer.Cat)));
+            VolumeUnitNames = new List<string>(Enum.GetNames(typeof(Sprayer.VolumeUnit)));
         }
 
         public static readonly List<string> LengthUnitNames;
         public static readonly List<string> AreaUnitNames;
+        public static readonly List<string> SprayerCatNames;
+        public static readonly List<string> VolumeUnitNames;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -94,6 +114,16 @@ namespace Orchard
                 var idx = AreaUnitNames.IndexOf(name);
                 return idx;
             }
+            if (currType == typeof(Sprayer.Cat))
+            {
+                var idx = SprayerCatNames.IndexOf(name);
+                return idx;
+            }
+            if (currType == typeof(Sprayer.VolumeUnit))
+            {
+                var idx = VolumeUnitNames.IndexOf(name);
+                return idx;
+            }
             throw new InvalidDataException();
         }
 
@@ -101,28 +131,32 @@ namespace Orchard
         {
             if (targetType == typeof(OrchardBlock.LengthUnit))
             {
-                var idx = (int)value;
-                if (idx == -1)
-                {
-                    return null;
-                }
-                var name = LengthUnitNames[idx];
-                var ret = Enum.Parse(targetType, name);
-                return ret;
+                return GetEnumFromIdx((int)value, LengthUnitNames, targetType);
             }
             if (targetType == typeof(OrchardBlock.AreaUnit))
             {
-                var idx = (int)value;
-                if (idx == -1)
-                {
-                    return null;
-                }
-                var name = AreaUnitNames[idx];
-                var ret = Enum.Parse(targetType, name);
-                return ret;
-
+                return GetEnumFromIdx((int)value, AreaUnitNames, targetType);
+            }
+            if (targetType == typeof(Sprayer.Cat))
+            {
+                return GetEnumFromIdx((int)value, SprayerCatNames, targetType);
+            }
+            if (targetType == typeof(Sprayer.VolumeUnit))
+            {
+                return GetEnumFromIdx((int)value, VolumeUnitNames, targetType);
             }
             throw new InvalidDataException();
+        }
+
+        private object GetEnumFromIdx(int idx, List<string> nameList, Type eType)
+        {
+            if (idx < 0 || idx >= nameList.Count)
+            {
+                return null;
+            }
+            var name = nameList[idx];
+            var ret = Enum.Parse(eType, name);
+            return ret;
         }
     }
 

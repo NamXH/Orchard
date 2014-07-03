@@ -41,7 +41,6 @@
 			<local:QuestionLayout QuestionLabel="Average Row Length" Grid.Row="5" Grid.Column="0">
 				<Entry Text="{Binding LocalItem.AvgRowLength, Converter={StaticResource doubleToStrCov}}" Keyboard="Numeric" VerticalOptions="Center" />
 			</local:QuestionLayout>
-
 			<Picker x:Name="_yearPlantedPicker" Title="Year" SelectedIndex="{Binding LocalItem.YearPlanted, Converter={StaticResource yToPidxCov}}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" />
 			<Picker x:Name="_blockSizeUnit" SelectedIndex="{Binding LocalItem.BlockSizeUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" />
 			<Picker x:Name="_avgTHUnit" SelectedIndex="{Binding LocalItem.AvgTreeHeightUnit, Converter={StaticResource eTopidxCov}}" Title="Unit" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />

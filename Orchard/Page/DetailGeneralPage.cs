@@ -41,7 +41,7 @@ namespace Orchard
                     x.TractorGear = y.TractorGear;
                     x.TractorRPM = y.TractorRPM;
                     x.TankCapacity = y.TankCapacity;
-                    x.TankUnit = y.TankUnit;
+                    x.TankCapacityUnit = y.TankCapacityUnit;
                     x.NumOfNozzles = y.NumOfNozzles;
                     x.RefillTime = y.RefillTime;
                     x.RowTurnTime = y.RowTurnTime;
