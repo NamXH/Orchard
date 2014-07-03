@@ -24,12 +24,20 @@ namespace Orchard
             set;
         }
 
-        OptimizeMode _opMode;
+        OptimizeMode _currOptimizeMode;
 
-        public OptimizeMode OpMode
+        public OptimizeMode CurrOptimizeMode
         {
-            get { return _opMode; }
-            set { SetProperty(ref _opMode, value); }
+            get { return _currOptimizeMode; }
+            set { SetProperty(ref _currOptimizeMode, value); }
+        }
+
+        RowSprayingMode _currRowSprayingMode;
+
+        public RowSprayingMode CurrRowSprayingMode
+        {
+            get { return _currRowSprayingMode; }
+            set { SetProperty(ref _currRowSprayingMode, value); }
         }
 
         int _q2SelectedIdx;
@@ -92,6 +100,12 @@ namespace Orchard
         {
             OptimizedRate,
             LabelRate
+        }
+
+        public enum RowSprayingMode
+        {
+            EveryRow,
+            AlternateRow
         }
     }
 }

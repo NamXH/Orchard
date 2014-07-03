@@ -125,6 +125,16 @@ namespace Orchard
         }
     }
 
+    public class RowSprayModeExt : EnumExt<Step1VM.RowSprayingMode>
+    {
+        static RowSprayModeExt()
+        {
+            _toStr = new Dictionary<Step1VM.RowSprayingMode, string>();
+            _toStr.Add(Step1VM.RowSprayingMode.AlternateRow, "Alternate Row");
+            _toStr.Add(Step1VM.RowSprayingMode.EveryRow, "Every Row");
+        }
+    }
+
     public class EnumToPickerIdxCov<T, TEx> : IValueConverter where TEx : EnumExt<T>, new()
     {
         static EnumToPickerIdxCov()
@@ -159,6 +169,11 @@ namespace Orchard
     }
 
     public class OptimizeModeToPickerIdxCov : EnumToPickerIdxCov<Step1VM.OptimizeMode, OpModeEnumExt>
+    {
+
+    }
+
+    public class RowSprayingModeToPickerIdxCov : EnumToPickerIdxCov<Step1VM.RowSprayingMode, RowSprayModeExt>
     {
 
     }

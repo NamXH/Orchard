@@ -3,13 +3,16 @@
 	<ContentPage.Resources>
 		<ResourceDictionary>
 			<local:OptimizeModeToPickerIdxCov x:Key="opModeTopidxCov" />
+			<local:RowSprayingModeToPickerIdxCov x:Key="rowSprayingModeTopidxCov" />
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
 		<RelativeLayout x:Name="_rLayout">
 			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
 				<StackLayout x:Name="_questionContainer" Spacing="20">
-					<Picker x:Name="_opMode" SelectedIndex="{Binding OpMode, Converter={StaticResource opModeTopidxCov}}" Title="Mode" />
+					<Picker x:Name="_opMode" SelectedIndex="{Binding CurrOptimizeMode, Converter={StaticResource opModeTopidxCov}}" Title="Mode" />
+					<Picker x:Name="_rowSprayingMode" SelectedIndex="{Binding CurrRowSprayingMode, Converter={StaticResource rowSprayingModeTopidxCov}}" Title="Mode" />
+
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
 						<Picker>
 							<Picker.Items>

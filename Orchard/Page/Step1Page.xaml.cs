@@ -22,6 +22,11 @@ namespace Orchard
             {
                 _opMode.Items.Add(str);
             }
+
+            foreach (var str in RowSprayingModeToPickerIdxCov.Names)
+            {
+                _rowSprayingMode.Items.Add(str);
+            }
         }
 
         public void NextClicked(object sender, EventArgs e)
