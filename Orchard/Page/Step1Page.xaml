@@ -16,14 +16,29 @@
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
 						<Picker x:Name="_rowSprayingMode" SelectedIndex="{Binding CurrRowSprayingMode, Converter={StaticResource rowSprayingModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
+<Button Text="Add new" Clicked="ChooseSprayerClicked" />
+					<ContentView x:Name="_cv">
+					<ListView x:Name="_sprayerList" RowHeight="50" ItemsSource="{Binding ChosenSprayers}">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<ViewCell>
+									<ViewCell.View>
+									<Label Text="{Binding Name}" />
+									</ViewCell.View>
+									</ViewCell>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+</ContentView>
 					<local:QuestionLayout QuestionLabel="Choose sprayer" Orientation="Vertical">
-						<Button Text="Choose sprayer" Clicked="ChooseSprayerClicked" />
+						
+
 					</local:QuestionLayout>
 					<local:QuestionLayout QuestionLabel="Choose orchard block" Orientation="Vertical">
-						<Button Text="Choose sprayer" Clicked="ChooseOrchardBlockClicked" />
+						<Button Text="Choose orchard block" Clicked="ChooseOrchardBlockClicked" />
 					</local:QuestionLayout>
 					<local:QuestionLayout QuestionLabel="Choose operator" Orientation="Vertical">
-						<Button Text="Choose sprayer" Clicked="ChooseOperatorClicked" />
+						<Button Text="Choose operator" Clicked="ChooseOperatorClicked" />
 					</local:QuestionLayout>
 					<Button Text="Next" Clicked="NextClicked" />
 				</StackLayout>

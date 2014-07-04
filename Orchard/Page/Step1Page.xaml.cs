@@ -47,7 +47,11 @@ namespace Orchard
             var listingPage = new ListingPage<Sprayer>(true);
             listingPage.ItemChosen += (object s, ChosenItemEventArg<Sprayer> arg) =>
             {
-                VM.ChosenSprayer = arg.ChosenItem;
+                VM.ChosenSprayers.Add(arg.ChosenItem);
+                _cv.Content = null;
+                _cv.Content = _sprayerList;
+                //_sprayerList.RemoveBinding(ListView.ItemsSourceProperty);
+                //_sprayerList.SetBinding(ListView.ItemsSourceProperty, "ChosenSprayers");
                 Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
             };
             Navigation.PushAsync(listingPage);

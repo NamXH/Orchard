@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Orchard
 {
@@ -13,9 +14,6 @@ namespace Orchard
         public Step1VM()
         {
             Common = new StepVMCommon("Step1Questions.txt", "Step1HelpTexts.txt", "Basic Information");
-
-//            Q2SelectedIdx = -1;
-//            Q3AppTime = DateTime.Now;
         }
 
         public StepVMCommon Common
@@ -40,12 +38,11 @@ namespace Orchard
             set { SetProperty(ref _currRowSprayingMode, value); }
         }
 
-        Sprayer _chosenSprayer;
+        ObservableCollection<Sprayer> _chosenSprayers = new ObservableCollection<Sprayer>();
 
-        public Sprayer ChosenSprayer
+        public ObservableCollection<Sprayer> ChosenSprayers
         {
-            get { return _chosenSprayer; }
-            set { SetProperty(ref _chosenSprayer, value); }
+            get { return _chosenSprayers; }
         }
 
         OrchardBlock _chosenOrchardBlock;
