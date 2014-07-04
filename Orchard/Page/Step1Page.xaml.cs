@@ -48,10 +48,9 @@ namespace Orchard
             listingPage.ItemChosen += (object s, ChosenItemEventArg<Sprayer> arg) =>
             {
                 VM.ChosenSprayers.Add(arg.ChosenItem);
-                _cv.Content = null;
-                _cv.Content = _sprayerList;
-                //_sprayerList.RemoveBinding(ListView.ItemsSourceProperty);
-                //_sprayerList.SetBinding(ListView.ItemsSourceProperty, "ChosenSprayers");
+                // HACK: force layout update.
+                _sprayerList.HeightRequest = 100;
+                _sprayerList.HeightRequest = -1;
                 Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
             };
             Navigation.PushAsync(listingPage);
@@ -62,7 +61,9 @@ namespace Orchard
             var listingPage = new ListingPage<OrchardBlock>(true);
             listingPage.ItemChosen += (object s, ChosenItemEventArg<OrchardBlock> arg) =>
             {
-                VM.ChosenOrchardBlock = arg.ChosenItem;
+                VM.ChosenOrchardBlocks.Add(arg.ChosenItem);
+                _orBlockList.HeightRequest = 10;
+                _orBlockList.HeightRequest = -1;
                 Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
             };
             Navigation.PushAsync(listingPage);
@@ -73,7 +74,9 @@ namespace Orchard
             var listingPage = new ListingPage<Operator>(true);
             listingPage.ItemChosen += (object s, ChosenItemEventArg<Operator> arg) =>
             {
-                VM.ChosenOperator = arg.ChosenItem;
+                VM.ChosenOperators.Add(arg.ChosenItem);
+                _opeList.HeightRequest = 10;
+                _opeList.HeightRequest = -1;
                 Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
             };
             Navigation.PushAsync(listingPage);

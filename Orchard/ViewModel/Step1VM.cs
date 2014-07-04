@@ -45,20 +45,18 @@ namespace Orchard
             get { return _chosenSprayers; }
         }
 
-        OrchardBlock _chosenOrchardBlock;
+        ObservableCollection<OrchardBlock> _chosenOrchardBlocks = new ObservableCollection<OrchardBlock>();
 
-        public OrchardBlock ChosenOrchardBlock
+        public ObservableCollection<OrchardBlock> ChosenOrchardBlocks
         {
-            get { return _chosenOrchardBlock; }
-            set { SetProperty(ref _chosenOrchardBlock, value); }
+            get { return _chosenOrchardBlocks; }
         }
 
-        Operator _chosenOperator;
+        ObservableCollection<Operator> _chosenOperators = new ObservableCollection<Operator>();
 
-        public Operator ChosenOperator
+        public ObservableCollection<Operator> ChosenOperators
         {
-            get { return _chosenOperator; }
-            set { SetProperty(ref _chosenOperator, value); }
+            get { return _chosenOperators; }
         }
 
         public enum OptimizeMode
