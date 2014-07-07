@@ -27,6 +27,49 @@ namespace Orchard
             {
                 _rowSprayingMode.Items.Add(str);
             }
+
+            _addBtn.Command = new Command(() =>
+            {
+                Debug.WriteLine("add");
+                var isproper = _itemList.GetValue(ListView.ItemsSourceProperty);
+                if (object.ReferenceEquals(isproper, vm.ChosenSprayers))
+                {
+                    var listingPage = new ListingPage<Sprayer>(true);
+                    listingPage.ItemChosen += (object s, ChosenItemEventArg<Sprayer> arg) =>
+                    {
+                        VM.ChosenSprayers.Add(arg.ChosenItem);
+                        // HACK: force layout update.
+                        _itemList.HeightRequest = 100;
+                        _itemList.HeightRequest = -1;
+                        Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
+                    };
+                    Navigation.PushAsync(listingPage);
+                }
+                else if (object.ReferenceEquals(isproper, vm.ChosenOrchardBlocks))
+                {
+                    var listingPage = new ListingPage<OrchardBlock>(true);
+                    listingPage.ItemChosen += (object s, ChosenItemEventArg<OrchardBlock> arg) =>
+                    {
+                        VM.ChosenOrchardBlocks.Add(arg.ChosenItem);
+                        _itemList.HeightRequest = 10;
+                        _itemList.HeightRequest = -1;
+                        Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
+                    };
+                    Navigation.PushAsync(listingPage);
+                }
+                else if (object.ReferenceEquals(isproper, vm.ChosenOperators))
+                {
+                    var listingPage = new ListingPage<Operator>(true);
+                    listingPage.ItemChosen += (object s, ChosenItemEventArg<Operator> arg) =>
+                    {
+                        VM.ChosenOperators.Add(arg.ChosenItem);
+                        _itemList.HeightRequest = 10;
+                        _itemList.HeightRequest = -1;
+                        Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
+                    };
+                    Navigation.PushAsync(listingPage);
+                }
+            });
         }
 
         Step1VM VM
@@ -37,49 +80,27 @@ namespace Orchard
             }
         }
 
-        public void NextClicked(object sender, EventArgs e)
-        {
-            MessagingCenter.Send((Page)this, "next");
-        }
-
         public void ChooseSprayerClicked(object sender, EventArgs e)
         {
-            var listingPage = new ListingPage<Sprayer>(true);
-            listingPage.ItemChosen += (object s, ChosenItemEventArg<Sprayer> arg) =>
-            {
-                VM.ChosenSprayers.Add(arg.ChosenItem);
-                // HACK: force layout update.
-                _sprayerList.HeightRequest = 100;
-                _sprayerList.HeightRequest = -1;
-                Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
-            };
-            Navigation.PushAsync(listingPage);
+            _itemList.SetBinding(ListView.ItemsSourceProperty, "ChosenSprayers");
+            _addBtn.Text = "Add new sprayer";
         }
 
         public void ChooseOrchardBlockClicked(object sender, EventArgs e)
         {
-            var listingPage = new ListingPage<OrchardBlock>(true);
-            listingPage.ItemChosen += (object s, ChosenItemEventArg<OrchardBlock> arg) =>
-            {
-                VM.ChosenOrchardBlocks.Add(arg.ChosenItem);
-                _orBlockList.HeightRequest = 10;
-                _orBlockList.HeightRequest = -1;
-                Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
-            };
-            Navigation.PushAsync(listingPage);
+            _itemList.SetBinding(ListView.ItemsSourceProperty, "ChosenOrchardBlocks");
+            _addBtn.Text = "Add new orchard block";
         }
 
         public void ChooseOperatorClicked(object sender, EventArgs e)
         {
-            var listingPage = new ListingPage<Operator>(true);
-            listingPage.ItemChosen += (object s, ChosenItemEventArg<Operator> arg) =>
-            {
-                VM.ChosenOperators.Add(arg.ChosenItem);
-                _opeList.HeightRequest = 10;
-                _opeList.HeightRequest = -1;
-                Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
-            };
-            Navigation.PushAsync(listingPage);
+            _itemList.SetBinding(ListView.ItemsSourceProperty, "ChosenOperators");
+            _addBtn.Text = "Add new operator";
+        }
+
+        public void NextClicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send((Page)this, "next");
         }
     }
 

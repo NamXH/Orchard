@@ -9,35 +9,18 @@
 	<ContentPage.Content>
 		<RelativeLayout x:Name="_rLayout">
 			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
-				<StackLayout x:Name="_questionContainer" >
+				<StackLayout x:Name="_questionContainer">
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
 						<Picker x:Name="_opMode" SelectedIndex="{Binding CurrOptimizeMode, Converter={StaticResource opModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
 						<Picker x:Name="_rowSprayingMode" SelectedIndex="{Binding CurrRowSprayingMode, Converter={StaticResource rowSprayingModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
-					<Button Text="Add new sprayer" Clicked="ChooseSprayerClicked" />
-					<ListView x:Name="_sprayerList" ItemsSource="{Binding ChosenSprayers}">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<ViewCell>
-									<Label Text="{Binding Name}" />
-								</ViewCell>
-							</DataTemplate>
-						</ListView.ItemTemplate>
-					</ListView>
-					<Button Text="Add new orchard block" Clicked="ChooseOrchardBlockClicked" />
-					<ListView x:Name="_orBlockList" ItemsSource="{Binding ChosenOrchardBlocks}">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<ViewCell>
-									<Label Text="{Binding Name}" />
-								</ViewCell>
-							</DataTemplate>
-						</ListView.ItemTemplate>
-					</ListView>
-					<Button Text="Add new operator" Clicked="ChooseOperatorClicked" />
-					<ListView x:Name="_opeList" ItemsSource="{Binding ChosenOperators}">
+					<Button Text="Sprayer" Clicked="ChooseSprayerClicked" />
+					<Button Text="Orchard Block" Clicked="ChooseOrchardBlockClicked" />
+					<Button Text="Operator" Clicked="ChooseOperatorClicked" />
+					<Button x:Name="_addBtn" Text="Add new sprayer" />
+					<ListView x:Name="_itemList" ItemsSource="{Binding ChosenSprayers}">
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>
