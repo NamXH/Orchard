@@ -8,12 +8,12 @@ using MonoTouch.CoreGraphics;
 using System.Drawing;
 
 
-[assembly: ExportRenderer(typeof(MyPicker), typeof(MyPickerRenderer))]
+[assembly: ExportRenderer(typeof(MyHorizontalImgPicker), typeof(MyPickerRenderer))]
 namespace Orchard.iOS
 {
-    public class MyPickerRenderer : ViewRenderer<MyPicker, UIScrollView>
+    public class MyPickerRenderer : ViewRenderer<MyHorizontalImgPicker, UIScrollView>
     {
-        protected override void OnElementChanged(ElementChangedEventArgs<MyPicker> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<MyHorizontalImgPicker> e)
         {
             base.OnElementChanged(e);
             if (e.OldElement == null)

@@ -4,11 +4,12 @@
 		<ResourceDictionary>
 			<local:OptimizeModeToPickerIdxCov x:Key="opModeTopidxCov" />
 			<local:RowSprayingModeToPickerIdxCov x:Key="rowSprayingModeTopidxCov" />
+			<local:LocalImgToImgSourceConverter x:Key="imgSrcCov" />
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
 		<RelativeLayout x:Name="_rLayout">
-			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
+			<ScrollView RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
 				<StackLayout x:Name="_questionContainer">
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
 						<Picker x:Name="_opMode" SelectedIndex="{Binding CurrOptimizeMode, Converter={StaticResource opModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
@@ -16,28 +17,7 @@
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
 						<Picker x:Name="_rowSprayingMode" SelectedIndex="{Binding CurrRowSprayingMode, Converter={StaticResource rowSprayingModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
-
-					<Grid>
-						<Grid.ColumnDefinitions>
-			                <ColumnDefinition Width="1*"/>
-			                <ColumnDefinition Width="2*"/>
-			                <ColumnDefinition Width="1*"/>
-			            </Grid.ColumnDefinitions>
-						<Button Text="Sprayer" Clicked="ChooseSprayerClicked" Grid.Column="0" />
-						<Button Text="Orchard Block" Clicked="ChooseOrchardBlockClicked" Grid.Column="1"/>
-						<Button Text="Operator" Clicked="ChooseOperatorClicked" Grid.Column="2"/>
-					</Grid>
-
-					<Button x:Name="_addBtn" Text="Add new sprayer" />
-					<ListView x:Name="_itemList" ItemsSource="{Binding ChosenSprayers}">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<ViewCell>
-									<Label Text="{Binding Name}" />
-								</ViewCell>
-							</DataTemplate>
-						</ListView.ItemTemplate>
-					</ListView>
+					<local:NonScrollingListView x:Name="_itemList" />
 					<Button Text="Next" Clicked="NextClicked" />
 				</StackLayout>
 			</ScrollView>
