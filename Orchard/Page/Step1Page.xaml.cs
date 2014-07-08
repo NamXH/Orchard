@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Diagnostics;
 using System.Linq;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Collections;
 
 namespace Orchard
 {
@@ -28,57 +31,28 @@ namespace Orchard
                 _rowSprayingMode.Items.Add(str);
             }
 
-//            _addBtn.Command = new Command(() =>
-//            {
-//                Debug.WriteLine("add");
-//                var isproper = _itemList.GetValue(ListView.ItemsSourceProperty);
-//                if (object.ReferenceEquals(isproper, vm.ChosenSprayers))
-//                {
-//                    var listingPage = new ListingPage<Sprayer>(true);
-//                    listingPage.ItemChosen += (object s, ChosenItemEventArg<Sprayer> arg) =>
-//                    {
-//                        VM.ChosenSprayers.Add(arg.ChosenItem);
-//                        // HACK: force layout update.
-//                        _itemList.HeightRequest = 100;
-//                        _itemList.HeightRequest = -1;
-//                        Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
-//                    };
-//                    Navigation.PushAsync(listingPage);
-//                }
-//                else if (object.ReferenceEquals(isproper, vm.ChosenOrchardBlocks))
-//                {
-//                    var listingPage = new ListingPage<OrchardBlock>(true);
-//                    listingPage.ItemChosen += (object s, ChosenItemEventArg<OrchardBlock> arg) =>
-//                    {
-//                        VM.ChosenOrchardBlocks.Add(arg.ChosenItem);
-//                        _itemList.HeightRequest = 10;
-//                        _itemList.HeightRequest = -1;
-//                        Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
-//                    };
-//                    Navigation.PushAsync(listingPage);
-//                }
-//                else if (object.ReferenceEquals(isproper, vm.ChosenOperators))
-//                {
-//                    var listingPage = new ListingPage<Operator>(true);
-//                    listingPage.ItemChosen += (object s, ChosenItemEventArg<Operator> arg) =>
-//                    {
-//                        VM.ChosenOperators.Add(arg.ChosenItem);
-//                        _itemList.HeightRequest = 10;
-//                        _itemList.HeightRequest = -1;
-//                        Debug.WriteLine("chosen {0}", arg.ChosenItem.Name);
-//                    };
-//                    Navigation.PushAsync(listingPage);
-//                }
-//            });
+            var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem("Sprayers", null) };
+            sprayerAIO.AssignCollection(vm.ChosenSprayers);
 
-            var a = new List<string>{ "Sprayers", "Orchard Blocks", "Operators" };
+            var obAIO = new AddItemOption() { MenuItem = new MenuItem("Orchard Blocks", null) };
+            obAIO.AssignCollection(vm.ChosenOrchardBlocks);
 
-            _itemList.ItemsSource = a;
+            var opAIO = new AddItemOption() { MenuItem = new MenuItem("Operators", null) };
+            opAIO.AssignCollection(vm.ChosenOperators);
+
+            var mItems = new List<AddItemOption>
+            {
+                sprayerAIO,
+                obAIO,
+                opAIO 
+            };
+
+            _itemList.ItemsSource = mItems;
             _itemList.ItemTemplate = new DataTemplate(() =>
             {
                 var currCell = new TextCellWithDisclosure();
-                currCell.SetBinding(ImageCell.TextProperty, new Binding());
-
+                currCell.SetBinding(TextCell.TextProperty, "MenuItem.MenuTitle");
+                currCell.SetBinding(TextCell.DetailProperty, new Binding("NumberOfSelected", 0, new IntToStringConverter()));
                 return currCell;
             });
         }
@@ -89,24 +63,6 @@ namespace Orchard
             {
                 return (Step1VM)BindingContext;
             }
-        }
-
-        public void ChooseSprayerClicked(object sender, EventArgs e)
-        {
-            _itemList.SetBinding(ListView.ItemsSourceProperty, "ChosenSprayers");
-            //_addBtn.Text = "Add new sprayer";
-        }
-
-        public void ChooseOrchardBlockClicked(object sender, EventArgs e)
-        {
-            _itemList.SetBinding(ListView.ItemsSourceProperty, "ChosenOrchardBlocks");
-            //_addBtn.Text = "Add new orchard block";
-        }
-
-        public void ChooseOperatorClicked(object sender, EventArgs e)
-        {
-            _itemList.SetBinding(ListView.ItemsSourceProperty, "ChosenOperators");
-            //_addBtn.Text = "Add new operator";
         }
 
         public void NextClicked(object sender, EventArgs e)
@@ -123,6 +79,36 @@ namespace Orchard
     public class NonScrollingListView : ListView
     {
 
+    }
+
+    public class AddItemOption : NPCBase
+    {
+        public AddItemOption()
+        {
+           
+        }
+
+        public void AssignCollection<T>(ObservableCollection<T> collection)
+        {
+            _collection = collection;
+            collection.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) =>
+            {
+                RaisePropertyChanged(() => NumberOfSelected);
+            };
+        }
+
+        public MenuItem MenuItem { get; set; }
+
+
+        ICollection _collection;
+
+        public int NumberOfSelected
+        {
+            get
+            {
+                return _collection.Count;
+            }
+        }
     }
 }
 

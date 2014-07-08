@@ -37,9 +37,7 @@ namespace Orchard.iOS
 
             cellTableViewCell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 
-            cellTableViewCell.DetailTextLabel.Text = "abc";
             return cellTableViewCell;
-
         }
     }
 }

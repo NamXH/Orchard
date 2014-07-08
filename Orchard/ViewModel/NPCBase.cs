@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Orchard
 {
@@ -16,6 +17,18 @@ namespace Orchard
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public void RaisePropertyChanged<T>(Expression<Func<T>> selectorExpression)
+        {
+            if (selectorExpression == null)
+            {
+                throw new ArgumentNullException("selectorExpression");
+            }
+            var body = selectorExpression.Body as MemberExpression;
+            if (body == null)
+                throw new ArgumentException("The body must be a member expression");
+            RaisePropertyChanged(body.Member.Name);
         }
 
         protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null)

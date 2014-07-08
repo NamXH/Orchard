@@ -10,7 +10,7 @@
 	<ContentPage.Content>
 		<RelativeLayout x:Name="_rLayout">
 			<ScrollView RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
-				<StackLayout x:Name="_questionContainer">
+				<StackLayout Padding="8" x:Name="_questionContainer">
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
 						<Picker x:Name="_opMode" SelectedIndex="{Binding CurrOptimizeMode, Converter={StaticResource opModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
