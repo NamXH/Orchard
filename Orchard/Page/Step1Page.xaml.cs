@@ -31,13 +31,13 @@ namespace Orchard
                 _rowSprayingMode.Items.Add(str);
             }
 
-            var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem("Sprayers", null) };
+            var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem("Sprayers", () => new ListingPage<Sprayer>()) };
             sprayerAIO.AssignCollection(vm.ChosenSprayers);
 
-            var obAIO = new AddItemOption() { MenuItem = new MenuItem("Orchard Blocks", null) };
+            var obAIO = new AddItemOption() { MenuItem = new MenuItem("Orchard Blocks", () => new ListingPage<OrchardBlock>()) };
             obAIO.AssignCollection(vm.ChosenOrchardBlocks);
 
-            var opAIO = new AddItemOption() { MenuItem = new MenuItem("Operators", null) };
+            var opAIO = new AddItemOption() { MenuItem = new MenuItem("Operators", () => new ListingPage<Operator>()) };
             opAIO.AssignCollection(vm.ChosenOperators);
 
             var mItems = new List<AddItemOption>
@@ -55,6 +55,11 @@ namespace Orchard
                 currCell.SetBinding(TextCell.DetailProperty, new Binding("NumberOfSelected", 0, new IntToStringConverter()));
                 return currCell;
             });
+            _itemList.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
+            {
+                var currAIO = (AddItemOption)(e.SelectedItem);
+                Navigation.PushAsync(currAIO.MenuItem.RootPage);
+            };
         }
 
         Step1VM VM

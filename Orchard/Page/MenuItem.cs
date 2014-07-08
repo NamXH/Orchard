@@ -25,12 +25,26 @@ namespace Orchard
                 // Delay initiation of a page until requested.
                 if (_naviPage == null)
                 {
-                    var rootPage = _initRootPage();
-                    rootPage.Title = MenuTitle;
-                    _naviPage = new NavigationPage(rootPage);
-                    _initRootPage = null;
+                    _naviPage = new NavigationPage(RootPage);
+
                 }
                 return _naviPage;
+            }
+        }
+
+        Page _rootPage;
+
+        public Page RootPage
+        {
+            get
+            {
+                if (_rootPage == null)
+                {
+                    _rootPage = _initRootPage();
+                    _rootPage.Title = MenuTitle;
+                    _initRootPage = null;
+                }
+                return _rootPage;
             }
         }
     }
