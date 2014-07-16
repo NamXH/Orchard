@@ -29,7 +29,7 @@ namespace Orchard
             {
                 if (inChoosingMode)
                 {
-                    var cell = ImageCellWithCheck.CellList.First(x => object.ReferenceEquals(x.BindingContext, e.Item));
+                    var cell = ImageCellWithCheck.BindingDic[e.Item];
                     cell.Selected = !cell.Selected;
                     _listView.SelectedItem = null;
 
@@ -97,12 +97,17 @@ namespace Orchard
     public class ImageCellWithCheck : ImageCell
     {
         // HACK: get back cell object given the model/viewmodel.
-        public static List<ImageCellWithCheck> CellList = new List<ImageCellWithCheck>();
+        public static Dictionary<object, ImageCellWithCheck> BindingDic = new Dictionary<object, ImageCellWithCheck>();
 
-        public ImageCellWithCheck()
+        protected override void OnBindingContextChanged()
         {
-            CellList.Add(this);
+            base.OnBindingContextChanged();
+            if (this.BindingContext != null)
+            {
+                BindingDic[this.BindingContext] = this;
+            }
         }
+
 
         public static readonly BindableProperty SelectedProperty = BindableProperty.Create<ImageCellWithCheck, bool>(curr => curr.Selected, false);
 

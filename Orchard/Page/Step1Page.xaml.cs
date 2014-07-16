@@ -83,7 +83,7 @@ namespace Orchard
             MessagingCenter.Send((Page)this, "next");
         }
 
-        Action<object,ChosenItemEventArg<T>> CreateItemChosenHandler<T>(ObservableCollection<T> collection)
+        Action<object,ChosenItemEventArg<T>> CreateItemChosenHandler<T>(IList<T> collection)
         {
             Action<object,ChosenItemEventArg<T>> act = (object sender, ChosenItemEventArg<T> e) =>
             {
