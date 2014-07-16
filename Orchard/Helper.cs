@@ -135,6 +135,16 @@ namespace Orchard
         }
     }
 
+    public class GrowthStageExt : EnumExt<Step2VM.GrowthStage>
+    {
+        static GrowthStageExt()
+        {
+            _toStr = new Dictionary<Step2VM.GrowthStage, string>();
+            _toStr.Add(Step2VM.GrowthStage.PrePetaFall, "Pre Petafall");
+            _toStr.Add(Step2VM.GrowthStage.PostPetaFall, "Post Petafall");
+        }
+    }
+
     public class EnumToPickerIdxCov<T, TEx> : IValueConverter where TEx : EnumExt<T>, new()
     {
         static EnumToPickerIdxCov()
@@ -174,6 +184,21 @@ namespace Orchard
     }
 
     public class RowSprayingModeToPickerIdxCov : EnumToPickerIdxCov<Step1VM.RowSprayingMode, RowSprayModeExt>
+    {
+
+    }
+
+    public class GrowthStageToPickerIdxCov : EnumToPickerIdxCov<Step2VM.GrowthStage, GrowthStageExt>
+    {
+
+    }
+
+    public class PressureUnitToPickerIdxCov : EnumToPickerIdxCov<Step3VM.PressureUnit, EnumExt<Step3VM.PressureUnit>>
+    {
+
+    }
+
+    public class SpeedUnitToPickerIdxCov : EnumToPickerIdxCov<Step3VM.SpeedUnit, EnumExt<Step3VM.SpeedUnit>>
     {
 
     }

@@ -1,58 +1,28 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
-    xmlns:local="clr-namespace:Orchard;assembly=Orchard"
-    x:Class="Orchard.Step2Page">
-    <ContentPage.Content>
-    <RelativeLayout x:Name="_rLayout">
-    	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
-		    <StackLayout x:Name="_questionContainer" Spacing="20">
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
-	    			<Picker>
-	    				<Picker.Items>
-		    				<system:String>Cube (1.0x)</system:String>
-		    				<system:String>Column (0.75x)</system:String>
-							<system:String>Dome (0.75x)</system:String>
-							<system:String>Cup (0.75x)</system:String>
-							<system:String>Cone (0.6x)</system:String>
-							<system:String>Spherical (0.5x)</system:String>
-	    				</Picker.Items>
-	    			</Picker>
-		    	</local:QuestionLayout>
-
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
-	    			<Picker>
-	    				<Picker.Items>
-		    				<system:String>Pre Petal Fall (0.8x)</system:String>
-		    				<system:String>Post Petal Fall (1.0x)</system:String>
-	    				</Picker.Items>
-	    			</Picker>
-		    	</local:QuestionLayout>
-
-				<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
-	    			<Picker>
-	    				<Picker.Items>
-		    				<system:String>Extremely Dense (1.0x)</system:String>
-		    				<system:String>Dense (0.85x)</system:String>
-		    				<system:String>Moderately Open (0.7x)</system:String>
-		    				<system:String>Open (0.55x)</system:String>
-							<system:String>Extremely Open (0.4x)</system:String>
-	    				</Picker.Items>
-	    			</Picker>
-		    	</local:QuestionLayout>
-				
-		    	<Button Text="Next" Clicked="NextClicked"/>
-		    </StackLayout>
-	    </ScrollView>
-		<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2"
-			RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}"
-			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}" >
-			<Label TextColor="Black" Text="{Binding Common.HelpText}" />
-    	</ScrollView>
-    </RelativeLayout>
-    </ContentPage.Content>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.Step2Page">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:GrowthStageToPickerIdxCov x:Key="growthStageTopidxCov" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<ContentPage.Content>
+		<RelativeLayout x:Name="_rLayout">
+			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
+				<StackLayout x:Name="_questionContainer" Spacing="20">
+					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
+						<Picker x:Name="_growthStage" SelectedIndex="{Binding CurrGrowStage, Converter={StaticResource growthStageTopidxCov}}" Title="Mode" VerticalOptions="Center" />
+					</local:QuestionLayout>
+					<local:MyHorizontalImgPicker WidthRequest="150" HeightRequest="100">
+						<Image Source="{local:ImageResource Orchard.Images.calc.png}" />
+						<Image Source="{local:ImageResource Orchard.Images.information.png}" />
+						<Image Source="{local:ImageResource Orchard.Images.sprayer.png}" />
+					</local:MyHorizontalImgPicker>
+					<Button Text="Next" Clicked="NextClicked" />
+				</StackLayout>
+			</ScrollView>
+			<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}">
+				<Label TextColor="Black" Text="{Binding Common.HelpText}" />
+			</ScrollView>
+		</RelativeLayout>
+	</ContentPage.Content>
 </ContentPage>
-

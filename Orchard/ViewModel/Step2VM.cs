@@ -10,6 +10,20 @@ namespace Orchard
         }
 
         public StepVMCommon Common{ get; set; }
+
+        GrowthStage _currGrowStage;
+
+        public GrowthStage CurrGrowStage
+        {
+            get { return _currGrowStage; }
+            set { SetProperty(ref _currGrowStage, value); }
+        }
+
+        public enum GrowthStage
+        {
+            PrePetaFall,
+            PostPetaFall
+        }
     }
 }
 

@@ -48,10 +48,13 @@ namespace Orchard
 
             Content = _listView;
 
-            this.ToolbarItems.Add(new ToolbarItem("add", null, () =>
+            if (!inChoosingMode)
             {
-                NavToDetailPage(default(T));
-            }));
+                this.ToolbarItems.Add(new ToolbarItem("add", null, () =>
+                {
+                    NavToDetailPage(default(T));
+                }));
+            }
         }
 
         ListView _listView;
@@ -106,8 +109,6 @@ namespace Orchard
             {
                 BindingDic[this.BindingContext] = this;
             }
-
-
         }
 
         protected override void OnAppearing()

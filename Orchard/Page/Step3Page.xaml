@@ -1,80 +1,46 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
-    xmlns:local="clr-namespace:Orchard;assembly=Orchard"
-    x:Class="Orchard.Step3Page">
-    <ContentPage.Content>
-    <RelativeLayout x:Name="_rLayout">
-    	<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
-		    <StackLayout x:Name="_questionContainer" Spacing="20">
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
-	    			<Picker>
-	    				<Picker.Items>
-		    				<system:String>Airblast (One Side)</system:String>
-		    				<system:String>Airblast (Two Sides)</system:String>
-							<system:String>Tower (Two Sides)</system:String>
-		    				<system:String>Vertical Boom (Two Booms)</system:String>
-	    				</Picker.Items>
-	    			</Picker>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[2]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[3]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[4]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[5]}">
-	    			<Picker>
-	    				<Picker.Items>
-		    				<system:String>Every Row</system:String>
-		    				<system:String>Alternate Row</system:String>
-	    				</Picker.Items>
-	    			</Picker>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[6]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[7]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[8]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[9]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-
-		    	<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[10]}">
-	    			<Entry/>
-		    	</local:QuestionLayout>
-				
-		    	<Button Text="Next" Clicked="NextClicked"/>
-		    </StackLayout>
-	    </ScrollView>
-		<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2"
-			RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-			RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}"
-			RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}" >
-			<Label TextColor="Black" Text="{Binding Common.HelpText}" />
-    	</ScrollView>
-    </RelativeLayout>
-    </ContentPage.Content>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.Step3Page">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:PressureUnitToPickerIdxCov x:Key="pressureUnitTopidxCov" />
+			<local:SpeedUnitToPickerIdxCov x:Key="speedUnitTopidxCov" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<ContentPage.Content>
+		<RelativeLayout x:Name="_rLayout">
+			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="3*" />
+						<ColumnDefinition Width="1*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<local:QuestionLayout QuestionLabel="Operating Pressure" Grid.Row="0" Grid.Column="0">
+						<Entry Text="{Binding LocalItem.Model}" VerticalOptions="Center" />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="Ground Speed" Grid.Row="1" Grid.Column="0">
+						<Entry Text="{Binding LocalItem.Model}" VerticalOptions="Center" />
+					</local:QuestionLayout>
+					<local:QuestionLayout QuestionLabel="Total number of active nozzles" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+						<Entry Text="{Binding LocalItem.Tractor}" VerticalOptions="Center" />
+					</local:QuestionLayout>
+					<Picker x:Name="_pressureUnit" SelectedIndex="{Binding CurrPressureUnit, Converter={StaticResource pressureUnitTopidxCov}}" Title="Unit" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" />
+					<Picker x:Name="_speedUnit" SelectedIndex="{Binding CurrSpeedUnit, Converter={StaticResource speedUnitTopidxCov}}" Title="Unit" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" />
+				</Grid>
+			</ScrollView>
+			<ScrollView Padding="8" x:Name="_helpSv" BackgroundColor="#FFFAFAD2" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=Constant, Constant=40}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-40}">
+				<Label TextColor="Black" Text="{Binding Common.HelpText}" />
+			</ScrollView>
+		</RelativeLayout>
+	</ContentPage.Content>
 </ContentPage>
-

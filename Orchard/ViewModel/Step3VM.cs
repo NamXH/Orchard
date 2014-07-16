@@ -10,6 +10,34 @@ namespace Orchard
         }
 
         public StepVMCommon Common{ get; set; }
+
+        PressureUnit _currPressureUnit;
+
+        public PressureUnit CurrPressureUnit
+        {
+            get { return _currPressureUnit; }
+            set { SetProperty(ref _currPressureUnit, value); }
+        }
+
+        SpeedUnit _currSpeedUnit;
+
+        public SpeedUnit CurrSpeedUnit
+        {
+            get { return _currSpeedUnit; }
+            set { SetProperty(ref _currSpeedUnit, value); }
+        }
+
+        public enum PressureUnit
+        {
+            Bar,
+            Psi
+        }
+
+        public enum SpeedUnit
+        {
+            kmh,
+            mph
+        }
     }
 }
 
