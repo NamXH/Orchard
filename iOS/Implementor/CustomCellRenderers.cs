@@ -7,6 +7,7 @@ using Orchard;
 using System.ComponentModel;
 
 [assembly: ExportRenderer(typeof(TextCellWithDisclosure), typeof(TextCellWithDisclosureRenderer))]
+[assembly: ExportRenderer(typeof(ImageCellWithCheck), typeof(ImageCellWithCheckRenderer))]
 namespace Orchard.iOS
 {
     public class TextCellWithDisclosureRenderer : TextCellRenderer
@@ -38,6 +39,23 @@ namespace Orchard.iOS
             cellTableViewCell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 
             return cellTableViewCell;
+        }
+    }
+
+    public class ImageCellWithCheckRenderer : ImageCellRenderer
+    {
+       
+        protected override void HandlePropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            var cellTableViewCell = (CellTableViewCell)sender;
+            var imgCellWithCheck = (ImageCellWithCheck)cellTableViewCell.Cell;
+
+            base.HandlePropertyChanged(sender, args);
+            if (args.PropertyName == ImageCellWithCheck.SelectedProperty.PropertyName)
+            {
+                cellTableViewCell.Accessory = imgCellWithCheck.Selected ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+                cellTableViewCell.SetNeedsDisplay();
+            }
         }
     }
 }

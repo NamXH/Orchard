@@ -2,12 +2,14 @@
 using Xamarin.Forms;
 using System.Diagnostics;
 using PCLStorage;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Orchard
 {
     public class ListingPage<T> : ContentPage where T : IDataItem, new()
     {
-        public ListingPage(bool choosingMode = false)
+        public ListingPage(bool inChoosingMode = false)
         {
             var vm = new ListingVM<T>();
             BindingContext = vm;
@@ -17,7 +19,7 @@ namespace Orchard
             _listView.ItemsSource = vm.Models;
             _listView.ItemTemplate = new DataTemplate(() =>
             {
-                var ic = new ImageCell();
+                var ic = inChoosingMode ? new ImageCellWithCheck() : new ImageCell();
                 ic.SetBinding(ImageCell.TextProperty, "Name");
                 ic.SetBinding(ImageCell.ImageSourceProperty, new Binding("Image", 0, new LocalImgToImgSourceConverter()));
                 return ic;
@@ -25,14 +27,17 @@ namespace Orchard
 
             _listView.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
-                if (choosingMode)
+                if (inChoosingMode)
                 {
+                    var cell = ImageCellWithCheck.CellList.First(x => object.ReferenceEquals(x.BindingContext, e.Item));
+                    cell.Selected = !cell.Selected;
+                    _listView.SelectedItem = null;
+
                     var handler = ItemChosen;
                     if (handler != null)
                     {
                         handler.Invoke(this, new ChosenItemEventArg<T>() { ChosenItem = (T)e.Item });
                     }
-                    Navigation.PopAsync();
                 }
                 else
                 {
@@ -86,6 +91,31 @@ namespace Orchard
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    public class ImageCellWithCheck : ImageCell
+    {
+        // HACK: get back cell object given the model/viewmodel.
+        public static List<ImageCellWithCheck> CellList = new List<ImageCellWithCheck>();
+
+        public ImageCellWithCheck()
+        {
+            CellList.Add(this);
+        }
+
+        public static readonly BindableProperty SelectedProperty = BindableProperty.Create<ImageCellWithCheck, bool>(curr => curr.Selected, false);
+
+        public bool Selected
+        {
+            get
+            {
+                return (bool)base.GetValue(ImageCellWithCheck.SelectedProperty);
+            }
+            set
+            {
+                base.SetValue(ImageCellWithCheck.SelectedProperty, value);
+            }
         }
     }
 }

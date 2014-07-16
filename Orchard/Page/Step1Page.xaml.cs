@@ -31,13 +31,19 @@ namespace Orchard
                 _rowSprayingMode.Items.Add(str);
             }
 
-            var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem("Sprayers", () => new ListingPage<Sprayer>()) };
+            var sprayerLP = new ListingPage<Sprayer>(true);
+            sprayerLP.ItemChosen += new EventHandler<ChosenItemEventArg<Sprayer>>(CreateItemChosenHandler(vm.ChosenSprayers));
+            var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem("Sprayers", () => sprayerLP) };
             sprayerAIO.AssignCollection(vm.ChosenSprayers);
 
-            var obAIO = new AddItemOption() { MenuItem = new MenuItem("Orchard Blocks", () => new ListingPage<OrchardBlock>()) };
+            var orchardBlockLP = new ListingPage<OrchardBlock>(true);
+            orchardBlockLP.ItemChosen += new EventHandler<ChosenItemEventArg<OrchardBlock>>(CreateItemChosenHandler(vm.ChosenOrchardBlocks));
+            var obAIO = new AddItemOption() { MenuItem = new MenuItem("Orchard Blocks", () => orchardBlockLP) };
             obAIO.AssignCollection(vm.ChosenOrchardBlocks);
 
-            var opAIO = new AddItemOption() { MenuItem = new MenuItem("Operators", () => new ListingPage<Operator>()) };
+            var opLP = new ListingPage<Operator>(true);
+            opLP.ItemChosen += new EventHandler<ChosenItemEventArg<Operator>>(CreateItemChosenHandler(vm.ChosenOperators));
+            var opAIO = new AddItemOption() { MenuItem = new MenuItem("Operators", () => opLP) };
             opAIO.AssignCollection(vm.ChosenOperators);
 
             var mItems = new List<AddItemOption>
@@ -55,10 +61,12 @@ namespace Orchard
                 currCell.SetBinding(TextCell.DetailProperty, new Binding("NumberOfSelected", 0, new IntToStringConverter()));
                 return currCell;
             });
-            _itemList.ItemSelected += (object sender, SelectedItemChangedEventArgs e) =>
+            _itemList.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
-                var currAIO = (AddItemOption)(e.SelectedItem);
+                var currAIO = (AddItemOption)(e.Item);
+
                 Navigation.PushAsync(currAIO.MenuItem.RootPage);
+                _itemList.SelectedItem = null;
             };
         }
 
@@ -73,6 +81,23 @@ namespace Orchard
         public void NextClicked(object sender, EventArgs e)
         {
             MessagingCenter.Send((Page)this, "next");
+        }
+
+        Action<object,ChosenItemEventArg<T>> CreateItemChosenHandler<T>(ObservableCollection<T> collection)
+        {
+            Action<object,ChosenItemEventArg<T>> act = (object sender, ChosenItemEventArg<T> e) =>
+            {
+                var idx = collection.IndexOf(e.ChosenItem);
+                if (idx != -1)
+                {
+                    collection.RemoveAt(idx);
+                }
+                else
+                {
+                    collection.Add(e.ChosenItem);
+                }
+            };
+            return act;
         }
     }
 
