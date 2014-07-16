@@ -30,7 +30,7 @@ namespace Orchard
                 new MenuItem("Step 1", () => new Step1Page()),
                 new MenuItem("Step 2", () => new Step2Page()),
                 new MenuItem("Step 3", () => new Step3Page()),
-                new MenuItem("Step 4", () => new ContentPage()),
+                new MenuItem("Step 4", () => new Step4Page()),
                 new MenuItem("Step 5", () => new ContentPage()),
             };
 
