@@ -106,8 +106,21 @@ namespace Orchard
             {
                 BindingDic[this.BindingContext] = this;
             }
+
+
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var s1vm = App.Container.GetInstance<Step1VM>();
+            if (s1vm.ChosenSprayers.Contains(BindingContext) ||
+                s1vm.ChosenOrchardBlocks.Contains(BindingContext) ||
+                s1vm.ChosenOperators.Contains(BindingContext))
+            {
+                Selected = true;
+            }
+        }
 
         public static readonly BindableProperty SelectedProperty = BindableProperty.Create<ImageCellWithCheck, bool>(curr => curr.Selected, false);
 

@@ -45,6 +45,17 @@ namespace Orchard.iOS
     public class ImageCellWithCheckRenderer : ImageCellRenderer
     {
        
+        public override UITableViewCell GetCell(Cell item, UITableView tv)
+        {
+            var cell = base.GetCell(item, tv);
+            var imgWithCheckCell = (ImageCellWithCheck)item;
+
+            cell.Accessory = imgWithCheckCell.Selected ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+            cell.SetNeedsDisplay();
+
+            return cell;
+        }
+
         protected override void HandlePropertyChanged(object sender, PropertyChangedEventArgs args)
         {
             var cellTableViewCell = (CellTableViewCell)sender;

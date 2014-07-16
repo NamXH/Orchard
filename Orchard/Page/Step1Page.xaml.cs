@@ -15,7 +15,7 @@ namespace Orchard
         {
             InitializeComponent();
 
-            var vm = new Step1VM();
+            var vm = App.Container.GetInstance<Step1VM>();
 
             BindingContext = vm;
 
