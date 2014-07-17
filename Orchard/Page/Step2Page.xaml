@@ -12,7 +12,7 @@
 					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
 						<Picker x:Name="_growthStage" SelectedIndex="{Binding CurrGrowStage, Converter={StaticResource growthStageTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
-					<local:MyHorizontalImgPicker WidthRequest="150" HeightRequest="100">
+					<local:MyHorizontalImgPicker WidthRequest="150" HeightRequest="150">
 						<Image Source="{local:ImageResource Orchard.Images.calc.png}" />
 						<Image Source="{local:ImageResource Orchard.Images.information.png}" />
 						<Image Source="{local:ImageResource Orchard.Images.sprayer.png}" />

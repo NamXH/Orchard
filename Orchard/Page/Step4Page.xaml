@@ -25,7 +25,7 @@
 								<Entry Text="{Binding Cost}" VerticalOptions="Center" />
 							</local:QuestionLayout>
 							<Picker x:Name="_rateUnit" Title="Unit" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" />
-								<Picker x:Name="_costUnit" Title="Unit" Grid.Row="2" Grid.Column="1" VerticalOptions="Center"/>
+							<Picker x:Name="_costUnit" Title="Unit" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" />
 						</Grid>
 					</ViewCell>
 				</DataTemplate>
