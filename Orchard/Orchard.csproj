@@ -99,6 +99,7 @@
     <Folder Include="Images\" />
     <Folder Include="Resx\" />
     <Folder Include="Images\AvgTreeShape\" />
+    <Folder Include="Images\Density\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Intro.txt">
@@ -169,6 +170,12 @@
     <EmbeddedResource Include="Images\AvgTreeShape\Cup.jpg" />
     <EmbeddedResource Include="Images\AvgTreeShape\Dome.jpg" />
     <EmbeddedResource Include="Images\AvgTreeShape\Sphere.jpg" />
+    <EmbeddedResource Include="Images\Density\post-dense.jpg" />
+    <EmbeddedResource Include="Images\Density\post-extreOpen.jpg" />
+    <EmbeddedResource Include="Images\Density\post-open.jpg" />
+    <EmbeddedResource Include="Images\Density\pre-dense.jpg" />
+    <EmbeddedResource Include="Images\Density\pre-extreOpen.jpg" />
+    <EmbeddedResource Include="Images\Density\pre-open.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SQLitePCL.raw">
