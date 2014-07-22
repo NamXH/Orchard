@@ -11,10 +11,10 @@
 		<RelativeLayout x:Name="_rLayout">
 			<ScrollView RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
 				<StackLayout Padding="8" x:Name="_questionContainer">
-					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[0]}" Orientation="Vertical">
+					<local:QuestionLayout QuestionLabel="{local:Translate Question1}" Orientation="Vertical">
 						<Picker x:Name="_opMode" SelectedIndex="{Binding CurrOptimizeMode, Converter={StaticResource opModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
-					<local:QuestionLayout QuestionLabel="{Binding Common.QuestionList[1]}">
+					<local:QuestionLayout QuestionLabel="{local:Translate Question2}">
 						<Picker x:Name="_rowSprayingMode" SelectedIndex="{Binding CurrRowSprayingMode, Converter={StaticResource rowSprayingModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
 					<local:NonScrollingListView x:Name="_itemList" />

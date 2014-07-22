@@ -48,9 +48,12 @@
 			<Picker x:Name="_avgCWUnit" SelectedIndex="{Binding LocalItem.AvgCanopyWidthUnit, Converter={StaticResource lengthUnitTopidxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
 			<Picker x:Name="_avgRLUnit" SelectedIndex="{Binding LocalItem.AvgRowLengthUnit, Converter={StaticResource lengthUnitTopidxCov}}" Title="Unit" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" />
 			<local:MyHorizontalImgPicker WidthRequest="150" HeightRequest="100" Grid.Row="6" Grid.Column="0">
-				<Image Source="{local:ImageResource Orchard.Images.calc.png}" />
-				<Image Source="{local:ImageResource Orchard.Images.information.png}" />
-				<Image Source="{local:ImageResource Orchard.Images.sprayer.png}" />
+				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Column.jpg}" />
+				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Cone.jpg}" />
+				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Cube.jpg}" />
+				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Cup.jpg}" />
+				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Dome.jpg}" />
+				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Sphere.jpg}" />
 			</local:MyHorizontalImgPicker>
 		</Grid>
 	</ContentView.Content>

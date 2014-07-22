@@ -98,6 +98,7 @@
     <Folder Include="Model\" />
     <Folder Include="Images\" />
     <Folder Include="Resx\" />
+    <Folder Include="Images\AvgTreeShape\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Intro.txt">
@@ -162,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resx\AppResources.fr.resx" />
     <EmbeddedResource Include="Resx\AppResources.resx" />
+    <EmbeddedResource Include="Images\AvgTreeShape\Column.jpg" />
+    <EmbeddedResource Include="Images\AvgTreeShape\Cone.jpg" />
+    <EmbeddedResource Include="Images\AvgTreeShape\Cube.jpg" />
+    <EmbeddedResource Include="Images\AvgTreeShape\Cup.jpg" />
+    <EmbeddedResource Include="Images\AvgTreeShape\Dome.jpg" />
+    <EmbeddedResource Include="Images\AvgTreeShape\Sphere.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SQLitePCL.raw">
