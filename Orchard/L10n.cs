@@ -9,22 +9,18 @@ namespace Orchard
 {
     public class L10n
     {
-        /// <remarks>
-        /// Maybe we can cache this info rather than querying every time
-        /// </remarks>
-        public static string Locale()
-        {
-            return DependencyService.Get<ILocale>().GetCurrent();
-        }
+        static string currLan = null;
 
         public static string Localize(string key, string comment)
         {
-
-            var netLanguage = Locale();
+            if (currLan == null)
+            {
+                currLan = DependencyService.Get<ILocale>().GetCurrent();
+            }
 
             var temp = new ResourceManager("Orchard.Resx.AppResources", typeof(L10n).GetTypeInfo().Assembly);
 
-            var result = temp.GetString(key, new CultureInfo(netLanguage));
+            var result = temp.GetString(key, new CultureInfo(currLan));
 
             return result; 
         }
