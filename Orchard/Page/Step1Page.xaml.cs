@@ -33,7 +33,7 @@ namespace Orchard
 
             var sprayerLP = new ListingPage<Sprayer>(true);
             sprayerLP.ItemChosen += new EventHandler<ChosenItemEventArg<Sprayer>>(CreateItemChosenHandler(vm.ChosenSprayers));
-            var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem("Sprayers", () => sprayerLP) };
+            var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem(L10n.Localize("Sprayers", null), () => sprayerLP) };
             sprayerAIO.AssignCollection(vm.ChosenSprayers);
 
             var orchardBlockLP = new ListingPage<OrchardBlock>(true);
