@@ -4,15 +4,18 @@
 		<ScrollView>
 			<StackLayout x:Name="_sl" Padding="8">
 				<StackLayout Orientation="Horizontal">
-					<local:ImageButton x:Name="_imgButton" Image="{Binding LocalItem.Image}" WidthRequest="100" HeightRequest="100" ImageWidthRequest="100" ImageHeightRequest="100" Orientation="Bottom"/>
+					<Grid>
+						<Label VerticalOptions="Center" HorizontalOptions="Center" Text="add photo" TextColor="Gray"/>
+						<local:ImageButton x:Name="_imgButton" Image="{Binding LocalItem.Image}" WidthRequest="100" HeightRequest="100" ImageWidthRequest="100" ImageHeightRequest="100" Orientation="Bottom" />
+					</Grid>
 					<StackLayout HorizontalOptions="FillAndExpand">
-		            	<Label Text="Name"/>
-		            	<Entry Text="{Binding LocalItem.Name}" />
-		            </StackLayout>
+						<Label Text="Name" />
+						<Entry Text="{Binding LocalItem.Name}" />
+					</StackLayout>
 				</StackLayout>
 				<!--Custom view for each data item type -->
-				<Button x:Name="_delBtn" IsVisible="{Binding IsEditing}" Text="Delete" TextColor="White" BackgroundColor="Red"/>
+				<Button x:Name="_delBtn" IsVisible="{Binding IsEditing}" Text="Delete" TextColor="White" BackgroundColor="Red" />
 			</StackLayout>
-        </ScrollView>
+		</ScrollView>
 	</ContentView.Content>
 </ContentView>
