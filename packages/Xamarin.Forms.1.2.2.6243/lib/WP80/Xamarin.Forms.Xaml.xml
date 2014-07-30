@@ -35,7 +35,7 @@
             <typeparam name="TView">To be added.</typeparam>
             <param name="view">To be added.</param>
             <param name="callingType">To be added.</param>
-            <summary>To be added.</summary>
+            <summary>Configures <paramref name="view" /> with the properties that are defined in the application manifest for <paramref name="callingType" />.</summary>
             <returns>To be added.</returns>
             <remarks>To be added.</remarks>
         </member>
