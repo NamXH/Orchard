@@ -60,13 +60,13 @@ namespace Orchard
             };
 
             _itemList.ItemsSource = mItems;
-//            _itemList.ItemTemplate = new DataTemplate(() =>
-//            {
-//                var currCell = new TextCellWithDisclosure();
-//                currCell.SetBinding(TextCell.TextProperty, "MenuItem.MenuTitle");
-//                currCell.SetBinding(TextCell.DetailProperty, new Binding("NumberOfSelected", 0, new IntToStringConverter()));
-//                return currCell;
-//            });
+            _itemList.ItemTemplate = new DataTemplate(() =>
+            {
+                var currCell = new TextCellWithDisclosure();
+                currCell.SetBinding(TextCell.TextProperty, "MenuItem.MenuTitle");
+                //currCell.SetBinding(TextCell.DetailProperty, new Binding("NumberOfSelected", 0, new IntToStringConverter()));
+                return currCell;
+            });
             _itemList.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
                 var currAIO = (AddItemOption)(e.Item);
