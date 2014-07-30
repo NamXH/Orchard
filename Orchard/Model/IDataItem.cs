@@ -6,6 +6,8 @@ namespace Orchard
     {
         int Id { get; }
 
+        string Name{ get; }
+
         string Image { get; }
     }
 }

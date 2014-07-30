@@ -36,23 +36,35 @@ namespace Orchard
             {
                 VM.CurrSprayer = arg.ChosenItem;
             };
-            var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem(L10n.Localize("Sprayers", null), () => sprayerLP) };
+            var sprayerAIO = new AddItemOption()
+            { 
+                CurrItemPropertyName = "CurrSprayer",
+                MenuItem = new MenuItem(L10n.Localize("Sprayers", null), () => sprayerLP)
+            };
 
             var orchardBlockLP = new ListingPage<OrchardBlock>(true);
             orchardBlockLP.ItemChosen += (sender, arg) =>
             {
                 VM.CurrOrchardBlock = arg.ChosenItem;
             };
-            var obAIO = new AddItemOption() { MenuItem = new MenuItem("Orchard Blocks", () => orchardBlockLP) };
+            var obAIO = new AddItemOption()
+            {
+                CurrItemPropertyName = "CurrOrchardBlock", 
+                MenuItem = new MenuItem("Orchard Blocks", () => orchardBlockLP)
+            };
 
             var opLP = new ListingPage<Operator>(true);
             opLP.ItemChosen += (sender, arg) =>
             {
                 VM.CurrOperator = arg.ChosenItem;
             };
-            var opAIO = new AddItemOption() { MenuItem = new MenuItem("Operators", () => opLP) };
+            var opAIO = new AddItemOption()
+            { 
+                CurrItemPropertyName = "CurrOperator", 
+                MenuItem = new MenuItem("Operators", () => opLP)
+            };
 
-            var mItems = new List<AddItemOption>
+            var mItems = new List<NPCBase>
             {
                 sprayerAIO,
                 obAIO,
@@ -62,10 +74,10 @@ namespace Orchard
             _itemList.ItemsSource = mItems;
             _itemList.ItemTemplate = new DataTemplate(() =>
             {
-                var currCell = new TextCellWithDisclosure();
-                currCell.SetBinding(TextCell.TextProperty, "MenuItem.MenuTitle");
-                //currCell.SetBinding(TextCell.DetailProperty, new Binding("NumberOfSelected", 0, new IntToStringConverter()));
-                return currCell;
+                var vCell = new TextCellWithDisclosure();
+                vCell.SetBinding(TextCell.TextProperty, "MenuItem.MenuTitle");
+                vCell.SetBinding(TextCell.DetailProperty, "DetailText");
+                return vCell;
             });
             _itemList.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
@@ -88,23 +100,6 @@ namespace Orchard
         {
             MessagingCenter.Send((Page)this, "next");
         }
-
-        Action<object,ChosenItemEventArg<T>> CreateItemChosenHandler<T>(IList<T> collection)
-        {
-            Action<object,ChosenItemEventArg<T>> act = (object sender, ChosenItemEventArg<T> e) =>
-            {
-                var idx = collection.IndexOf(e.ChosenItem);
-                if (idx != -1)
-                {
-                    collection.RemoveAt(idx);
-                }
-                else
-                {
-                    collection.Add(e.ChosenItem);
-                }
-            };
-            return act;
-        }
     }
 
     public class TextCellWithDisclosure : TextCell
@@ -121,28 +116,42 @@ namespace Orchard
     {
         public AddItemOption()
         {
-           
-        }
-
-        public void AssignCollection<T>(ObservableCollection<T> collection)
-        {
-            _collection = collection;
-            collection.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) =>
+            _s1vm = App.Container.GetInstance<Step1VM>();
+            _s1vm.PropertyChanged += (sender, e) =>
             {
-                RaisePropertyChanged(() => NumberOfSelected);
+                if (e.PropertyName == CurrItemPropertyName)
+                {
+                    RaisePropertyChanged(() => DetailText);
+                }
             };
         }
 
         public MenuItem MenuItem { get; set; }
 
+        public string CurrItemPropertyName { get; set; }
 
-        ICollection _collection;
+        Step1VM _s1vm;
 
-        public int NumberOfSelected
+        public string DetailText
         {
             get
             {
-                return _collection.Count;
+                IDataItem dItem = null;
+                switch (CurrItemPropertyName)
+                {
+                    case "CurrSprayer":
+                        dItem = _s1vm.CurrSprayer;
+                        break;
+                    case "CurrOrchardBlock":
+                        dItem = _s1vm.CurrOrchardBlock;
+                        break;
+                    case "CurrOperator":
+                        dItem = _s1vm.CurrOperator;
+                        break;
+                    default:
+                        throw new InvalidCastException();
+                }
+                return dItem == null ? "none selected" : dItem.Name;
             }
         }
     }
