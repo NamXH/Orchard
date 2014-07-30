@@ -17,7 +17,7 @@
 					<local:QuestionLayout QuestionLabel="{local:Translate Question2}">
 						<Picker x:Name="_rowSprayingMode" SelectedIndex="{Binding CurrRowSprayingMode, Converter={StaticResource rowSprayingModeTopidxCov}}" Title="Mode" VerticalOptions="Center" />
 					</local:QuestionLayout>
-					<local:NonScrollingListView x:Name="_itemList" />
+					<ListView x:Name="_itemList" />
 					<Button Text="{local:Translate Next}" Clicked="NextClicked" />
 				</StackLayout>
 			</ScrollView>

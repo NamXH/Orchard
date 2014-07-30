@@ -32,19 +32,25 @@ namespace Orchard
             }
 
             var sprayerLP = new ListingPage<Sprayer>(true);
-            sprayerLP.ItemChosen += new EventHandler<ChosenItemEventArg<Sprayer>>(CreateItemChosenHandler(vm.ChosenSprayers));
+            sprayerLP.ItemChosen += (sender, arg) =>
+            {
+                VM.CurrSprayer = arg.ChosenItem;
+            };
             var sprayerAIO = new AddItemOption(){ MenuItem = new MenuItem(L10n.Localize("Sprayers", null), () => sprayerLP) };
-            sprayerAIO.AssignCollection(vm.ChosenSprayers);
 
             var orchardBlockLP = new ListingPage<OrchardBlock>(true);
-            orchardBlockLP.ItemChosen += new EventHandler<ChosenItemEventArg<OrchardBlock>>(CreateItemChosenHandler(vm.ChosenOrchardBlocks));
+            orchardBlockLP.ItemChosen += (sender, arg) =>
+            {
+                VM.CurrOrchardBlock = arg.ChosenItem;
+            };
             var obAIO = new AddItemOption() { MenuItem = new MenuItem("Orchard Blocks", () => orchardBlockLP) };
-            obAIO.AssignCollection(vm.ChosenOrchardBlocks);
 
             var opLP = new ListingPage<Operator>(true);
-            opLP.ItemChosen += new EventHandler<ChosenItemEventArg<Operator>>(CreateItemChosenHandler(vm.ChosenOperators));
+            opLP.ItemChosen += (sender, arg) =>
+            {
+                VM.CurrOperator = arg.ChosenItem;
+            };
             var opAIO = new AddItemOption() { MenuItem = new MenuItem("Operators", () => opLP) };
-            opAIO.AssignCollection(vm.ChosenOperators);
 
             var mItems = new List<AddItemOption>
             {
@@ -54,13 +60,13 @@ namespace Orchard
             };
 
             _itemList.ItemsSource = mItems;
-            _itemList.ItemTemplate = new DataTemplate(() =>
-            {
-                var currCell = new TextCellWithDisclosure();
-                currCell.SetBinding(TextCell.TextProperty, "MenuItem.MenuTitle");
-                currCell.SetBinding(TextCell.DetailProperty, new Binding("NumberOfSelected", 0, new IntToStringConverter()));
-                return currCell;
-            });
+//            _itemList.ItemTemplate = new DataTemplate(() =>
+//            {
+//                var currCell = new TextCellWithDisclosure();
+//                currCell.SetBinding(TextCell.TextProperty, "MenuItem.MenuTitle");
+//                currCell.SetBinding(TextCell.DetailProperty, new Binding("NumberOfSelected", 0, new IntToStringConverter()));
+//                return currCell;
+//            });
             _itemList.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
                 var currAIO = (AddItemOption)(e.Item);

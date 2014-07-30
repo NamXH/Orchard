@@ -30,7 +30,7 @@ namespace Orchard
                 if (inChoosingMode)
                 {
                     var cell = ImageCellWithCheck.BindingDic[e.Item];
-                    cell.Selected = !cell.Selected;
+                    cell.Selected = true;
                     _listView.SelectedItem = null;
 
                     var handler = ItemChosen;
@@ -38,6 +38,7 @@ namespace Orchard
                     {
                         handler.Invoke(this, new ChosenItemEventArg<T>() { ChosenItem = (T)e.Item });
                     }
+                    Navigation.PopAsync();
                 }
                 else
                 {
@@ -115,11 +116,15 @@ namespace Orchard
         {
             base.OnAppearing();
             var s1vm = App.Container.GetInstance<Step1VM>();
-            if (s1vm.ChosenSprayers.Contains(BindingContext) ||
-                s1vm.ChosenOrchardBlocks.Contains(BindingContext) ||
-                s1vm.ChosenOperators.Contains(BindingContext))
+            if (object.ReferenceEquals(s1vm.CurrSprayer, BindingContext) ||
+                object.ReferenceEquals(s1vm.CurrOrchardBlock, BindingContext) ||
+                object.ReferenceEquals(s1vm.CurrOperator, BindingContext))
             {
                 Selected = true;
+            }
+            else
+            {
+                Selected = false;
             }
         }
 

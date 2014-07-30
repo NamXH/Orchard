@@ -38,25 +38,28 @@ namespace Orchard
             set { SetProperty(ref _currRowSprayingMode, value); }
         }
 
-        ObservableCollection<Sprayer> _chosenSprayers = new ObservableCollection<Sprayer>();
+        Sprayer _currSprayer;
 
-        public ObservableCollection<Sprayer> ChosenSprayers
+        public Sprayer CurrSprayer
         {
-            get { return _chosenSprayers; }
+            get { return _currSprayer; }
+            set { SetProperty(ref _currSprayer, value); }
         }
 
-        ObservableCollection<OrchardBlock> _chosenOrchardBlocks = new ObservableCollection<OrchardBlock>();
+        OrchardBlock _currOrchardBlock;
 
-        public ObservableCollection<OrchardBlock> ChosenOrchardBlocks
+        public OrchardBlock CurrOrchardBlock
         {
-            get { return _chosenOrchardBlocks; }
+            get { return _currOrchardBlock; }
+            set { SetProperty(ref _currOrchardBlock, value); }
         }
 
-        ObservableCollection<Operator> _chosenOperators = new ObservableCollection<Operator>();
+        Operator _currOperator;
 
-        public ObservableCollection<Operator> ChosenOperators
+        public Operator CurrOperator
         {
-            get { return _chosenOperators; }
+            get { return _currOperator; }
+            set { SetProperty(ref _currOperator, value); }
         }
 
         public enum OptimizeMode
