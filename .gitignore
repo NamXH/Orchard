@@ -218,4 +218,4 @@ pip-log.txt
 
 *.designer.cs
 
-!packages/*/build/*
+!packages/**/build/
