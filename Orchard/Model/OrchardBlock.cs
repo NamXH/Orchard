@@ -1,6 +1,8 @@
 ﻿using System;
 using SQLite;
 using PCLStorage;
+using Xamarin.Forms;
+using System.Globalization;
 
 namespace Orchard
 {
@@ -146,8 +148,37 @@ namespace Orchard
 
         public enum TreeShape
         {
+            Column,
+            Cone,
             Cube,
-            blah
+            Cup,
+            Dome,
+            Sphere
+        }
+    }
+
+    public class AvgTreeShapeToPickerIdxCov : IValueConverter
+    {
+        public AvgTreeShapeToPickerIdxCov()
+        {
+            _enumValues = Enum.GetNames(typeof(OrchardBlock.TreeShape));
+        }
+
+        string[] _enumValues;
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var d = (OrchardBlock.TreeShape)value;
+            var idx = Array.IndexOf(_enumValues, d.ToString());
+            return idx;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var idx = (int)value;
+            var eVal = Enum.Parse(typeof(OrchardBlock.TreeShape), _enumValues[idx]);
+
+            return eVal;
         }
     }
 }

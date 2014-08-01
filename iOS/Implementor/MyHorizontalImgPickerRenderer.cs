@@ -14,6 +14,7 @@ namespace Orchard.iOS
     public class MyHorizontalImgPickerRenderer : ViewRenderer<MyHorizontalImgPicker, UIView>
     {
         UIScrollView _scrollView;
+        UIPageControl _pageControl;
 
         const int PageControlHeight = 20;
 
@@ -26,14 +27,14 @@ namespace Orchard.iOS
                 // Initial setups.
                 _scrollView = new UIScrollView(new System.Drawing.RectangleF(0, 0, (float)e.NewElement.WidthRequest, (float)e.NewElement.HeightRequest - PageControlHeight));
 
-                var pageControl = new UIPageControl(new System.Drawing.RectangleF(0, (float)e.NewElement.HeightRequest - PageControlHeight, (float)e.NewElement.WidthRequest, PageControlHeight));
-                pageControl.Pages = e.NewElement.Children.Count;
-                pageControl.AutoresizingMask = UIViewAutoresizing.All;
-                pageControl.BackgroundColor = UIColor.Brown;
-                pageControl.Enabled = false;
+                _pageControl = new UIPageControl(new System.Drawing.RectangleF(0, (float)e.NewElement.HeightRequest - PageControlHeight, (float)e.NewElement.WidthRequest, PageControlHeight));
+                _pageControl.Pages = e.NewElement.Children.Count;
+                _pageControl.AutoresizingMask = UIViewAutoresizing.All;
+                _pageControl.BackgroundColor = UIColor.Brown;
+                _pageControl.Enabled = false;
 
                 view.Add(_scrollView);
-                view.Add(pageControl);
+                view.Add(_pageControl);
                 view.BringSubviewToFront(_scrollView);
 
                 SetNativeControl(view);
@@ -53,15 +54,25 @@ namespace Orchard.iOS
                     _scrollView.Add(renderer.NativeView);
                 }
 
+                _pageControl.CurrentPage = e.NewElement.SelectedIndex;
+
+                //_scrollView.SetContentOffset(new PointF((_scrollView.ContentSize.Width / pageControl.Pages) * 3, 0), false);
+
                 _scrollView.Scrolled += (object sender, EventArgs earg) =>
                 {
                     if (_scrollView.Dragging && _scrollView.Decelerating)
                     {
-                        pageControl.CurrentPage = (int)(Math.Round(_scrollView.ContentOffset.X / (_scrollView.ContentSize.Width / pageControl.Pages)));
-                        e.NewElement.SelectedIndex = pageControl.CurrentPage;
+                        _pageControl.CurrentPage = (int)(Math.Round(_scrollView.ContentOffset.X / (_scrollView.ContentSize.Width / _pageControl.Pages)));
+                        e.NewElement.SelectedIndex = _pageControl.CurrentPage;
                     }
                 };
             }
+        }
+
+        public override void LayoutSubviews()
+        {
+            base.LayoutSubviews();
+            _scrollView.SetContentOffset(new PointF(_scrollView.Frame.Width * _pageControl.CurrentPage, 0), false);
         }
 
         protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
