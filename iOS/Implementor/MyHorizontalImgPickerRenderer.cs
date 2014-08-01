@@ -58,6 +58,7 @@ namespace Orchard.iOS
                     if (_scrollView.Dragging && _scrollView.Decelerating)
                     {
                         pageControl.CurrentPage = (int)(Math.Round(_scrollView.ContentOffset.X / (_scrollView.ContentSize.Width / pageControl.Pages)));
+                        e.NewElement.SelectedIndex = pageControl.CurrentPage;
                     }
                 };
             }

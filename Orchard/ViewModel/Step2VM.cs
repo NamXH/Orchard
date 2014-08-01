@@ -45,6 +45,14 @@ namespace Orchard
             }
         }
 
+        int _selectedDensityIdx;
+
+        public int SelectedDensityIdx
+        {
+            get { return _selectedDensityIdx; }
+            set { SetProperty(ref _selectedDensityIdx, value); }
+        }
+
         ImageSource _denseImg;
 
         public ImageSource DenseImg

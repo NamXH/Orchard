@@ -25,6 +25,14 @@ namespace Orchard
             }
         }
 
+        public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create<MyHorizontalImgPicker, int>(mp => mp.SelectedIndex, default(int), BindingMode.TwoWay);
+
+        public int SelectedIndex
+        {
+            get { return (int)GetValue(SelectedIndexProperty); }
+            set { SetValue(SelectedIndexProperty, value); }
+        }
+
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
             var i = 0;
