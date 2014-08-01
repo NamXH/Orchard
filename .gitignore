@@ -217,3 +217,5 @@ pip-log.txt
 *.userprefs
 
 *.designer.cs
+
+!packages/*/build/*
