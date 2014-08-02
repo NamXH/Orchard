@@ -26,7 +26,6 @@ namespace Orchard
                 if (_naviPage == null)
                 {
                     _naviPage = new NavigationPage(RootPage);
-
                 }
                 return _naviPage;
             }

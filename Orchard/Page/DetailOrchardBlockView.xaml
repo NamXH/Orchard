@@ -6,7 +6,8 @@
 			<local:AreaUnitToPickerIdxCov x:Key="areaUnitTopidxCov" />
 			<local:YearToPickerIdxConverter x:Key="yToPidxCov" />
 			<local:DoubleToStringConverter x:Key="doubleToStrCov" />
-			<local:AvgTreeShapeToPickerIdxCov x:Key="avgTreeShapeCov" />
+			<local:AvgTreeShapeToPickerIdxCov x:Key="avgTreeShapeToIdxCov" />
+      <local:AvgTreeShapeToStrConv x:Key="avgTreeShapeToStrCov" />
 		</ResourceDictionary>
 	</ContentView.Resources>
 	<ContentView.Content>
@@ -48,7 +49,7 @@
 			<Picker x:Name="_avgTHUnit" SelectedIndex="{Binding LocalItem.AvgTreeHeightUnit, Converter={StaticResource lengthUnitTopidxCov}}" Title="Unit" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" />
 			<Picker x:Name="_avgCWUnit" SelectedIndex="{Binding LocalItem.AvgCanopyWidthUnit, Converter={StaticResource lengthUnitTopidxCov}}" Title="Unit" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" />
 			<Picker x:Name="_avgRLUnit" SelectedIndex="{Binding LocalItem.AvgRowLengthUnit, Converter={StaticResource lengthUnitTopidxCov}}" Title="Unit" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" />
-			<local:MyHorizontalImgPicker SelectedIndex="{Binding LocalItem.AvgTreeShape, Converter={StaticResource avgTreeShapeCov}}" WidthRequest="100" HeightRequest="200" Grid.Row="6" Grid.Column="0">
+			<local:MyHorizontalImgPicker SelectedIndex="{Binding LocalItem.AvgTreeShape, Converter={StaticResource avgTreeShapeToIdxCov}}" WidthRequest="100" HeightRequest="200" Grid.Row="6" Grid.Column="0">
 				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Column.jpg}" />
 				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Cone.jpg}" />
 				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Cube.jpg}" />
@@ -56,6 +57,7 @@
 				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Dome.jpg}" />
 				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Sphere.jpg}" />
 			</local:MyHorizontalImgPicker>
+      <Label Text="{Binding LocalItem.AvgTreeShape, Converter={StaticResource avgTreeShapeToStrCov}}" Grid.Row="7" Grid.Column="0"/>
 		</Grid>
 	</ContentView.Content>
 </ContentView>

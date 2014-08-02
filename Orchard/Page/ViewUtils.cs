@@ -26,7 +26,6 @@ namespace Orchard
                         var newBound = new Rectangle(0, rLayout.Height - 40, rLayout.Width, 40);
                         helpSv.LayoutTo(newBound, 250, Easing.CubicInOut);
                     }
-
                 })
             };
             helpSv.GestureRecognizers.Add(tgr);

@@ -181,5 +181,19 @@ namespace Orchard
             return eVal;
         }
     }
+
+    public class AvgTreeShapeToStrConv : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var d = (OrchardBlock.TreeShape)value;
+            return d.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 
