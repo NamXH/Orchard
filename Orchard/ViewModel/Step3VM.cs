@@ -98,6 +98,14 @@ namespace Orchard
 
         public class Nozzle : NPCBase
         {
+            private int _idx;
+
+            public int Idx
+            {
+                get { return _idx; }
+                set { SetProperty(ref _idx, value); }
+            }
+
             int _flowRate;
 
             public int FlowRate
