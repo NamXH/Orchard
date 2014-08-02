@@ -7,7 +7,7 @@
 			<local:YearToPickerIdxConverter x:Key="yToPidxCov" />
 			<local:DoubleToStringConverter x:Key="doubleToStrCov" />
 			<local:AvgTreeShapeToPickerIdxCov x:Key="avgTreeShapeToIdxCov" />
-      <local:AvgTreeShapeToStrConv x:Key="avgTreeShapeToStrCov" />
+			<local:AvgTreeShapeToStrConv x:Key="avgTreeShapeToStrCov" />
 		</ResourceDictionary>
 	</ContentView.Resources>
 	<ContentView.Content>
@@ -57,7 +57,7 @@
 				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Dome.jpg}" />
 				<Image Source="{local:ImageResource Orchard.Images.AvgTreeShape.Sphere.jpg}" />
 			</local:MyHorizontalImgPicker>
-      <Label Text="{Binding LocalItem.AvgTreeShape, Converter={StaticResource avgTreeShapeToStrCov}}" Grid.Row="7" Grid.Column="0"/>
+			<Label Text="{Binding LocalItem.AvgTreeShape, Converter={StaticResource avgTreeShapeToStrCov}}" Grid.Row="7" Grid.Column="0" />
 		</Grid>
 	</ContentView.Content>
 </ContentView>

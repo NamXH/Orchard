@@ -203,6 +203,11 @@ namespace Orchard
 
     }
 
+    public class NozzleUnitToPickerIdxCov : EnumToPickerIdxCov<Step3VM.NozzleUnit, EnumExt<Step3VM.NozzleUnit>>
+    {
+
+    }
+
     public class LengthUnitToPickerIdxCov : EnumToPickerIdxCov<OrchardBlock.LengthUnit, EnumExt<OrchardBlock.LengthUnit>>
     {
 

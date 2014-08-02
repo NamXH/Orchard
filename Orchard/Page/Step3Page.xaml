@@ -4,6 +4,7 @@
 		<ResourceDictionary>
 			<local:PressureUnitToPickerIdxCov x:Key="pressureUnitTopidxCov" />
 			<local:SpeedUnitToPickerIdxCov x:Key="speedUnitTopidxCov" />
+			<local:NozzleUnitToPickerIdxCov x:Key="nozzleUnitTopidxCov" />
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
@@ -26,13 +27,17 @@
 						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 					<local:QuestionLayout QuestionLabel="Operating Pressure" Grid.Row="0" Grid.Column="0">
-						<Entry Text="{Binding LocalItem.Model}" VerticalOptions="Center" />
+						<Entry Text="{Binding OperatingPressure}" Keyboard="Numeric" VerticalOptions="Center" />
 					</local:QuestionLayout>
 					<local:QuestionLayout QuestionLabel="Ground Speed" Grid.Row="1" Grid.Column="0">
-						<Entry Text="{Binding LocalItem.Model}" VerticalOptions="Center" />
+						<Entry Text="{Binding GroundSpeed}" Keyboard="Numeric" VerticalOptions="Center" />
 					</local:QuestionLayout>
 					<local:QuestionLayout QuestionLabel="Total number of active nozzles" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-						<Entry Text="{Binding LocalItem.Tractor}" VerticalOptions="Center" />
+						<Entry Text="{Binding ActiveNozzleNum}" Keyboard="Numeric" VerticalOptions="Center" />
+					</local:QuestionLayout>
+
+					<local:QuestionLayout QuestionLabel="Nozzle unit" Grid.Row="3" Orientation="Horizontal">
+						<Picker x:Name="_nozzleUnit" SelectedIndex="{Binding CurrNozzleUnit, Converter={StaticResource nozzleUnitTopidxCov}}" Title="Unit" VerticalOptions="Center" />
 					</local:QuestionLayout>
 					<Picker x:Name="_pressureUnit" SelectedIndex="{Binding CurrPressureUnit, Converter={StaticResource pressureUnitTopidxCov}}" Title="Unit" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" />
 					<Picker x:Name="_speedUnit" SelectedIndex="{Binding CurrSpeedUnit, Converter={StaticResource speedUnitTopidxCov}}" Title="Unit" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" />

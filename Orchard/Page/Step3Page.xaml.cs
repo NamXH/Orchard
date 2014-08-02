@@ -25,6 +25,11 @@ namespace Orchard
             {
                 _speedUnit.Items.Add(str);
             }
+
+            foreach (var str in NozzleUnitToPickerIdxCov.Names)
+            {
+                _nozzleUnit.Items.Add(str);
+            }
         }
 
         public void NextClicked(object sender, EventArgs e)
