@@ -26,6 +26,7 @@ namespace Orchard.iOS
 
             Control.ScrollEnabled = false;
             Control.AllowsSelection = false;
+            Control.SeparatorStyle = MonoTouch.UIKit.UITableViewCellSeparatorStyle.None;
         }
     }
 }

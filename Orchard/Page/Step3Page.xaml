@@ -44,13 +44,13 @@
 								<ViewCell>
 									<Grid>
 										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="10" />
+											<ColumnDefinition Width="20" />
 											<ColumnDefinition Width="*" />
 											<ColumnDefinition Width="100" />
 										</Grid.ColumnDefinitions>
 										<Label Text="{Binding Idx}" VerticalOptions="Center" Grid.Column="0" />
 										<Entry Text="{Binding FlowRate}" VerticalOptions="Center" Grid.Column="1" />
-										<Label Text="{Binding BindingContext.CurrNozzleUnit}" BindingContext="{x:Reference _grid}" VerticalOptions="Center" Grid.Column="2" />
+										<Label Text="{Binding BindingContext.CurrNozzleUnit}" BindingContext="{x:Reference _grid}" XAlign="End" VerticalOptions="Center" Grid.Column="2" />
 									</Grid>
 								</ViewCell>
 							</DataTemplate>
