@@ -11,12 +11,6 @@ namespace Orchard
         {
             InitializeComponent();
 
-            var vm = new Step3VM();
-
-            BindingContext = vm;
-
-            //ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, vm.Common.QuestionTapped);
-
             foreach (var str in PressureUnitToPickerIdxCov.Names)
             {
                 _pressureUnit.Items.Add(str);
@@ -32,7 +26,9 @@ namespace Orchard
                 _nozzleUnit.Items.Add(str);
             }
 
-            vm.PropertyChanged += (sender, e) =>
+            BindingContext = new Step3VM();
+
+            VM.PropertyChanged += (sender, e) =>
             {
                 if (string.CompareOrdinal(e.PropertyName, "ActiveNozzleNum") == 0)
                 {
@@ -47,7 +43,6 @@ namespace Orchard
                     dt.Start();
                 }
             };
-
         }
 
         Step3VM VM
@@ -62,6 +57,11 @@ namespace Orchard
         {
             MessagingCenter.Send((Page)this, "next");
         }
+    }
+
+    public class NozzleListView : ListView
+    {
+
     }
 }
 

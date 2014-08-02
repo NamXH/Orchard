@@ -15,12 +15,6 @@ namespace Orchard
         {
             InitializeComponent();
 
-            var vm = App.Container.GetInstance<Step1VM>();
-
-            BindingContext = vm;
-
-            ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, vm.Common.QuestionTapped);
-
             foreach (var str in OptimizeModeToPickerIdxCov.Names)
             {
                 _opMode.Items.Add(str);
@@ -30,6 +24,12 @@ namespace Orchard
             {
                 _rowSprayingMode.Items.Add(str);
             }
+
+            var vm = App.Container.GetInstance<Step1VM>();
+
+            BindingContext = vm;
+
+            ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, vm.Common.QuestionTapped);
 
             var sprayerLP = new ListingPage<Sprayer>(true);
             sprayerLP.ItemChosen += (sender, arg) =>

@@ -40,7 +40,7 @@ namespace Orchard
             {
                 SetProperty(ref _activeNozzleNum, value); 
                 Nozzles.Clear();
-                foreach (var n in Enumerable.Range(1, value).Select(x => new Nozzle()))
+                foreach (var n in Enumerable.Range(1, value).Select(x => new Nozzle(){Idx=x}))
                 {
                     Nozzles.Add(n);
                 }

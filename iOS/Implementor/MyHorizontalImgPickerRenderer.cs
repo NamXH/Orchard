@@ -56,8 +56,6 @@ namespace Orchard.iOS
 
                 _pageControl.CurrentPage = e.NewElement.SelectedIndex;
 
-                //_scrollView.SetContentOffset(new PointF((_scrollView.ContentSize.Width / pageControl.Pages) * 3, 0), false);
-
                 _scrollView.Scrolled += (object sender, EventArgs earg) =>
                 {
                     if (_scrollView.Dragging && _scrollView.Decelerating)

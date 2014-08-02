@@ -38,26 +38,24 @@
 					<local:QuestionLayout QuestionLabel="Nozzle unit" Grid.Row="3" Orientation="Horizontal">
 						<Picker x:Name="_nozzleUnit" SelectedIndex="{Binding CurrNozzleUnit, Converter={StaticResource nozzleUnitTopidxCov}}" Title="Unit" VerticalOptions="Center" />
 					</local:QuestionLayout>
-					<local:NonScrollingListView x:Name="_nList" Grid.Row="4" ItemsSource="{Binding Nozzles}">
+					<local:NozzleListView x:Name="_nList" Grid.Row="4" Grid.ColumnSpan="2" ItemsSource="{Binding Nozzles}">
 						<ListView.ItemTemplate>
 							<DataTemplate>
-                <ViewCell>
-                  <Grid>
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="10"/>
-                      <ColumnDefinition Width="*"/>
-                      <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Text="{Binding Idx}" Grid.Column="0"/>
-                    <Label Text="{Binding FlowRate}" Grid.Column="1"/>
-                    <Label Text="{Binding BindingContext.CurrNozzleUnit}" BindingContext="{x:Reference _grid}" Grid.Column="2"/>
-                  </Grid>
-                  
-                </ViewCell>
-								
+								<ViewCell>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="10" />
+											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="100" />
+										</Grid.ColumnDefinitions>
+										<Label Text="{Binding Idx}" VerticalOptions="Center" Grid.Column="0" />
+										<Entry Text="{Binding FlowRate}" VerticalOptions="Center" Grid.Column="1" />
+										<Label Text="{Binding BindingContext.CurrNozzleUnit}" BindingContext="{x:Reference _grid}" VerticalOptions="Center" Grid.Column="2" />
+									</Grid>
+								</ViewCell>
 							</DataTemplate>
 						</ListView.ItemTemplate>
-					</local:NonScrollingListView>
+					</local:NozzleListView>
 					<Picker x:Name="_pressureUnit" SelectedIndex="{Binding CurrPressureUnit, Converter={StaticResource pressureUnitTopidxCov}}" Title="Unit" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" />
 					<Picker x:Name="_speedUnit" SelectedIndex="{Binding CurrSpeedUnit, Converter={StaticResource speedUnitTopidxCov}}" Title="Unit" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" />
 				</Grid>

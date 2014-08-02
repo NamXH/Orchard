@@ -10,16 +10,16 @@ namespace Orchard
 		{
 			InitializeComponent ();
 
+            foreach (var str in GrowthStageToPickerIdxCov.Names)
+            {
+                _growthStage.Items.Add(str);
+            }
+
             var vm = new Step2VM();
 
             BindingContext = vm;
 
             ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, vm.Common.QuestionTapped);
-
-            foreach (var str in GrowthStageToPickerIdxCov.Names)
-            {
-                _growthStage.Items.Add(str);
-            }
 		}
 
         public void NextClicked(object sender, EventArgs e)
