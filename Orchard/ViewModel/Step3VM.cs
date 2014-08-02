@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Orchard
 {
@@ -7,6 +9,8 @@ namespace Orchard
         public Step3VM()
         {
             Common = new StepVMCommon("Step3Questions.txt", "Step3HelpTexts.txt", "Sprayer Information");
+
+            ActiveNozzleNum = 2;
         }
 
         public StepVMCommon Common{ get; set; }
@@ -32,7 +36,15 @@ namespace Orchard
         public int ActiveNozzleNum
         {
             get { return _activeNozzleNum; }
-            set { SetProperty(ref _activeNozzleNum, value); }
+            set
+            {
+                SetProperty(ref _activeNozzleNum, value); 
+                Nozzles.Clear();
+                foreach (var n in Enumerable.Range(1, value).Select(x => new Nozzle()))
+                {
+                    Nozzles.Add(n);
+                }
+            }
         }
 
         PressureUnit _currPressureUnit;
@@ -59,6 +71,13 @@ namespace Orchard
             set { SetProperty(ref _currNozzleUnit, value); }
         }
 
+        ObservableCollection<Nozzle> _nozzles = new ObservableCollection<Nozzle>();
+
+        public ObservableCollection<Nozzle> Nozzles
+        {
+            get { return _nozzles; }
+        }
+
         public enum PressureUnit
         {
             Bar,
@@ -75,6 +94,17 @@ namespace Orchard
         {
             mlpermin,
             abcperxyz
+        }
+
+        public class Nozzle : NPCBase
+        {
+            int _flowRate;
+
+            public int FlowRate
+            {
+                get { return _flowRate; }
+                set { SetProperty(ref _flowRate, value); }
+            }
         }
     }
 }

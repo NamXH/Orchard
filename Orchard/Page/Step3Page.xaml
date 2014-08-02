@@ -10,7 +10,7 @@
 	<ContentPage.Content>
 		<RelativeLayout x:Name="_rLayout">
 			<ScrollView Padding="8" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}">
-				<Grid>
+				<Grid x:Name="_grid">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="3*" />
 						<ColumnDefinition Width="1*" />
@@ -35,10 +35,16 @@
 					<local:QuestionLayout QuestionLabel="Total number of active nozzles" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
 						<Entry Text="{Binding ActiveNozzleNum}" Keyboard="Numeric" VerticalOptions="Center" />
 					</local:QuestionLayout>
-
 					<local:QuestionLayout QuestionLabel="Nozzle unit" Grid.Row="3" Orientation="Horizontal">
 						<Picker x:Name="_nozzleUnit" SelectedIndex="{Binding CurrNozzleUnit, Converter={StaticResource nozzleUnitTopidxCov}}" Title="Unit" VerticalOptions="Center" />
 					</local:QuestionLayout>
+					<local:NonScrollingListView x:Name="_nList" Grid.Row="4" ItemsSource="{Binding Nozzles}">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<TextCell Text="{Binding FlowRate}" />
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</local:NonScrollingListView>
 					<Picker x:Name="_pressureUnit" SelectedIndex="{Binding CurrPressureUnit, Converter={StaticResource pressureUnitTopidxCov}}" Title="Unit" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" />
 					<Picker x:Name="_speedUnit" SelectedIndex="{Binding CurrSpeedUnit, Converter={StaticResource speedUnitTopidxCov}}" Title="Unit" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" />
 				</Grid>
