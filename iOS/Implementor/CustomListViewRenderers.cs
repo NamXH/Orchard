@@ -5,6 +5,7 @@ using Orchard.iOS;
 using Orchard;
 
 [assembly: ExportRenderer(typeof(NonScrollingListView), typeof(NonScrollingListViewRenderer))]
+[assembly: ExportRenderer(typeof(NonSelectableListView), typeof(NonSelectableListViewRenderer))]
 [assembly: ExportRenderer(typeof(NozzleListView), typeof(NozzleListViewRenderer))]
 namespace Orchard.iOS
 {
@@ -15,6 +16,16 @@ namespace Orchard.iOS
             base.OnElementChanged(e);
 
             Control.ScrollEnabled = false;
+        }
+    }
+
+    public class NonSelectableListViewRenderer : ListViewRenderer
+    {
+        protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.ListView> e)
+        {
+            base.OnElementChanged(e);
+
+            Control.AllowsSelection = false;
         }
     }
 

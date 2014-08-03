@@ -11,14 +11,14 @@ namespace Orchard
         {
             InitializeComponent();
 
-            var vm = new Step4VM();
-
-            BindingContext = vm;
+            BindingContext = App.Container.GetInstance<Step4VM>();
 
             this.ToolbarItems.Add(new ToolbarItem("add", null, () =>
             {
                 VM.Products.Add(new Product(){ Name = "abc" });
             }));
+
+
         }
 
         Step4VM VM
@@ -33,6 +33,11 @@ namespace Orchard
         {
             MessagingCenter.Send((Page)this, "next");
         }
+    }
+
+    public class NonSelectableListView : ListView
+    {
+
     }
 }
 

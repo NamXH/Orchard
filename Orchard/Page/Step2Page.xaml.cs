@@ -15,12 +15,18 @@ namespace Orchard
                 _growthStage.Items.Add(str);
             }
 
-            var vm = new Step2VM();
+            BindingContext = App.Container.GetInstance<Step2VM>();
 
-            BindingContext = vm;
-
-            ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, vm.Common.QuestionTapped);
+            ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, VM.Common.QuestionTapped);
 		}
+
+        Step2VM VM
+        {
+            get
+            {
+                return (Step2VM)BindingContext;
+            }
+        }
 
         public void NextClicked(object sender, EventArgs e)
         {

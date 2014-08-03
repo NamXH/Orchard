@@ -25,11 +25,9 @@ namespace Orchard
                 _rowSprayingMode.Items.Add(str);
             }
 
-            var vm = App.Container.GetInstance<Step1VM>();
+            BindingContext = App.Container.GetInstance<Step1VM>();
 
-            BindingContext = vm;
-
-            ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, vm.Common.QuestionTapped);
+            ViewUtils.SetupStepView(_rLayout, _helpSv, _questionContainer, VM.Common.QuestionTapped);
 
             var sprayerLP = new ListingPage<Sprayer>(true);
             sprayerLP.ItemChosen += (sender, arg) =>

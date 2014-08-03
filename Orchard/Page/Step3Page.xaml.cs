@@ -26,7 +26,7 @@ namespace Orchard
                 _nozzleUnit.Items.Add(str);
             }
 
-            BindingContext = new Step3VM();
+            BindingContext = App.Container.GetInstance<Step3VM>();
 
             VM.PropertyChanged += (sender, e) =>
             {

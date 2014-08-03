@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Orchard;assembly=Orchard" x:Class="Orchard.Step4Page">
 	<ContentPage.Content>
-		<ListView x:Name="_listView" ItemsSource="{Binding Products}" HasUnevenRows="true" RowHeight="120">
+		<local:NonSelectableListView x:Name="_listView" ItemsSource="{Binding Products}" HasUnevenRows="true" RowHeight="120">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>
@@ -30,6 +30,6 @@
 					</ViewCell>
 				</DataTemplate>
 			</ListView.ItemTemplate>
-		</ListView>
+		</local:NonSelectableListView>
 	</ContentPage.Content>
 </ContentPage>

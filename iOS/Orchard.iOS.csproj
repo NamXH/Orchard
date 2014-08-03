@@ -139,10 +139,10 @@
     <Compile Include="DbManager.cs" />
     <Compile Include="Implementor\MyMediaPicker.cs" />
     <Compile Include="Implementor\MeasureTool.cs" />
-    <Compile Include="Implementor\NonScrollingListViewRenderer.cs" />
     <Compile Include="Implementor\CustomCellRenderers.cs" />
     <Compile Include="Implementor\MyHorizontalImgPickerRenderer.cs" />
     <Compile Include="Implementor\IosLocale.cs" />
+    <Compile Include="Implementor\CustomListViewRenderers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.2.2.6243\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" />
