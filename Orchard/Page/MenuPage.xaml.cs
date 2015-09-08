@@ -65,9 +65,13 @@ namespace Orchard
         List<MenuItem> _calcMenuItems;
         List<MenuItem> _appMenuItems;
 
-        MenuItem _sprayerList = new MenuItem("List of sprayers", () => new ListingPage<Sprayer>());
-        MenuItem _operatorList = new MenuItem("List of operator", () => new ListingPage<Operator>());
-        MenuItem _blockList = new MenuItem("List of orchard blocks", () => new ListingPage<OrchardBlock>());
+//        MenuItem _sprayerList = new MenuItem("List of sprayers", () => new ListingPage<Sprayer>());
+//        MenuItem _operatorList = new MenuItem("List of operator", () => new ListingPage<Operator>());
+//        MenuItem _blockList = new MenuItem("List of orchard blocks", () => new ListingPage<OrchardBlock>());
+
+        MenuItem _sprayerList = new MenuItem("List of sprayers", () => new Page());
+        MenuItem _operatorList = new MenuItem("List of operator", () => new Page());
+        MenuItem _blockList = new MenuItem("List of orchard blocks", () => new Page());
 
         public Page DefaultPage
         {
